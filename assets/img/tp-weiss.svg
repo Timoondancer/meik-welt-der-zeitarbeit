@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Ebene_1" x="0px" y="0px" viewBox="0 0 595.3 841.9" style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve" width="595.2999877929688" height="841.9000244140625">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+</style>
+<g>
+	<path class="st0" d="M309.5,452.4h74.3v-67.5h-74.3l0.1-37.8h72.5c21.8,0,39.5,17.7,39.5,39.6v64.5c0,21.6-17.4,39.1-39,39.1h-35.3   v19.1c0,19.7-18.2,35.7-37.9,35.7v-92.7H309.5z"/>
+	<path class="st0" d="M211.5,347h74.3v37.8h-74.3v67.5h74.3v37.8H212c-21.2,0-38.4-17.3-38.4-38.7V335c0-21.1,17-38.2,37.9-38.2V347   L211.5,347z"/>
+</g>
+</svg>
