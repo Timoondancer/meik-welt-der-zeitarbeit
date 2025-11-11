@@ -3,144 +3,115 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Meiks Welt der Zeitarbeit · TIMEPARTNER</title>
-  <meta name="description" content="Interaktiver TIMEPARTNER Konfigurator für Gespräche vor Ort: Leistungen auswählen, Kampagnen & Schulungen buchen." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>TIMEPARTNER · Start</title>
+  <meta name="description" content="Loslegenseite für den TIMEPARTNER Vertriebskonfigurator." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root{
-      /* ===== Design Tokens ===== */
-      --tp-blue: #0b2d42;           /* Hauptfarbe (Buttons, Header, Text) */
-      --tp-blue-2: #123a57;         /* Verlauf & Hoverzustände */
-      --tp-green: #b6de36;          /* Akzent (Netto-Zahl, Buttons, Slider) */
-      --tp-bg: #edf2f0;             /* Seitenhintergrund */
-      --tp-muted: #6f8a9b;          /* Hilfstexte */
-      --tp-border: #dfe6ea;         /* Panel-Umrandungen */
-      --tp-input-border: #c9d3da;   /* Formularfelder */
-      --shadow-color: rgba(11,45,66,.14); /* Box-Shadow-Farbe */
-
-      --radius: 14px;               /* Eckenradius */
+      --tp-blue: #0b2d42;
+      --tp-blue-2: #123a57;
+      --tp-green: #b6de36;
+      --tp-bg: #edf2f0;
+      --tp-muted: #6f8a9b;
+      --tp-border: #dfe6ea;
+      --tp-input-border: #c9d3da;
+      --shadow-color: rgba(11,45,66,.14);
+      --radius: 14px;
       --shadow: 0 10px 26px var(--shadow-color);
-      --focus: rgba(182,222,54,.25);/* Fokusfarbe (grüner Glow) */
+      --focus: rgba(182,222,54,.25);
     }
 
-    html,body{height:100%}
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:"Nunito Sans", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
-      color:var(--tp-blue);
-      background: var(--tp-bg);
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: "Nunito Sans", sans-serif; }
+
+    body.start {
+      background: var(--tp-blue) url('./assets/img/hintergund.png') center center / cover no-repeat;
+      display: flex; flex-direction: column; justify-content: space-between;
+      align-items: center; text-align: center; color: #fff;
     }
 
-    header{
-      max-width:1100px; margin:32px auto 16px; padding:0 20px;
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    header img.logo-large {
+      width: 240px; margin: 32px; align-self: flex-start;
     }
-    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--tp-blue)}
-    .brand__logo{width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg, var(--tp-blue), var(--tp-blue-2)); box-shadow:var(--shadow); display:grid; place-items:center; font-weight:800; color:#fff}
-    .brand__name{font-weight:800; letter-spacing:.2px}
 
-    .login{display:flex; gap:10px}
-    .login input{
-      background:#fff; border:1px solid var(--tp-input-border); color:var(--tp-blue);
-      padding:10px 12px; border-radius:12px; outline:none
+    main.start-content {
+      flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;
     }
-    .login input:focus{border-color:var(--tp-blue); box-shadow:0 0 0 6px var(--focus)}
-    .login button{
-      background:var(--tp-blue); border:0; color:#fff; padding:10px 14px; border-radius:12px; font-weight:800; cursor:pointer;
-      transition: box-shadow .18s ease, transform .18s ease, background .18s ease;
+
+    h1 {
+      font-family: "Poppins", sans-serif; font-weight: 900; font-size: clamp(28px, 5vw, 56px);
+      margin-bottom: 16px;
     }
-    .login button:hover{background:var(--tp-blue-2); box-shadow:0 8px 20px rgba(11,45,66,.35); transform: translateY(-1px)}
 
-    main{max-width:1100px; margin:24px auto 64px; padding:0 20px}
-    .hero{
-      padding:32px; background:#fff; border:1px solid var(--tp-border);
-      border-radius:var(--radius); box-shadow:var(--shadow)
+    p.subtext {
+      max-width: 600px; font-size: 18px; line-height: 1.4; color: rgba(255,255,255,.85);
+      margin-bottom: 32px;
     }
-    .eyebrow{font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--tp-muted)}
-    h1,h2,legend{font-family:"Poppins", "Nunito Sans", system-ui; font-weight:900}
-    h1{margin:.2em 0 .3em; font-size: clamp(28px, 4vw, 46px); line-height:1.08}
-    .sub{color:var(--tp-muted); max-width:70ch}
 
-    .tiles{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px; margin-top:28px}
-    @media (max-width:900px){ .tiles{grid-template-columns:1fr} }
+    .btn-start {
+      background: var(--tp-green); color: var(--tp-blue); border: none; border-radius: var(--radius);
+      padding: 14px 36px; font-weight: 800; font-size: 18px; cursor: pointer;
+      box-shadow: 0 8px 20px rgba(11,45,66,.35); transition: all .25s ease;
+    }
+    .btn-start:hover { background: #c6ef46; transform: translateY(-2px); }
 
-    .tile{position:relative; background:#fff;
-          border:1px solid var(--tp-border); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow);
-          transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; text-decoration:none; color:var(--tp-blue)}
-    .tile:hover{transform: translateY(-2px); border-color:var(--tp-blue); box-shadow:0 18px 40px rgba(11,45,66,.20), 0 0 0 6px var(--focus)}
-    .tile h2{margin:4px 0 8px; font-size: clamp(18px, 2.4vw, 24px)}
-    .tile p{margin:0; color:var(--tp-muted)}
+    footer img.logo-small {
+      width: 60px; margin: 32px; opacity: .9;
+    }
 
-    .badge{display:inline-block; font-size:12px; font-weight:800; color:var(--tp-blue);
-           background:var(--tp-green); padding:6px 10px; border-radius:999px}
+    /* === Zweite Seite (index.html) === */
+    body.configurator {
+      background: var(--tp-blue);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-    footer{max-width:1100px; margin:0 auto 40px; padding:0 20px; color:var(--tp-muted); font-size:14px}
-    .footlinks{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px}
-    .footlinks a{color:var(--tp-muted)}
+    header.config {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1100px; width: 100%; margin: 32px auto 16px; padding: 0 20px;
+    }
+    header.config img.logo-large { width: 200px; }
 
-    /* Focus styles for accessibility */
-    a, button, input{outline-offset:3px}
+    main.config {
+      flex: 1; max-width: 1100px; width: 100%; margin: 0 auto; padding: 0 20px 60px;
+    }
+
+    .hero {
+      background: var(--tp-blue-2);
+      border-radius: var(--radius);
+      padding: 40px; box-shadow: var(--shadow);
+    }
+
+    .tiles {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 32px;
+    }
+
+    .tile {
+      background: #fff; color: var(--tp-blue);
+      border-radius: var(--radius); padding: 24px; text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .tile:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(11,45,66,.3); }
+    .tile h2 { font-family: "Poppins"; font-weight: 800; font-size: 22px; margin: 6px 0; }
+    .tile p { color: var(--tp-muted); }
+
+    footer.config { text-align: center; padding: 20px; color: rgba(255,255,255,.7); font-size: 14px; }
+    footer.config img.logo-small { width: 50px; margin-top: 12px; }
   </style>
 </head>
-<body>
+<body class="start">
   <header>
-    <a href="#top" class="brand" aria-label="TIMEPARTNER Startseite">
-      <span class="brand__logo" aria-hidden="true">TP</span>
-      <span class="brand__name">TIMEPARTNER</span>
-    </a>
-    <!-- Optional: Dummy-Login für Demos vor Ort -->
-    <form class="login" role="form" aria-label="Demo-Login" onsubmit="event.preventDefault(); alert('Demo-Login — kein Backend verbunden.');">
-      <label class="sr-only" for="username">Benutzername</label>
-      <input id="username" name="username" placeholder="Benutzername" autocomplete="username" />
-      <label class="sr-only" for="password">Kennwort</label>
-      <input id="password" name="password" type="password" placeholder="Kennwort" autocomplete="current-password" />
-      <button type="submit">Login</button>
-    </form>
+    <img src="./assets/img/tp-weiss.svg" alt="TIMEPARTNER Logo" class="logo-large" />
   </header>
-
-  <main>
-    <section class="hero">
-      <div class="eyebrow">Start</div>
-      <h1>Meiks Welt der Zeitarbeit</h1>
-      <p class="sub">Ihr Einstieg in unseren interaktiven Konfigurator für Gespräche vor Ort. Wählen Sie einen Bereich und konfigurieren Sie Services, Kampagnen oder Schulungen nach Bedarf.</p>
-
-      <div class="tiles" role="list">
-        <a class="tile" role="listitem" href="./ueber-timepartner.html">
-          <span class="badge">Über TIMEPARTNER</span>
-          <h2>Wer wir sind & wie wir arbeiten</h2>
-          <p>Standorte, Master-Vendor, EU‑Recruiting, Referenzen, Recht & Rahmenverträge — kompakt erklärt.</p>
-        </a>
-
-        <a class="tile" role="listitem" href="./service-konfigurator.html">
-          <span class="badge">Ihr Service konfigurieren</span>
-          <h2>Leistungen & Pakete zusammenstellen</h2>
-          <p>Zeitarbeit (AÜ), Temp‑to‑Perm, Personalvermittlung, Optionen, AÜ‑Vollmacht, digitale Signatur u.v.m.</p>
-        </a>
-
-        <a class="tile" role="listitem" href="./kampagnen-schulungen.html">
-          <span class="badge">Kampagnen & Schulungen</span>
-          <h2>Konfigurieren & buchen</h2>
-          <p>Recruiting‑Kampagnen, OnSite‑Workshops, Staplerakademie, Inhouse‑Referenten, Mitarbeiter‑Newsletter.</p>
-        </a>
-      </div>
-    </section>
+  <main class="start-content">
+    <h1>Willkommen bei TIMEPARTNER</h1>
+    <p class="subtext">Der interaktive Vertriebskonfigurator für Gespräche vor Ort. Starten Sie jetzt, um Ihre Services, Kampagnen und Schulungen individuell zusammenzustellen.</p>
+    <button class="btn-start" onclick="location.href='index.html'">Loslegen</button>
   </main>
-
   <footer>
-    <div>© <span id="year"></span> TIMEPARTNER · Demo-Konfigurator</div>
-    <nav class="footlinks" aria-label="Zusatzlinks">
-      <a href="#">Impressum</a>
-      <a href="#">Datenschutz</a>
-      <a href="#">Kontakt</a>
-    </nav>
+    <img src="./assets/img/TP-Logo-weiss-ohne-claim.png" alt="TIMEPARTNER Icon" class="logo-small" />
   </footer>
-
-  <script>
-    // kleines UX‑Detail
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
