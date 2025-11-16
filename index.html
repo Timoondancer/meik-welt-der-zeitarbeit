@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TIMEPARTNER · Start</title>
+  <meta name="description" content="Loslegenseite für den TIMEPARTNER Vertriebskonfigurator." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --tp-blue: #0b2d42;
+      --tp-green: #b6de36;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body.start {
+      font-family: "Nunito Sans", system-ui;
+      background: var(--tp-blue)
+                  url('./assets/img/hintergrund.png')
+                  center center / cover no-repeat fixed;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Logo oben */
+    header img.logo-top {
+      width: 240px;
+      margin: 32px;
+    }
+
+    /* Hero Bereich */
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .hero-eyebrow {
+      font-size: 14px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      opacity: .85;
+    }
+
+    .hero-title {
+      font-family: Poppins, sans-serif;
+      font-weight: 900;
+      font-size: clamp(32px, 6vw, 58px);
+      margin: 12px 0 18px;
+    }
+
+    .hero-text {
+      max-width: 680px;
+      margin: 0 auto 28px;
+      font-size: 18px;
+      line-height: 1.5;
+      opacity: .92;
+    }
+
+    .btn-hero {
+      background: var(--tp-green);
+      color: var(--tp-blue);
+      padding: 14px 42px;
+      border-radius: var(--radius);
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      box-shadow: 0 10px 26px rgba(11,45,66,.14);
+      display: inline-block;
+      transition: .2s;
+    }
+
+    .btn-hero:hover {
+      filter: brightness(1.03);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(11,45,66,.28);
+    }
+
+    /* Icon unten */
+    footer img.logo-bottom {
+      width: 64px;
+      margin: 24px 28px;
+    }
+  </style>
+</head>
+
+<body class="start">
+
+  <!-- Oben: großes Logo ohne Claim -->
+  <header>
+    <img src="./assets/img/TP-Logo-weiss-ohne-claim.png" alt="TIMEPARTNER Logo ohne Claim" class="logo-top" />
+  </header>
+
+  <!-- Hero Bereich -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Interaktives
 <!-- Startseite HTML hier einfügen -->
