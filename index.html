@@ -3,102 +3,56 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Meiks Welt der Zeitarbeit · TIMEPARTNER</title>
-  <meta name="description" content="Interaktiver TIMEPARTNER Konfigurator: Services konfigurieren, Kampagnen und Schulungen buchen." />
+  <title>Kampagnen & Schulungen · TIMEPARTNER</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --tp-blue: #0b2d42;     /* Hintergrund & Hauptfarbe */
-      --tp-blue-2: #123a57;   /* Flächen */
-      --tp-green: #b6de36;    /* Akzent */
-      --tp-muted: #6f8a9b;    /* Sekundärtext */
-      --tp-border: #dfe6ea;   /* Panel-Border */
-      --radius: 14px;
-      --shadow: 0 10px 26px rgba(11,45,66,.14);
-      --focus: rgba(182,222,54,.25);
-    }
+    :root{--tp-blue:#0b2d42;--tp-blue-2:#123a57;--tp-green:#b6de36;--tp-muted:#6f8a9b;--tp-border:#dfe6ea;--radius:14px;--shadow:0 10px 26px rgba(11,45,66,.14);--focus:rgba(182,222,54,.25)}
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0; font-family:"Nunito Sans", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:#fff;
-      background: var(--tp-blue);
-      display:flex; flex-direction:column; min-height:100vh;
-    }
-    a{color:inherit; text-decoration:none}
-
-    /* Logos */
-    header{
-      display:flex; align-items:center; justify-content:space-between;
-      max-width:1100px; width:100%; margin:32px auto 16px; padding:0 20px;
-    }
+    body{margin:0;font-family:"Nunito Sans",system-ui;color:#fff;background:var(--tp-blue);display:flex;flex-direction:column;min-height:100vh}
+    header{display:flex;align-items:center;max-width:1100px;width:100%;margin:32px auto 16px;padding:0 20px}
     header img.logo-top{width:200px}
-    footer.bottom-logo{position:fixed; right:20px; bottom:20px}
-    footer.bottom-logo img{width:56px; opacity:.95}
-
-    main{flex:1; max-width:1100px; width:100%; margin:0 auto; padding:0 20px 64px}
-
-    .hero{background: var(--tp-blue-2); border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow)}
-    .eyebrow{font-size:13px; letter-spacing:.18em; text-transform:uppercase; color: rgba(255,255,255,.75)}
-    h1{font-family:Poppins, "Nunito Sans", sans-serif; font-weight:900; font-size: clamp(28px,4vw,46px); margin:.25em 0 .3em}
-    .sub{color: rgba(255,255,255,.8); max-width:72ch}
-
-    .tiles{display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:18px; margin-top:28px}
-    .tile{background:#fff; color: var(--tp-blue); border-radius: var(--radius); padding:22px; box-shadow: var(--shadow); border:1px solid var(--tp-border); transition: transform .18s ease, box-shadow .18s ease}
-    .tile:hover{transform: translateY(-2px); box-shadow: 0 14px 34px rgba(11,45,66,.28)}
-    .tile h2{font-family:Poppins, "Nunito Sans"; font-weight:800; font-size:22px; margin:6px 0 8px}
-    .tile p{color: var(--tp-muted); margin:0}
-    .badge{display:inline-block; font-size:12px; font-weight:800; color: var(--tp-blue); background: var(--tp-green); padding:6px 10px; border-radius:999px}
-
-    .foot{color: rgba(255,255,255,.75); text-align:center; font-size:14px; margin-top:18px}
-
-    /* Fokus / Accessiblity */
-    button, a, input{outline-offset:3px}
-    .tile:focus{box-shadow:0 0 0 6px var(--focus)}
+    .wrap{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:0 20px 64px}
+    nav.breadcrumb{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:16px}
+    nav.breadcrumb a{color:rgba(255,255,255,.9);text-decoration:none}
+    .card{background:#fff;color:var(--tp-blue);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--tp-border);padding:24px}
+    h1,h2{font-family:Poppins,"Nunito Sans";font-weight:900;margin:.2em 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .muted{color:var(--tp-muted)}
+    footer.bottom{position:fixed;right:20px;bottom:20px}
+    footer.bottom img{width:56px}
+    .back{display:inline-block;margin:0 0 16px;background:#fff;color:var(--tp-blue);border-radius:999px;padding:8px 14px;border:1px solid var(--tp-border);text-decoration:none}
+    .back:hover{box-shadow:0 10px 26px rgba(11,45,66,.14)}
   </style>
 </head>
 <body>
   <header>
-    <!-- Oben: großes Logo OHNE Claim -->
-    <a href="index.html" aria-label="Zur Startseite">
-      <img src="./assets/img/TP-Logo-weiss-ohne-claim.png" alt="TIMEPARTNER Logo ohne Claim" class="logo-top" />
-    </a>
+    <a href="konfigurator.html" class="back">← Zurück</a>
+    <img src="./assets/img/TP-Logo-weiss-ohne-claim.png" alt="TIMEPARTNER" class="logo-top"/>
   </header>
+  <main class="wrap">
+    <nav class="breadcrumb">Ebene 1: Start · Ebene 2: <a href="konfigurator.html">Kacheln</a> · Ebene 3: Kampagnen & Schulungen</nav>
 
-  <main>
-    <section class="hero">
-      <div class="eyebrow">Start</div>
-      <h1>Meiks Welt der Zeitarbeit</h1>
-      <p class="sub">Ihr Einstieg in unseren interaktiven Konfigurator für Gespräche vor Ort. Wählen Sie einen Bereich und konfigurieren Sie Services, Kampagnen oder Schulungen nach Bedarf.</p>
-
-      <div class="tiles" role="list">
-        <a class="tile" role="listitem" href="./ueber-timepartner.html">
-          <span class="badge">Über TIMEPARTNER</span>
-          <h2>Wer wir sind & wie wir arbeiten</h2>
-          <p>Standorte, Master‑Vendor, EU‑Recruiting, Referenzen, Recht & Rahmenverträge — kompakt erklärt.</p>
-        </a>
-        <a class="tile" role="listitem" href="./service-konfigurator.html">
-          <span class="badge">Ihr Service konfigurieren</span>
-          <h2>Leistungen & Pakete zusammenstellen</h2>
-          <p>Zeitarbeit (AÜ), Temp‑to‑Perm, Personalvermittlung, Optionen, AÜ‑Vollmacht, digitale Signatur u.v.m.</p>
-        </a>
-        <a class="tile" role="listitem" href="./kampagnen-schulungen.html">
-          <span class="badge">Kampagnen & Schulungen</span>
-          <h2>Konfigurieren & buchen</h2>
-          <p>Recruiting‑Kampagnen, OnSite‑Workshops, Staplerakademie, Inhouse‑Referenten, Mitarbeiter‑Newsletter.</p>
-        </a>
-      </div>
+    <section class="card" style="margin-bottom:16px">
+      <h1>Kampagnen & Schulungen</h1>
+      <p class="muted">Platzhalter – Kampagnenbau (Kanäle, Budgets) und Schulungsbuchung (Thema, Termin, OnSite/Remote).</p>
     </section>
 
-    <div class="foot">© <span id="year"></span> TIMEPARTNER · Demo-Konfigurator</div>
+    <section class="grid">
+      <div class="card">
+        <h2>Recruiting-Kampagnen</h2>
+        <p class="muted">Kanäle: Indeed, SEA, Social · Budgetsteuerung · Laufzeit.</p>
+      </div>
+      <div class="card">
+        <h2>Workshops & OnSite</h2>
+        <p class="muted">Staplerakademie, OnSite‑Trainings, Inhouse‑Referenten.</p>
+      </div>
+      <div class="card">
+        <h2>Newsletter & Talentpools</h2>
+        <p class="muted">Mitarbeiter‑Newsletter, Kandidaten‑Selektionen, CRM‑Sync.</p>
+      </div>
+    </section>
   </main>
-
-  <!-- Unten: Icon (SVG) -->
-  <footer class="bottom-logo">
-    <img src="./assets/img/tp-weiss.svg" alt="TIMEPARTNER Icon" />
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <footer class="bottom"><img src="./assets/img/tp-weiss.svg" alt="Icon"/></footer>
 </body>
 </html>
