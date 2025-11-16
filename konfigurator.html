@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kampagnen & Schulungen · TIMEPARTNER</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --tp-blue:#0b2d42;
+      --tp-blue-2:#123a57;
+      --tp-green:#b6de36;
+      --tp-muted:#6f8a9b;
+      --tp-border:#dfe6ea;
+      --radius:14px;
+      --shadow:0 10px 26px rgba(11,45,66,.14);
+      --focus:rgba(182,222,54,.25);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    body{
+      font-family:"Nunito Sans",system-ui;
+      background:var(--tp-blue);
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* HEADER */
+    header{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      max-width:1100px;
+      width:100%;
+      margin:32px auto 16px;
+      padding:0 20px;
+    }
+
+    header img.logo-top{
+      width:200px;
+    }
+
+    .btn-back{
+      background:#fff;
+      color:var(--tp-blue);
+      border-radius:999px;
+      padding:8px 18px;
+      font-weight:700;
+      text-decoration:none;
+      border:1px solid var(--tp-border);
+      box-shadow:var(--shadow);
+    }
+    .btn-back:hover{
+      box-shadow:0 10px 26px rgba(11,45,66,.24);
+    }
+
+    /* MAIN WRAPPER */
+    main{
+      flex:1;
+      max-width:1100px;
+      width:100%;
+      margin:0 auto;
+      padding:0 20px 60px;
+    }
+
+    nav.breadcrumb{
+      font-size:14px;
+      color:rgba(255,255,255,.8);
+      margin-bottom:20px;
+    }
+    nav.breadcrumb a{
+      color:rgba(255,255,255,.9);
+      text-decoration:none;
+    }
+
+    /* CARDS */
+    .card{
+      background:#fff;
+      color:var(--tp-blue);
+      border-radius:var(--radius);
+      padding:24px;
+      border:1px solid var(--tp-border);
+      box-shadow:var(--shadow);
+      margin-bottom:20px;
+    }
+
+    h1,h2{
+      font-family:Poppins,sans-serif;
+      font-weight:900;
+      margin-bottom:8px;
+    }
+
+    .muted{
+      color:var(--tp-muted);
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:18px;
+    }
+
+    /* FOOTER ICON */
+    footer.bottom-logo{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+    }
+
+    footer.bottom-logo img{
+      width:56px;
+      opacity:.95;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="konfigurator.html" class="btn-back">← Zurück</a>
+    <img src="./assets/img/TP-Logo-weiss-ohne-claim.png" class="logo-top" alt="TIMEPARTNER Logo" />
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <nav class="breadcrumb">
+      Ebene 1: Start · Ebene 2: <a href="konfigurator.html">Kacheln</a> · Ebene 3: Kampagnen & Schulungen
+    </nav>
+
+    <section class="card">
+      <h1>Kampagnen & Schulungen</h1>
+      <p class="muted">
+        Wähle hier Recruiting-Kampagnen, Schulungen, Workshops und digitale Bausteine für eure Mitarbeiterkommunikation.
+        Diese Seite dient als Grundlage für Gespräche vor Ort – kompakt, visuell, und direkt konfigurierbar.
+      </p>
+    </section>
+
+    <section class="grid">
+
+      <div class="card">
+        <h2>Recruiting-Kampagnen</h2>
+        <p class="muted">
+          · Indeed · Social Ads · Google SEA<br>
+          · Budgetsteuerung<br>
+          · Laufzeiten & Performance-Optimierung
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Workshops & OnSite Trainings</h2>
+        <p class="muted">
+          · Staplerakademie<br>
+          · Sicherheitsunterweisungen<br>
+          · OnSite-Coachings für neue Mitarbeitende
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Newsletter & Talentpools</h2>
+        <p class="muted">
+          · Mitarbeiter-Newsletter<br>
+          · Talentpools & automatische Selektionen<br>
+          · CRM-Sync & Candidate Nurturing
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- FOOTER ICON -->
+  <footer class="bottom-logo">
+    <img src="./assets/img/tp-weiss.svg" alt="TIMEPARTNER Icon" />
+  </footer>
+
+</body>
+</html>
+<!-- Kampagnen & Schulungen HTML hier einfügen -->
 <!-- Konfigurator Kacheln HTML hier einfügen -->
