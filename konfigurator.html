@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kampagnen & Schulungen · TIMEPARTNER</title>
+  <title>Meiks Welt der Zeitarbeit · TIMEPARTNER</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
@@ -21,7 +21,6 @@
 
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-
     body{
       font-family:"Nunito Sans",system-ui;
       background:var(--tp-blue);
@@ -31,157 +30,129 @@
       flex-direction:column;
     }
 
-    /* HEADER */
     header{
       display:flex;
       align-items:center;
-      gap:20px;
+      justify-content:space-between;
       max-width:1100px;
       width:100%;
-      margin:32px auto 16px;
+      margin:32px auto;
       padding:0 20px;
     }
+    header img.logo-top{ width:200px; }
 
-    header img.logo-top{
-      width:200px;
-    }
-
-    .btn-back{
-      background:#fff;
-      color:var(--tp-blue);
-      border-radius:999px;
-      padding:8px 18px;
-      font-weight:700;
-      text-decoration:none;
-      border:1px solid var(--tp-border);
-      box-shadow:var(--shadow);
-    }
-    .btn-back:hover{
-      box-shadow:0 10px 26px rgba(11,45,66,.24);
-    }
-
-    /* MAIN WRAPPER */
     main{
       flex:1;
-      max-width:1100px;
       width:100%;
+      max-width:1100px;
       margin:0 auto;
       padding:0 20px 60px;
     }
 
-    nav.breadcrumb{
-      font-size:14px;
-      color:rgba(255,255,255,.8);
-      margin-bottom:20px;
-    }
-    nav.breadcrumb a{
-      color:rgba(255,255,255,.9);
-      text-decoration:none;
-    }
-
-    /* CARDS */
-    .card{
-      background:#fff;
-      color:var(--tp-blue);
+    .hero{
+      background:var(--tp-blue-2);
+      padding:36px;
       border-radius:var(--radius);
-      padding:24px;
-      border:1px solid var(--tp-border);
       box-shadow:var(--shadow);
-      margin-bottom:20px;
     }
 
-    h1,h2{
+    h1{
       font-family:Poppins,sans-serif;
       font-weight:900;
-      margin-bottom:8px;
+      font-size:clamp(28px,4vw,46px);
+      margin-bottom:12px;
     }
 
-    .muted{
-      color:var(--tp-muted);
-      font-size:15px;
-      line-height:1.5;
+    .sub{
+      color:rgba(255,255,255,.8);
+      max-width:70ch;
     }
 
-    .grid{
+    .tiles{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:18px;
+      margin-top:32px;
     }
 
-    /* FOOTER ICON */
+    .tile{
+      background:#fff;
+      color:var(--tp-blue);
+      text-decoration:none;
+      padding:22px;
+      border-radius:var(--radius);
+      border:1px solid var(--tp-border);
+      box-shadow:var(--shadow);
+      transition:.2s;
+    }
+    .tile:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 34px rgba(11,45,66,.28);
+    }
+
+    .badge{
+      background:var(--tp-green);
+      color:var(--tp-blue);
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      display:inline-block;
+      margin-bottom:8px;
+    }
+
     footer.bottom-logo{
       position:fixed;
-      bottom:20px;
       right:20px;
+      bottom:20px;
+    }
+    footer img{
+      width:56px;
     }
 
-    footer.bottom-logo img{
-      width:56px;
-      opacity:.95;
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <header>
-    <a href="konfigurator.html" class="btn-back">← Zurück</a>
-    <img src="./assets/img/TP-Logo-weiss-ohne-claim.png" class="logo-top" alt="TIMEPARTNER Logo" />
+    <img src="./assets/img/TP-Logo-weiss-ohne-claim.png" class="logo-top" />
   </header>
 
-  <!-- MAIN CONTENT -->
   <main>
-    <nav class="breadcrumb">
-      Ebene 1: Start · Ebene 2: <a href="konfigurator.html">Kacheln</a> · Ebene 3: Kampagnen & Schulungen
-    </nav>
-
-    <section class="card">
-      <h1>Kampagnen & Schulungen</h1>
-      <p class="muted">
-        Wähle hier Recruiting-Kampagnen, Schulungen, Workshops und digitale Bausteine für eure Mitarbeiterkommunikation.
-        Diese Seite dient als Grundlage für Gespräche vor Ort – kompakt, visuell, und direkt konfigurierbar.
+    <section class="hero">
+      <h1>Meiks Welt der Zeitarbeit</h1>
+      <p class="sub">
+        Wähle einen Bereich aus – Services, Unternehmensinfos oder Kampagnen & Schulungen.
       </p>
-    </section>
 
-    <section class="grid">
+      <div class="tiles">
 
-      <div class="card">
-        <h2>Recruiting-Kampagnen</h2>
-        <p class="muted">
-          · Indeed · Social Ads · Google SEA<br>
-          · Budgetsteuerung<br>
-          · Laufzeiten & Performance-Optimierung
-        </p>
+        <a href="ueber-timepartner.html" class="tile">
+          <span class="badge">Über TIMEPARTNER</span>
+          <h2>Wer wir sind & wie wir arbeiten</h2>
+          <p>Standorte, Master-Vendor, EU-Recruiting, Referenzen, Recht & Rahmenverträge.</p>
+        </a>
+
+        <a href="service-konfigurator.html" class="tile">
+          <span class="badge">Ihr Service konfigurieren</span>
+          <h2>Leistungen & Pakete zusammenstellen</h2>
+          <p>AÜ, Temp-to-Perm, Vermittlung, Optionen, AÜV, digitale Signatur.</p>
+        </a>
+
+        <a href="kampagnen-schulungen.html" class="tile">
+          <span class="badge">Kampagnen & Schulungen</span>
+          <h2>Konfigurieren & buchen</h2>
+          <p>Kampagnen, Workshops, Mitarbeiterkommunikation & Talentpools.</p>
+        </a>
+
       </div>
-
-      <div class="card">
-        <h2>Workshops & OnSite Trainings</h2>
-        <p class="muted">
-          · Staplerakademie<br>
-          · Sicherheitsunterweisungen<br>
-          · OnSite-Coachings für neue Mitarbeitende
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>Newsletter & Talentpools</h2>
-        <p class="muted">
-          · Mitarbeiter-Newsletter<br>
-          · Talentpools & automatische Selektionen<br>
-          · CRM-Sync & Candidate Nurturing
-        </p>
-      </div>
-
     </section>
   </main>
 
-  <!-- FOOTER ICON -->
   <footer class="bottom-logo">
-    <img src="./assets/img/tp-weiss.svg" alt="TIMEPARTNER Icon" />
+    <img src="./assets/img/tp-weiss.svg" />
   </footer>
 
 </body>
 </html>
-<!-- Kampagnen & Schulungen HTML hier einfügen -->
-<!-- Konfigurator Kacheln HTML hier einfügen -->
