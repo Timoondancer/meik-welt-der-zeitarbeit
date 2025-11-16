@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Über TIMEPARTNER</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --tp-blue:#0b2d42;
+      --tp-blue-2:#123a57;
+      --tp-green:#b6de36;
+      --tp-muted:#6f8a9b;
+      --tp-border:#dfe6ea;
+      --radius:14px;
+      --shadow:0 10px 26px rgba(11,45,66,.14);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Nunito Sans",system-ui;
+      background:var(--tp-blue);
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      max-width:1100px;
+      width:100%;
+      margin:32px auto;
+      padding:0 20px;
+    }
+    header img.logo-top{width:200px}
+
+    .btn-back{
+      background:#fff;
+      color:var(--tp-blue);
+      padding:8px 18px;
+      border-radius:999px;
+      text-decoration:none;
+      border:1px solid var(--tp-border);
+      font-weight:700;
+    }
+
+    main{
+      flex:1; max-width:1100px; margin:0 auto; width:100%; padding:0 20px 60px;
+    }
+
+    nav.breadcrumb{color:rgba(255,255,255,.8); font-size:14px; margin-bottom:20px}
+    nav a{color:#fff;}
+
+    .card{
+      background:#fff;
+      color:var(--tp-blue);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid var(--tp-border);
+      padding:24px;
+      margin-bottom:20px;
+    }
+
+    h1,h2{font-family:Poppins;font-weight:900;margin-bottom:10px}
+    .muted{color:var(--tp-muted)}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:16px;
+    }
+
+    footer.bottom-logo{
+      position:fixed; right:20px; bottom:20px;
+    }
+    footer img{width:56px;}
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="konfigurator.html" class="btn-back">← Zurück</a>
+  <img src="./assets/img/TP-Logo-weiss-ohne-claim.png" class="logo-top" />
+</header>
+
+<main>
+
+  <nav class="breadcrumb">
+    Ebene 1: Start · Ebene 2: <a href="konfigurator.html">Kacheln</a> · Ebene 3: Über TIMEPARTNER
+  </nav>
+
+  <section class="card">
+    <h1>Über TIMEPARTNER</h1>
+    <p class="muted">
+      Unternehmensgröße, Standorte, Referenzen & rechtliche Grundlagen – kompakt aufbereitet für das Vertriebsgespräch.
+    </p>
+  </section>
+
+  <section class="grid">
+
+    <div class="card">
+      <h2>Unternehmensgröße & Standorte</h2>
+      <p class="muted">Platzhalter – später mit echten Zahlen, Karte, Touchpoints.</p>
+    </div>
+
+    <div class="card">
+      <h2>Referenzen</h2>
+      <p class="muted">Kundenstimmen, Case Studies, Branchen-Insights.</p>
+    </div>
+
+    <div class="card">
+      <h2>Recht & Rahmenverträge</h2>
+      <p class="muted">Subsidiarhaftung, AÜG, Compliance & Argumente für Entscheider.</p>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="bottom-logo">
+  <img src="./assets/img/tp-weiss.svg" />
+</footer>
+
+</body>
+</html>
 <!-- Über TIMEPARTNER HTML hier einfügen -->
