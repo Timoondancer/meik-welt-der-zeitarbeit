@@ -190,6 +190,7 @@
       color:var(--tp-blue);
       font-weight:800;
       font-size:14px;
+      text-decoration:none;
     }
 
     /* BILD – NUR VORDERSEITE */
@@ -202,6 +203,28 @@
       height:200px;
       object-fit:cover;
       display:block;
+    }
+
+    /* EXTRA BUTTON: Humpty Dumpty Game */
+    .tp-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--tp-green);
+      color: var(--tp-blue);
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: 0.2s ease;
+      box-shadow: 0 4px 14px rgba(182,222,54,.4);
+      font-size: 15px;
+    }
+
+    .tp-btn:hover {
+      background: #d4ff57;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(182,222,54,.5);
     }
 
     footer.bottom-logo{
@@ -249,27 +272,25 @@
             <!-- Vorderseite -->
             <div class="tile-face tile-front">
               <div class="tile-image-wrapper">
-                <img src="assets/img/kachel1.JPG" alt="TIMEPARTNER Team im Gespräch" class="tile-image" />
+                <img src="assets/img/kachel1.JPG" class="tile-image" alt="TIMEPARTNER Team" />
               </div>
               <span class="badge">Über TIMEPARTNER</span>
               <h2>Lerne uns kennen – so arbeiten wir für deinen Erfolg</h2>
               <p>
-                Bekomme ein klares Bild davon, wer wir sind und wie wir mit dir zusammenarbeiten.
+                Standorte, Arbeitsweise, Referenzen &amp; rechtliche Rahmen – alles, was du brauchst, um uns einschätzen zu können.
               </p>
-              <span class="tile-cta">Teameinblicke, Standorte &amp; Referenzen →</span>
+              <span class="tile-cta">Mehr erfahren →</span>
             </div>
 
             <!-- Rückseite -->
             <div class="tile-face tile-back">
               <span class="badge">Über TIMEPARTNER</span>
-              <h2>Was du über uns erfährst</h2>
+              <h2>Ein klarer Blick auf TIMEPARTNER</h2>
               <p>
-                Wir zeigen dir, wie wir ticken: unsere Standorte, unsere Arbeitsweise,
-                echte Referenzen und alle wichtigen Rahmenbedingungen – vom AÜG bis zu
-                deinen Ansprechpartnern vor Ort. So erkennst du schnell, wie wir gemeinsam
-                Wirkung entfalten können.
+                Erfahre, wie wir organisiert sind, wo wir aktiv sind und wie wir arbeiten – inklusive Einblicke in Standorte, Branchen,
+                Referenzen und rechtliche Grundlagen wie AÜG &amp; Rahmenverträge. So kannst du fundiert entscheiden, ob wir zu dir passen.
               </p>
-              <span class="tile-cta-btn">Mehr über TIMEPARTNER erfahren</span>
+              <a class="tile-cta-btn" href="ueber-timepartner.html">Mehr über TIMEPARTNER</a>
             </div>
 
           </div>
@@ -282,27 +303,26 @@
             <!-- Vorderseite -->
             <div class="tile-face tile-front">
               <div class="tile-image-wrapper">
-                <img src="assets/img/kachel2.JPG" alt="Beratung zu Personallösungen" class="tile-image" />
+                <img src="assets/img/kachel2.JPG" class="tile-image" alt="Beratung zu Personallösungen" />
               </div>
               <span class="badge">Leistungen konfigurieren</span>
               <h2>Stelle deine Personallösung selbst zusammen</h2>
               <p>
-                Wähle die passenden Services – von Zeitarbeit bis Vermittlung.
+                Wähle Vertragsform, Optionen und Services – wir zeigen dir, was am besten zu deinem Bedarf passt.
               </p>
-              <span class="tile-cta">Bausteine für dein Team im Überblick →</span>
+              <span class="tile-cta">Leistung konfigurieren →</span>
             </div>
 
             <!-- Rückseite -->
             <div class="tile-face tile-back">
               <span class="badge">Leistungen konfigurieren</span>
-              <h2>So entsteht deine Lösung</h2>
+              <h2>Die passende Lösung für deinen Bedarf</h2>
               <p>
-                Kombiniere Zeitarbeit, Personalvermittlung, Optionen und ergänzende Services.
-                Wir machen transparent, welche Auswirkungen die Kombinationen haben – und sprechen
-                offen über Chancen, Risiken und nächste Schritte. Ideal, um im Gespräch live zu
-                konfigurieren und Entscheidungen vorzubereiten.
+                Kombiniere Zeitarbeit, Personalvermittlung und optionale Services Schritt für Schritt. Du siehst,
+                welche Modelle zu deinem Auftrag passen – transparent, nachvollziehbar und direkt nutzbar für Gespräche
+                mit Entscheider:innen und HR.
               </p>
-              <span class="tile-cta-btn">Personallösung konfigurieren</span>
+              <a class="tile-cta-btn" href="service-konfigurator.html">Leistung konfigurieren</a>
             </div>
 
           </div>
@@ -315,33 +335,40 @@
             <!-- Vorderseite -->
             <div class="tile-face tile-front">
               <div class="tile-image-wrapper">
-                <img src="assets/img/kachel3.JPG" alt="Team arbeitet an Recruiting-Kampagnen" class="tile-image" />
+                <img src="assets/img/kachel3.JPG" class="tile-image" alt="Recruiting-Kampagnen und Schulungen" />
               </div>
               <span class="badge">Kampagnen &amp; Schulungen</span>
               <h2>Kampagnen planen &amp; direkt buchen</h2>
               <p>
-                Alles, was dein Recruiting stärkt – kompakt gebündelt auf einer Seite.
+                Employer-Branding-Kampagnen, Workshops, Kommunikation &amp; Programmatic Advertising / Active Sourcing übersichtlich an einem Ort.
               </p>
-              <span class="tile-cta">Von Social Ads bis Workshops →</span>
+              <span class="tile-cta">Kampagnen &amp; Schulungen entdecken →</span>
             </div>
 
             <!-- Rückseite -->
             <div class="tile-face tile-back">
               <span class="badge">Kampagnen &amp; Schulungen</span>
-              <h2>Mehr Sichtbarkeit für dein Recruiting</h2>
+              <h2>Mehr Sichtbarkeit &amp; Wirkung im Recruiting</h2>
               <p>
-                Ob Employer-Branding-Kampagnen, gezielte Social Ads, Newsletter-Setups
-                oder Trainings für dein Team: Hier planst du Maßnahmen, die Kandidaten
-                anziehen und binden. Transparent, modular und direkt buchbar – perfekt
-                für Gespräche mit allen Stakeholdern.
+                Plane Employer-Branding-Kampagnen, Social-Ads-Setups, Trainings und Kommunikationsbausteine so,
+                dass sie zu deiner Zielgruppe passen. Programmatic Advertising und Active Sourcing helfen dir,
+                Bewerbende gezielt zu erreichen – alle Optionen gebündelt auf einer Seite.
               </p>
-              <span class="tile-cta-btn">Kampagnen &amp; Schulungen entdecken</span>
+              <a class="tile-cta-btn" href="kampagnen-schulungen.html">Kampagnen &amp; Schulungen entdecken</a>
             </div>
 
           </div>
         </a>
 
       </div>
+
+      <!-- EXTRA GAME BUTTON -->
+      <div style="text-align:center; margin-top:40px;">
+        <a href="humptydumpty.html" class="tp-btn">
+          🎮 Humpty Dumpty Game spielen
+        </a>
+      </div>
+
     </section>
   </main>
 
