@@ -80,7 +80,7 @@
       margin-top:32px;
     }
 
-    /* 3D-Würfel-Kachel */
+    /* Flip-Card / Würfel nur 1x 180° pro Hover */
     .tile{
       position:relative;
       display:block;
@@ -99,7 +99,7 @@
       box-shadow:var(--shadow);
       transform-style:preserve-3d;
       background:#fff;
-      transition:transform 0.6s linear, box-shadow 0.2s ease;
+      transition:transform 0.6s ease, box-shadow 0.2s ease;
       min-height:320px;
       overflow:hidden;
     }
@@ -121,10 +121,11 @@
     .tile-back{
       background:#ffffff; /* knallweiß */
       transform:rotateY(180deg);
+      justify-content:flex-start;
     }
 
     .tile:hover .tile-inner{
-      transform:rotateY(360deg) translateY(-2px);
+      transform:rotateY(180deg);
       box-shadow:0 14px 34px rgba(11,45,66,.28);
     }
 
@@ -155,12 +156,23 @@
 
     .tile-cta{
       display:block;
-      margin-top:14px;
+      margin-top:10px;
       font-weight:800;
       color:var(--tp-blue);
     }
 
-    /* Bild in den Kacheln */
+    .tile-cta-btn{
+      display:inline-block;
+      margin-top:16px;
+      padding:10px 18px;
+      border-radius:999px;
+      background:var(--tp-green);
+      color:var(--tp-blue);
+      font-weight:800;
+      font-size:14px;
+    }
+
+    /* Bild in den Kacheln (nur Vorderseite) */
     .tile-image-wrapper{
       margin:-22px -22px 16px -22px;
     }
@@ -217,6 +229,8 @@
         <!-- Karte 1: Über TIMEPARTNER -->
         <a href="ueber-timepartner.html" class="tile">
           <div class="tile-inner">
+
+            <!-- Vorderseite: Bild + kurze Botschaft -->
             <div class="tile-face tile-front">
               <div class="tile-image-wrapper">
                 <img src="assets/img/kachel1.JPG" alt="TIMEPARTNER Team im Gespräch" class="tile-image" />
@@ -224,18 +238,31 @@
               <span class="badge">Über TIMEPARTNER</span>
               <h2>Lerne uns kennen – so arbeiten wir für deinen Erfolg</h2>
               <p>
-                Wir zeigen dir, wie wir ticken: unsere Standorte, unsere Arbeitsweise, echte Referenzen und alle wichtigen Rahmenbedingungen.  
-                So bekommst du ein klares Bild davon, wie wir gemeinsam wirken können – transparent, partnerschaftlich und mit Fokus auf deinen Erfolg.
+                Bekomme ein klares Bild davon, wer wir sind und wie wir mit dir zusammenarbeiten.
               </p>
-              <span class="tile-cta">Mehr erfahren →</span>
+              <span class="tile-cta">Teameinblicke, Standorte &amp; Referenzen →</span>
             </div>
-            <div class="tile-face tile-back"></div>
+
+            <!-- Rückseite: detaillierter Teaser + CTA -->
+            <div class="tile-face tile-back">
+              <span class="badge">Über TIMEPARTNER</span>
+              <h2>Was du über uns erfährst</h2>
+              <p>
+                Wir zeigen dir, wie wir ticken: unsere Standorte, unsere Arbeitsweise, echte Referenzen
+                und alle wichtigen Rahmenbedingungen – vom AÜG bis zu deinen Ansprechpartnern vor Ort.
+                So erkennst du schnell, wie wir gemeinsam Wirkung entfalten können.
+              </p>
+              <span class="tile-cta-btn">Mehr über TIMEPARTNER erfahren</span>
+            </div>
+
           </div>
         </a>
 
         <!-- Karte 2: Leistungen konfigurieren -->
         <a href="service-konfigurator.html" class="tile">
           <div class="tile-inner">
+
+            <!-- Vorderseite -->
             <div class="tile-face tile-front">
               <div class="tile-image-wrapper">
                 <img src="assets/img/kachel2.JPG" alt="Beratung zu Personallösungen" class="tile-image" />
@@ -243,19 +270,32 @@
               <span class="badge">Leistungen konfigurieren</span>
               <h2>Stelle deine Personallösung selbst zusammen</h2>
               <p>
-                Wähle Zeitarbeit, Personalvermittlung, Optionen und Services, die zu deinem Bedarf passen.  
-                Du siehst auf einen Blick, welche Bausteine möglich sind – wir begleiten dich Schritt für Schritt, machen Komplexes greifbar
-                und finden gemeinsam die beste Lösung für dein Team.
+                Wähle die passenden Services – von Zeitarbeit bis Vermittlung.
               </p>
-              <span class="tile-cta">Leistung konfigurieren →</span>
+              <span class="tile-cta">Bausteine für dein Team im Überblick →</span>
             </div>
-            <div class="tile-face tile-back"></div>
+
+            <!-- Rückseite -->
+            <div class="tile-face tile-back">
+              <span class="badge">Leistungen konfigurieren</span>
+              <h2>So entsteht deine Lösung</h2>
+              <p>
+                Du kombinierst Zeitarbeit, Personalvermittlung, Optionen und ergänzende Services –
+                wir machen die Auswirkungen transparent und sprechen offen über Chancen, Risiken
+                und nächste Schritte. Ideal, um im Gespräch live zu konfigurieren und Entscheidungen
+                direkt vorzubereiten.
+              </p>
+              <span class="tile-cta-btn">Personallösung konfigurieren</span>
+            </div>
+
           </div>
         </a>
 
         <!-- Karte 3: Kampagnen & Schulungen -->
         <a href="kampagnen-schulungen.html" class="tile">
           <div class="tile-inner">
+
+            <!-- Vorderseite -->
             <div class="tile-face tile-front">
               <div class="tile-image-wrapper">
                 <img src="assets/img/kachel3.JPG" alt="Team arbeitet an Recruiting-Kampagnen" class="tile-image" />
@@ -263,13 +303,24 @@
               <span class="badge">Kampagnen &amp; Schulungen</span>
               <h2>Kampagnen planen &amp; direkt buchen</h2>
               <p>
-                Ob Employer Branding, Workshops oder Kommunikationspakete:  
-                Hier findest du alles, was dein Recruiting stärkt – übersichtlich, flexibel und sofort buchbar.
-                So kannst du Kampagnen und Schulungen direkt im Gespräch mit uns konfigurieren und planen.
+                Alles, was dein Recruiting stärkt – kompakt gebündelt auf einer Seite.
               </p>
-              <span class="tile-cta">Kampagnen und Schulungen entdecken →</span>
+              <span class="tile-cta">Von Social Ads bis Workshops →</span>
             </div>
-            <div class="tile-face tile-back"></div>
+
+            <!-- Rückseite -->
+            <div class="tile-face tile-back">
+              <span class="badge">Kampagnen &amp; Schulungen</span>
+              <h2>Mehr Sichtbarkeit für dein Recruiting</h2>
+              <p>
+                Ob Employer-Branding-Kampagnen, gezielte Social Ads, Newsletter-Setups
+                oder Trainings für dein Team: Hier planst du Maßnahmen, die Kandidaten
+                anziehen und binden. Transparent, modular und direkt buchbar – perfekt
+                für Gespräche mit allen Stakeholdern.
+              </p>
+              <span class="tile-cta-btn">Kampagnen &amp; Schulungen entdecken</span>
+            </div>
+
           </div>
         </a>
 
