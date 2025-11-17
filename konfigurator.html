@@ -62,7 +62,7 @@
 
     main{flex:1;}
 
-    /* HERO BOX */
+    /* HERO BOX (mit Kacheln) */
     .hero{
       background:var(--tp-blue-2);
       padding:36px 28px 40px;
@@ -193,7 +193,7 @@
       text-decoration:none;
     }
 
-    /* BILD – NUR VORDERSEITE */
+    /* Bild – nur Vorderseite */
     .tile-image-wrapper{
       margin:-22px -22px 16px -22px;
     }
@@ -205,7 +205,12 @@
       display:block;
     }
 
-    /* EXTRA BUTTON: Humpty Dumpty Game */
+    /* EXTRA BUTTON: Humpty Dumpty Game – außerhalb der Hero-Box */
+    .game-wrapper{
+      text-align:center;
+      margin-top:28px;
+    }
+
     .tp-btn {
       display: inline-block;
       padding: 14px 28px;
@@ -228,7 +233,7 @@
     }
 
     footer.bottom-logo{
-      margin-top:16px;
+      margin-top:24px;
       display:flex;
       justify-content:flex-end;
     }
@@ -254,8 +259,9 @@
   </header>
 
   <main>
-    <section class="hero">
 
+    <!-- HERO MIT KACHELN -->
+    <section class="hero">
       <p class="hero-eyebrow">Interaktives Vertriebstool</p>
       <h1>Finde die passende Personallösung – einfach, klar und schnell.</h1>
 
@@ -287,8 +293,8 @@
               <span class="badge">Über TIMEPARTNER</span>
               <h2>Ein klarer Blick auf TIMEPARTNER</h2>
               <p>
-                Erfahre, wie wir organisiert sind, wo wir aktiv sind und wie wir arbeiten – inklusive Einblicke in Standorte, Branchen,
-                Referenzen und rechtliche Grundlagen wie AÜG &amp; Rahmenverträge. So kannst du fundiert entscheiden, ob wir zu dir passen.
+                Erfahre, wie wir organisiert sind, wo wir aktiv sind und wie wir arbeiten – inklusive Einblicke in Standorte,
+                Branchen, Referenzen und rechtliche Grundlagen wie AÜG &amp; Rahmenverträge.
               </p>
               <a class="tile-cta-btn" href="ueber-timepartner.html">Mehr über TIMEPARTNER</a>
             </div>
@@ -319,8 +325,7 @@
               <h2>Die passende Lösung für deinen Bedarf</h2>
               <p>
                 Kombiniere Zeitarbeit, Personalvermittlung und optionale Services Schritt für Schritt. Du siehst,
-                welche Modelle zu deinem Auftrag passen – transparent, nachvollziehbar und direkt nutzbar für Gespräche
-                mit Entscheider:innen und HR.
+                welche Modelle zu deinem Auftrag passen – transparent und direkt nutzbar für Gespräche mit Entscheider:innen.
               </p>
               <a class="tile-cta-btn" href="service-konfigurator.html">Leistung konfigurieren</a>
             </div>
@@ -350,9 +355,8 @@
               <span class="badge">Kampagnen &amp; Schulungen</span>
               <h2>Mehr Sichtbarkeit &amp; Wirkung im Recruiting</h2>
               <p>
-                Plane Employer-Branding-Kampagnen, Social-Ads-Setups, Trainings und Kommunikationsbausteine so,
-                dass sie zu deiner Zielgruppe passen. Programmatic Advertising und Active Sourcing helfen dir,
-                Bewerbende gezielt zu erreichen – alle Optionen gebündelt auf einer Seite.
+                Plane Employer-Branding-Kampagnen, Social Ads, Trainings und Kommunikationsbausteine so,
+                dass sie zu deiner Zielgruppe passen – inklusive Programmatic Advertising und Active Sourcing.
               </p>
               <a class="tile-cta-btn" href="kampagnen-schulungen.html">Kampagnen &amp; Schulungen entdecken</a>
             </div>
@@ -361,15 +365,15 @@
         </a>
 
       </div>
-
-      <!-- EXTRA GAME BUTTON -->
-      <div style="text-align:center; margin-top:40px;">
-        <a href="humptydumpty.html" class="tp-btn">
-          🎮 Humpty Dumpty Game spielen
-        </a>
-      </div>
-
     </section>
+
+    <!-- GAME-BUTTON AUSSERHALB DES LAYOUTS -->
+    <div class="game-wrapper">
+      <a href="humptydumpty.html" class="tp-btn">
+        🎮 Humpty Dumpty Game spielen
+      </a>
+    </div>
+
   </main>
 
   <footer class="bottom-logo">
