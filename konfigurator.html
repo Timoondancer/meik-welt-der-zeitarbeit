@@ -10,7 +10,7 @@
   <style>
     :root{
       --tp-blue:#0b2d42;
-      --tp-blue-2:#123a57;
+      --tp-blue-2:rgba(18,58,87,0.96);
       --tp-green:#b6de36;
       --tp-muted:#6f8a9b;
       --tp-border:#dfe6ea;
@@ -21,13 +21,16 @@
 
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
+
     body{
       font-family:"Nunito Sans",system-ui;
-      background:var(--tp-blue);
       color:#fff;
       min-height:100vh;
       display:flex;
       flex-direction:column;
+      background:var(--tp-blue)
+                 url('assets/img/hintergrund.png')
+                 center center / cover no-repeat fixed;
     }
 
     header{
@@ -59,12 +62,12 @@
     h1{
       font-family:Poppins,sans-serif;
       font-weight:900;
-      font-size:clamp(28px,4vw,46px);
-      margin-bottom:12px;
+      font-size:clamp(32px,4.3vw,52px);
+      margin-bottom:16px;
     }
 
     .sub{
-      color:rgba(255,255,255,.8);
+      color:rgba(255,255,255,.9);
       max-width:70ch;
       font-size:18px;
       line-height:1.5;
@@ -73,7 +76,7 @@
     .tiles{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:18px;
+      gap:22px;
       margin-top:32px;
     }
 
@@ -97,7 +100,7 @@
       transform-style:preserve-3d;
       background:#fff;
       transition:transform 0.6s linear, box-shadow 0.2s ease;
-      min-height:260px;
+      min-height:320px;
       overflow:hidden;
     }
 
@@ -133,7 +136,7 @@
       font-weight:800;
       font-size:12px;
       display:inline-block;
-      margin-bottom:8px;
+      margin-bottom:10px;
     }
 
     .tile h2{
@@ -152,13 +155,14 @@
 
     .tile-cta{
       display:block;
-      margin-top:12px;
+      margin-top:14px;
       font-weight:800;
+      color:var(--tp-blue);
     }
 
     /* Bild in den Kacheln */
     .tile-image-wrapper{
-      margin:-22px -22px 16px -22px; /* geht über die Padding-Ränder */
+      margin:-22px -22px 16px -22px;
     }
 
     .tile-image{
@@ -169,8 +173,15 @@
     }
 
     @media (max-width:600px){
+      header{
+        flex-direction:row;
+        gap:10px;
+      }
       .tile-image{
         height:180px;
+      }
+      .hero{
+        padding:24px;
       }
     }
 
@@ -213,7 +224,8 @@
               <span class="badge">Über TIMEPARTNER</span>
               <h2>Lerne uns kennen – so arbeiten wir für deinen Erfolg</h2>
               <p>
-                Wir zeigen dir, wie wir ticken: unsere Standorte, unsere Arbeitsweise, echte Referenzen und alle wichtigen Rahmenbedingungen. So bekommst du ein klares Bild davon, wie wir gemeinsam wirken können.
+                Wir zeigen dir, wie wir ticken: unsere Standorte, unsere Arbeitsweise, echte Referenzen und alle wichtigen Rahmenbedingungen.  
+                So bekommst du ein klares Bild davon, wie wir gemeinsam wirken können – transparent, partnerschaftlich und mit Fokus auf deinen Erfolg.
               </p>
               <span class="tile-cta">Mehr erfahren →</span>
             </div>
@@ -228,10 +240,12 @@
               <div class="tile-image-wrapper">
                 <img src="assets/img/kachel2.JPG" alt="Beratung zu Personallösungen" class="tile-image" />
               </div>
-              <span class="badge">Ihr Service konfigurieren</span>
+              <span class="badge">Leistungen konfigurieren</span>
               <h2>Stelle deine Personallösung selbst zusammen</h2>
               <p>
-                Wähle Zeitarbeit, Personalvermittlung, Optionen und Services, die zu deinem Bedarf passen. Wir begleiten dich Schritt für Schritt – klar, transparent und immer mit Blick auf die beste Lösung für dein Team.
+                Wähle Zeitarbeit, Personalvermittlung, Optionen und Services, die zu deinem Bedarf passen.  
+                Du siehst auf einen Blick, welche Bausteine möglich sind – wir begleiten dich Schritt für Schritt, machen Komplexes greifbar
+                und finden gemeinsam die beste Lösung für dein Team.
               </p>
               <span class="tile-cta">Leistung konfigurieren →</span>
             </div>
@@ -244,12 +258,14 @@
           <div class="tile-inner">
             <div class="tile-face tile-front">
               <div class="tile-image-wrapper">
-                <img src="assets/img/kachel3.JPG" alt="Team arbeitet an Kampagnen" class="tile-image" />
+                <img src="assets/img/kachel3.JPG" alt="Team arbeitet an Recruiting-Kampagnen" class="tile-image" />
               </div>
               <span class="badge">Kampagnen &amp; Schulungen</span>
               <h2>Kampagnen planen &amp; direkt buchen</h2>
               <p>
-                Ob Employer Branding, Workshops oder Kommunikationspakete: Hier findest du alles, was dein Recruiting stärkt – übersichtlich, flexibel und sofort buchbar.
+                Ob Employer Branding, Workshops oder Kommunikationspakete:  
+                Hier findest du alles, was dein Recruiting stärkt – übersichtlich, flexibel und sofort buchbar.
+                So kannst du Kampagnen und Schulungen direkt im Gespräch mit uns konfigurieren und planen.
               </p>
               <span class="tile-cta">Kampagnen und Schulungen entdecken →</span>
             </div>
