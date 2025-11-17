@@ -4,154 +4,103 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TIMEPARTNER · Start</title>
-  <meta name="description" content="Loslegenseite für den TIMEPARTNER Vertriebskonfigurator." />
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
       --tp-blue: #0b2d42;
-      --tp-blue-overlay: rgba(11,45,66,0.94);
+      --tp-blue-overlay: rgba(11,45,66,0.88);
       --tp-green: #b6de36;
       --radius: 14px;
       --shadow: 0 10px 26px rgba(11,45,66,.14);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-
-    body.start {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
       font-family: "Nunito Sans", system-ui;
-      background:
-        var(--tp-blue)
-        url('assets/img/hintergrund.png')
-        center center / cover no-repeat fixed;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
+      background: var(--tp-blue) url("assets/img/hintergrund.png") center/cover no-repeat fixed;
+      color: white;
       min-height: 100vh;
     }
 
     .shell {
-      flex: 1;
       max-width: 1100px;
-      width: 100%;
-      margin: 32px auto 40px;
-      padding: 0 20px 40px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    header img.logo-top {
-      width: 200px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
     .hero {
-      flex: 1;
       background: var(--tp-blue-overlay);
+      padding: 40px;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 36px 28px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: left;
+      max-width: 850px;
     }
 
-    .hero-eyebrow {
-      font-size: 14px;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      opacity: .9;
-    }
-
-    .hero-title {
+    h1 {
       font-family: Poppins, sans-serif;
       font-weight: 900;
-      font-size: clamp(32px, 5vw, 52px);
-      margin: 12px 0 16px;
-      line-height: 1.1;
+      font-size: clamp(30px, 4vw, 50px);
+      margin-bottom: 16px;
     }
 
-    .hero-text {
-      max-width: 640px;
+    .sub {
       font-size: 18px;
+      max-width: 650px;
+      opacity: 0.9;
+      margin-bottom: 32px;
       line-height: 1.5;
-      opacity: .95;
-      margin-bottom: 28px;
     }
 
     .btn-hero {
       background: var(--tp-green);
       color: var(--tp-blue);
-      padding: 14px 38px;
-      border-radius: var(--radius);
+      padding: 12px 26px;
+      border-radius: 999px;
       font-weight: 800;
-      font-size: 18px;
+      font-size: 17px;
       text-decoration: none;
-      box-shadow: 0 10px 26px rgba(11,45,66,.14);
       display: inline-block;
-      transition: .2s;
+      width: fit-content;
+      box-shadow: var(--shadow);
+      transition: 0.2s;
     }
 
     .btn-hero:hover {
-      filter: brightness(1.03);
       transform: translateY(-2px);
-      box-shadow: 0 14px 34px rgba(11,45,66,.28);
+      box-shadow: 0 14px 30px rgba(11,45,66,0.3);
     }
 
-    footer img.logo-bottom {
-      width: 64px;
-      margin: 0 0 20px auto;
-      display: block;
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding: 26px 20px 30px;
-      }
-      .shell {
-        margin-top: 24px;
-      }
-      header {
-        margin-bottom: 8px;
-      }
+    header img {
+      width: 190px;
+      margin-bottom: 25px;
     }
   </style>
 </head>
 
-<body class="start">
+<body>
 
-  <div class="shell">
-    <!-- Header mit Logo -->
-    <header>
-      <span style="opacity:.8;font-size:14px;">&nbsp;</span>
-      <img src="assets/img/TP-Logo-weiss-ohne-claim.png" alt="TIMEPARTNER Logo ohne Claim" class="logo-top" />
-    </header>
+<div class="shell">
 
-    <!-- Hero Bereich -->
-    <section class="hero" aria-labelledby="hero-title">
-      <span class="hero-eyebrow">Interaktives Vertriebstool</span>
-      <h1 id="hero-title" class="hero-title">Meiks Welt der Zeitarbeit</h1>
-      <p class="hero-text">
-        Konfiguriere gemeinsam mit deinen Kunden Services, Kampagnen und Schulungen –
-        live im Gespräch, visuell und leicht verständlich. Starte direkt in den
-        TIMEPARTNER Vertriebskonfigurator.
-      </p>
-      <a href="konfigurator.html" class="btn-hero">Zum Konfigurator</a>
-    </section>
+  <header>
+    <img src="assets/img/TP-Logo-weiss-ohne-claim.png" alt="TIMEPARTNER Logo">
+  </header>
 
-    <!-- Footer-Icon -->
-    <footer>
-      <img src="assets/img/tp-weiss.svg" alt="TIMEPARTNER Icon" class="logo-bottom" />
-    </footer>
-  </div>
+  <section class="hero">
+    <span style="letter-spacing: .15em; font-size: 14px; opacity:.85;">INTERAKTIVES VERTRIEBSTOOL</span>
+
+    <h1>Meiks Welt der Zeitarbeit</h1>
+
+    <p class="sub">
+      Konfiguriere gemeinsam mit deinen Kunden Services, Kampagnen und Schulungen –
+      live im Gespräch, visuell und leicht verständlich. Starte direkt in den TIMEPARTNER Vertriebskonfigurator.
+    </p>
+
+    <a href="konfigurator.html" class="btn-hero">Zum Konfigurator</a>
+  </section>
+
+</div>
 
 </body>
 </html>
