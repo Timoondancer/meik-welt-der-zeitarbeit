@@ -10,7 +10,7 @@
   <style>
     :root{
       --tp-blue:#0b2d42;
-      --tp-blue-2:rgba(18,58,87,0.96);
+      --tp-blue-2:rgba(18,58,87,0.94);
       --tp-green:#b6de36;
       --tp-muted:#6f8a9b;
       --tp-border:#dfe6ea;
@@ -28,32 +28,44 @@
       display:flex;
       flex-direction:column;
       background:var(--tp-blue)
-                 url('assets/img/hintergrund.png')
+                 url("assets/img/hintergrund.png")
                  center center / cover no-repeat fixed;
+    }
+
+    /* LAYOUT SHELL */
+    .shell{
+      flex:1;
+      max-width:1100px;
+      width:100%;
+      margin:32px auto 40px;
+      padding:0 20px 40px;
+      display:flex;
+      flex-direction:column;
     }
 
     header{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      max-width:1100px;
-      width:100%;
-      margin:32px auto;
-      padding:0 20px;
+      margin-bottom:16px;
     }
-    header img.logo-top{ width:200px; }
+    header img.logo-top{width:190px;}
 
-    main{
-      flex:1;
-      width:100%;
-      max-width:1100px;
-      margin:0 auto;
-      padding:0 20px 60px;
+    header a.back-link{
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      opacity:.9;
     }
+    header a.back-link:hover{opacity:1;}
 
+    main{flex:1;}
+
+    /* HERO BOX */
     .hero{
       background:var(--tp-blue-2);
-      padding:36px;
+      padding:36px 28px 40px;
       border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
@@ -61,8 +73,15 @@
     h1{
       font-family:Poppins,sans-serif;
       font-weight:900;
-      font-size:clamp(32px,4.3vw,52px);
+      font-size:clamp(30px,4.3vw,46px);
       margin-bottom:16px;
+    }
+
+    .hero-eyebrow{
+      font-size:14px;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      opacity:.9;
     }
 
     .sub{
@@ -79,12 +98,11 @@
       margin-top:32px;
     }
 
-    /* Flip-Card */
+    /* FLIP-CARDS */
     .tile{
       position:relative;
       display:block;
       text-decoration:none;
-      color:var(--tp-blue);
       border-radius:var(--radius);
       perspective:1000px;
     }
@@ -96,8 +114,8 @@
       border-radius:var(--radius);
       border:1px solid var(--tp-border);
       box-shadow:var(--shadow);
-      transform-style:preserve-3d;
       background:#fff;
+      transform-style:preserve-3d;
       transition:transform 0.6s ease, box-shadow 0.2s ease;
       min-height:340px;
       overflow:hidden;
@@ -116,6 +134,7 @@
 
     .tile-front{
       background:#fff;
+      transform:rotateY(0deg);
     }
 
     .tile-back{
@@ -173,7 +192,7 @@
       font-size:14px;
     }
 
-    /* Bild nur auf Vorderseite */
+    /* BILD – NUR VORDERSEITE */
     .tile-image-wrapper{
       margin:-22px -22px 16px -22px;
     }
@@ -185,40 +204,36 @@
       display:block;
     }
 
-    @media (max-width:600px){
-      header{
-        flex-direction:row;
-        gap:10px;
-      }
-      .tile-image{
-        height:180px;
-      }
-      .hero{
-        padding:24px;
-      }
+    footer.bottom-logo{
+      margin-top:16px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    footer.bottom-logo img{
+      width:56px;
     }
 
-    footer.bottom-logo{
-      position:fixed;
-      right:20px;
-      bottom:20px;
-    }
-    footer img{
-      width:56px;
+    @media(max-width:600px){
+      .hero{padding:26px 20px 30px;}
+      header{margin-bottom:8px;}
+      .tile-image{height:180px;}
     }
   </style>
 </head>
 
 <body>
 
+<div class="shell">
+
   <header>
-    <a href="index.html" style="color:#fff;text-decoration:none;font-weight:700;">← Zur Startseite</a>
+    <a href="index.html" class="back-link">← Zur Startseite</a>
     <img src="assets/img/TP-Logo-weiss-ohne-claim.png" class="logo-top" alt="TIMEPARTNER Logo" />
   </header>
 
   <main>
     <section class="hero">
 
+      <p class="hero-eyebrow">Interaktives Vertriebstool</p>
       <h1>Finde die passende Personallösung – einfach, klar und schnell.</h1>
 
       <p class="sub">
@@ -227,7 +242,7 @@
 
       <div class="tiles">
 
-        <!-- Karte 1: Über TIMEPARTNER -->
+        <!-- Kachel 1: Über TIMEPARTNER -->
         <a href="ueber-timepartner.html" class="tile">
           <div class="tile-inner">
 
@@ -244,14 +259,15 @@
               <span class="tile-cta">Teameinblicke, Standorte &amp; Referenzen →</span>
             </div>
 
-            <!-- Rückseite: weiß, viel Text + CTA -->
+            <!-- Rückseite -->
             <div class="tile-face tile-back">
               <span class="badge">Über TIMEPARTNER</span>
               <h2>Was du über uns erfährst</h2>
               <p>
-                Wir zeigen dir, wie wir ticken: unsere Standorte, unsere Arbeitsweise, echte Referenzen
-                und alle wichtigen Rahmenbedingungen – vom AÜG bis zu deinen Ansprechpartnern vor Ort.
-                So erkennst du schnell, wie wir gemeinsam Wirkung entfalten können.
+                Wir zeigen dir, wie wir ticken: unsere Standorte, unsere Arbeitsweise,
+                echte Referenzen und alle wichtigen Rahmenbedingungen – vom AÜG bis zu
+                deinen Ansprechpartnern vor Ort. So erkennst du schnell, wie wir gemeinsam
+                Wirkung entfalten können.
               </p>
               <span class="tile-cta-btn">Mehr über TIMEPARTNER erfahren</span>
             </div>
@@ -259,7 +275,7 @@
           </div>
         </a>
 
-        <!-- Karte 2: Leistungen konfigurieren -->
+        <!-- Kachel 2: Leistungen konfigurieren -->
         <a href="service-konfigurator.html" class="tile">
           <div class="tile-inner">
 
@@ -292,7 +308,7 @@
           </div>
         </a>
 
-        <!-- Karte 3: Kampagnen & Schulungen -->
+        <!-- Kachel 3: Kampagnen & Schulungen -->
         <a href="kampagnen-schulungen.html" class="tile">
           <div class="tile-inner">
 
@@ -332,6 +348,8 @@
   <footer class="bottom-logo">
     <img src="assets/img/tp-weiss.svg" alt="TIMEPARTNER Icon" />
   </footer>
+
+</div>
 
 </body>
 </html>
