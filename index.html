@@ -20,7 +20,7 @@
     body.start {
       font-family: "Nunito Sans", system-ui;
       background: var(--tp-blue)
-                  url('./assets/img/hintergrund.png')
+                  url('assets/img/hintergrund.png')
                   center center / cover no-repeat fixed;
       color: #fff;
       display: flex;
@@ -29,13 +29,11 @@
       overflow: hidden;
     }
 
-    /* Logo oben */
     header img.logo-top {
       width: 240px;
       margin: 32px;
     }
 
-    /* Hero Bereich */
     .hero {
       flex: 1;
       display: flex;
@@ -86,7 +84,6 @@
       box-shadow: 0 14px 34px rgba(11,45,66,.28);
     }
 
-    /* Icon unten */
     footer img.logo-bottom {
       width: 64px;
       margin: 24px 28px;
@@ -98,11 +95,26 @@
 
   <!-- Oben: großes Logo ohne Claim -->
   <header>
-    <img src="./assets/img/TP-Logo-weiss-ohne-claim.png" alt="TIMEPARTNER Logo ohne Claim" class="logo-top" />
+    <img src="assets/img/TP-Logo-weiss-ohne-claim.png" alt="TIMEPARTNER Logo ohne Claim" class="logo-top" />
   </header>
 
   <!-- Hero Bereich -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-content">
-      <span class="hero-eyebrow">Interaktives
-<!-- Startseite HTML hier einfügen -->
+      <span class="hero-eyebrow">Interaktives Vertriebstool</span>
+      <h1 id="hero-title" class="hero-title">Meiks Welt der Zeitarbeit</h1>
+      <p class="hero-text">
+        Konfiguriere gemeinsam mit deinen Kunden Services, Kampagnen und Schulungen –
+        live im Gespräch, visuell und leicht verständlich.
+      </p>
+      <a href="konfigurator.html" class="btn-hero">Zum Konfigurator</a>
+    </div>
+  </section>
+
+  <!-- Icon unten -->
+  <footer>
+    <img src="assets/img/tp-weiss.svg" alt="TIMEPARTNER Icon" class="logo-bottom" />
+  </footer>
+
+</body>
+</html>
