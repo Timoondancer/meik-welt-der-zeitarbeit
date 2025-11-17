@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <title>Humpty Dumpty Run · TIMEPARTNER</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --tp-blue:#0b2d42;
+      --tp-blue-2:rgba(18,58,87,0.96);
+      --tp-green:#b6de36;
+      --tp-muted:#6f8a9b;
+      --tp-border:#dfe6ea;
+      --radius:14px;
+      --shadow:0 10px 26px rgba(11,45,66,.14);
+      --focus:rgba(182,222,54,.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #02101a url("assets/img/hintergrund.png") center/cover no-repeat fixed;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(11,45,66,0.25), rgba(2,10,18,0.9));
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .game-shell {
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(11,45,66,0.96);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 24px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .game-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .title-block h1 {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.5rem, 1.1rem + 1vw, 2rem);
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .title-block p {
+      margin-top: 2px;
+      font-size: 0.9rem;
+      color: var(--tp-muted);
+    }
+
+    .control-hint {
+      font-size: 0.85rem;
+      color: var(--tp-muted);
+      text-align: right;
+    }
+
+    .control-hint span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(2,10,18,0.3);
+      font-size: 0.8rem;
+    }
+
+    .control-hint kbd {
+      font-family: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(0,0,0,0.35);
+    }
+
+    .game-card {
+      background: radial-gradient(circle at top left, rgba(182,222,54,0.07), rgba(1,7,12,0.95));
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hud {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: #e4edf3;
+      gap: 12px;
+    }
+
+    .hud-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(3,15,26,0.9);
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--tp-green);
+      box-shadow: 0 0 0 4px rgba(182,222,54,0.18);
+    }
+
+    .pill-label {
+      color: var(--tp-muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .pill-value {
+      font-weight: 700;
+      color: var(--tp-green);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hud-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .hud-right .pill-value {
+      color: #fff;
+    }
+
+    canvas {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: linear-gradient(to top, #071521 0, #0b2535 40%, #11354a 100%);
+      display: block;
+      margin: 0 auto;
+      touch-action: manipulation;
+    }
+
+    .game-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--tp-muted);
+      margin-top: 4px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tp-btn-primary,
+    .tp-btn-ghost {
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+    }
+
+    .tp-btn-primary {
+      background: linear-gradient(135deg, var(--tp-green), #d7ff6e);
+      color: #091314;
+      box-shadow: 0 10px 26px rgba(182,222,54,.35);
+    }
+
+    .tp-btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(182,222,54,.45);
+    }
+
+    .tp-btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 18px rgba(182,222,54,.35);
+    }
+
+    .tp-btn-ghost {
+      background: transparent;
+      border-color: rgba(255,255,255,0.18);
+      color: #e1ecf3;
+    }
+
+    .tp-btn-ghost:hover {
+      background: rgba(2,15,26,0.65);
+      transform: translateY(-1px);
+    }
+
+    .tp-btn-ghost:active {
+      transform: translateY(0);
+      background: rgba(2,15,26,0.9);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      align-items: center;
+    }
+
+    .footer-links a {
+      color: var(--tp-green);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 16px;
+      }
+
+      .game-shell {
+        padding: 18px 16px 20px;
+      }
+
+      .hud {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .game-header {
+        align-items: flex-start;
+      }
+
+      .control-hint {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="backdrop"></div>
+
+  <main class="game-shell" aria-label="Humpty Dumpty Jump Game">
+    <header class="game-header">
+      <div class="title-block">
+        <h1>Humpty Dumpty Run</h1>
+        <p>Dein Mini-Game im TIMEPARTNER Konfigurator – springe über Mauern, bis du 100.000 Punkte erreichst.</p>
+      </div>
+      <div class="control-hint">
+        <span>
+          <kbd>Leertaste</kbd> oder Tippen · zum Springen
+        </span>
+      </div>
+    </header>
+
+    <section class="game-card">
+      <div class="hud">
+        <div class="hud-left">
+          <div class="pill">
+            <div class="pill-dot"></div>
+            <span class="pill-label">Score</span>
+            <span id="score" class="pill-value">0</span>
+          </div>
+          <div class="pill">
+            <span class="pill-label">Ziel</span>
+            <span class="pill-value">100.000</span>
+          </div>
+        </div>
+        <div class="hud-right">
+          <div class="pill">
+            <span class="pill-label">Best</span>
+            <span id="highScore" class="pill-value">0</span>
+          </div>
+          <button id="restartBtn" type="button" class="tp-btn-ghost">
+            Neustart
+          </button>
+        </div>
+      </div>
+
+      <canvas id="gameCanvas" width="900" height="260" aria-label="Humpty Dumpty Jump"></canvas>
+
+      <div class="game-footer">
+        <div>Springe über Mauern. Wenn du triffst, fällst du – wie Humpty Dumpty. Erreiche 100.000 Punkte, um das Spiel zu gewinnen.</div>
+        <div class="footer-links">
+          <button id="backBtn" type="button" class="tp-btn-primary" onclick="window.location.href='konfigurator.html'">
+            Zurück zum Konfigurator
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const scoreEl = document.getElementById("score");
+      const highScoreEl = document.getElementById("highScore");
+      const restartBtn = document.getElementById("restartBtn");
+
+      const GROUND_Y = canvas.height - 40;
+      const HUMPTY_X = 120;
+
+      const targetScore = 100000;
+
+      const state = {
+        running: false,
+        gameOver: false,
+        win: false,
+        score: 0,
+        highScore: 0,
+        speed: 7,
+        gravity: 0.6,
+        spawnTimer: 0,
+        spawnInterval: 90,
+        frame: 0
+      };
+
+      const humpty = {
+        x: HUMPTY_X,
+        y: GROUND_Y - 60,
+        width: 40,
+        height: 60,
+        vy: 0,
+        jumping: false
+      };
+
+      let obstacles = [];
+
+      function initGame() {
+        state.running = true;
+        state.gameOver = false;
+        state.win = false;
+        state.score = 0;
+        state.speed = 7;
+        state.spawnTimer = 0;
+        state.spawnInterval = 90;
+        state.frame = 0;
+        humpty.y = GROUND_Y - humpty.height;
+        humpty.vy = 0;
+        humpty.jumping = false;
+        obstacles = [];
+        updateScoreUI();
+      }
+
+      function updateScoreUI() {
+        scoreEl.textContent = Math.floor(state.score);
+        highScoreEl.textContent = Math.floor(state.highScore);
+      }
+
+      function spawnObstacle() {
+        const height = 30 + Math.random() * 35;
+        const width = 18 + Math.random() * 14;
+
+        obstacles.push({
+          x: canvas.width + 40,
+          y: GROUND_Y - height,
+          width: width,
+          height: height
+        });
+      }
+
+      function jump() {
+        if (state.gameOver || state.win) {
+          initGame();
+          return;
+        }
+        if (!state.running) {
+          initGame();
+        }
+        if (!humpty.jumping) {
+          humpty.vy = -13;
+          humpty.jumping = true;
+        }
+      }
+
+      function update() {
+        if (!state.running) {
+          draw();
+          requestAnimationFrame(update);
+          return;
+        }
+
+        state.frame++;
+
+        // Increase difficulty
+        if (state.frame % 400 === 0 && state.speed < 16) {
+          state.speed += 0.4;
+        }
+        if (state.frame % 600 === 0 && state.spawnInterval > 55) {
+          state.spawnInterval -= 3;
+        }
+
+        // Score
+        state.score += 1.4 + state.speed * 0.03;
+        if (state.score > state.highScore) {
+          state.highScore = state.score;
+        }
+        updateScoreUI();
+
+        if (state.score >= targetScore && !state.win) {
+          state.win = true;
+          state.running = false;
+        }
+
+        // Humpty physics
+        humpty.vy += state.gravity;
+        humpty.y += humpty.vy;
+
+        if (humpty.y + humpty.height >= GROUND_Y) {
+          humpty.y = GROUND_Y - humpty.height;
+          humpty.vy = 0;
+          humpty.jumping = false;
+        }
+
+        // Spawn obstacles
+        state.spawnTimer++;
+        if (state.spawnTimer >= state.spawnInterval && !state.win) {
+          spawnObstacle();
+          state.spawnTimer = 0;
+        }
+
+        // Move obstacles
+        for (let i = obstacles.length - 1; i >= 0; i--) {
+          obstacles[i].x -= state.speed;
+
+          if (obstacles[i].x + obstacles[i].width < 0) {
+            obstacles.splice(i, 1);
+            continue;
+          }
+
+          if (!state.gameOver && !state.win && checkCollision(humpty, obstacles[i])) {
+            state.gameOver = true;
+            state.running = false;
+          }
+        }
+
+        draw();
+        requestAnimationFrame(update);
+      }
+
+      function checkCollision(a, b) {
+        const ax = a.x;
+        const ay = a.y;
+        const aw = a.width;
+        const ah = a.height;
+
+        const bx = b.x;
+        const by = b.y;
+        const bw = b.width;
+        const bh = b.height;
+
+        return ax < bx + bw &&
+               ax + aw > bx &&
+               ay < by + bh &&
+               ay + ah > by;
+      }
+
+      function drawGround() {
+        ctx.save();
+        ctx.strokeStyle = "rgba(182,222,54,0.7)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, GROUND_Y + 0.5);
+        ctx.lineTo(canvas.width, GROUND_Y + 0.5);
+        ctx.stroke();
+
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(111,138,155,0.65)";
+        ctx.setLineDash([10, 10]);
+        ctx.beginPath();
+        ctx.moveTo(0, GROUND_Y - 22.5);
+        ctx.lineTo(canvas.width, GROUND_Y - 22.5);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      function drawHumpty() {
+        const centerX = humpty.x + humpty.width / 2;
+        const centerY = humpty.y + humpty.height / 2;
+        const radiusX = humpty.width / 2;
+        const radiusY = humpty.height / 2;
+
+        const bobOffset = state.running && !humpty.jumping ? Math.sin(state.frame / 10) * 1.5 : 0;
+
+        ctx.save();
+        ctx.translate(0, bobOffset);
+
+        // Body (egg)
+        const gradient = ctx.createLinearGradient(humpty.x, humpty.y, humpty.x, humpty.y + humpty.height);
+        gradient.addColorStop(0, "#ffffff");
+        gradient.addColorStop(1, "#e0ecf5");
+        ctx.fillStyle = gradient;
+        ctx.strokeStyle = "rgba(11,45,66,0.8)";
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Face
+        // Eyes
+        ctx.fillStyle = "#2b3e4c";
+        const eyeOffsetX = radiusX / 2.2;
+        const eyeY = centerY - radiusY / 3;
+        ctx.beginPath();
+        ctx.arc(centerX - eyeOffsetX, eyeY, 3, 0, Math.PI * 2);
+        ctx.arc(centerX + eyeOffsetX, eyeY, 3, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Smile
+        ctx.strokeStyle = "#ef9c50";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        const smileY = centerY - radiusY / 7;
+        ctx.arc(centerX, smileY, 9, 0.15 * Math.PI, 0.85 * Math.PI, false);
+        ctx.stroke();
+
+        // Cracks when game over
+        if (state.gameOver) {
+          ctx.strokeStyle = "#c5382f";
+          ctx.lineWidth = 1.5;
+
+          ctx.beginPath();
+          ctx.moveTo(centerX, humpty.y + 10);
+          ctx.lineTo(centerX - 6, humpty.y + 26);
+          ctx.lineTo(centerX + 2, humpty.y + 40);
+          ctx.lineTo(centerX - 8, humpty.y + 54);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(centerX + 8, humpty.y + 20);
+          ctx.lineTo(centerX + 16, humpty.y + 34);
+          ctx.lineTo(centerX + 10, humpty.y + 46);
+          ctx.stroke();
+        }
+
+        // Tiny shadow underneath Humpty
+        ctx.fillStyle = "rgba(0,0,0,0.27)";
+        ctx.beginPath();
+        const shadowY = GROUND_Y + 4;
+        ctx.ellipse(centerX, shadowY, radiusX * 0.9, 6, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      function drawObstacles() {
+        ctx.save();
+        obstacles.forEach(ob => {
+          const gradient = ctx.createLinearGradient(ob.x, ob.y, ob.x, ob.y + ob.height);
+          gradient.addColorStop(0, "#f8fafc");
+          gradient.addColorStop(1, "#c7d2e0");
+          ctx.fillStyle = gradient;
+
+          ctx.strokeStyle = "rgba(11,45,66,0.9)";
+          ctx.lineWidth = 2;
+
+          ctx.beginPath();
+          ctx.roundRect(ob.x, ob.y, ob.width, ob.height, 4);
+          ctx.fill();
+          ctx.stroke();
+
+          // brick lines
+          ctx.strokeStyle = "rgba(148,163,184,0.7)";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          const stepY = 10;
+          for (let y = ob.y + 6; y < ob.y + ob.height; y += stepY) {
+            ctx.moveTo(ob.x + 3, y);
+            ctx.lineTo(ob.x + ob.width - 3, y);
+          }
+          ctx.stroke();
+        });
+        ctx.restore();
+      }
+
+      function drawOverlay(text, subtext, accentColor) {
+        ctx.save();
+        ctx.fillStyle = "rgba(2,10,18,0.78)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.textAlign = "center";
+
+        ctx.font = "bold 32px Poppins, system-ui, sans-serif";
+        ctx.fillStyle = accentColor;
+        ctx.fillText(text, canvas.width / 2, canvas.height / 2 - 12);
+
+        ctx.font = "16px 'Nunito Sans', system-ui, sans-serif";
+        ctx.fillStyle = "#e5edf6";
+        ctx.fillText(subtext, canvas.width / 2, canvas.height / 2 + 20);
+
+        ctx.font = "13px 'Nunito Sans', system-ui, sans-serif";
+        ctx.fillStyle = "#9fb2c5";
+        ctx.fillText("Leertaste oder Tippen für Neustart", canvas.width / 2, canvas.height / 2 + 46);
+
+        ctx.restore();
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Background gradient sky is already via canvas CSS
+
+        drawGround();
+        drawObstacles();
+        drawHumpty();
+
+        if (state.gameOver) {
+          drawOverlay("Oops – Humpty ist gefallen", "Du bist gegen die Mauer gelaufen.", "#f97373");
+        } else if (state.win) {
+          drawOverlay("Geschafft – 100.000 Punkte!", "Humpty Dumpty hält sich sicher auf der Mauer. 🥳", "#b6de36");
+        }
+      }
+
+      // Event listeners
+      document.addEventListener("keydown", function (e) {
+        if (e.code === "Space" || e.code === "ArrowUp") {
+          e.preventDefault();
+          jump();
+        }
+      });
+
+      canvas.addEventListener("pointerdown", function () {
+        jump();
+      });
+
+      restartBtn.addEventListener("click", function () {
+        initGame();
+      });
+
+      // Polyfill for roundRect for older browsers
+      if (!CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+          if (w < 0) { x += w; w = -w; }
+          if (h < 0) { y += h; h = -h; }
+          if (typeof r === "number") {
+            r = { tl: r, tr: r, br: r, bl: r };
+          } else {
+            const defaultRadius = { tl: 0, tr: 0, br: 0, bl: 0 };
+            for (const side in defaultRadius) {
+              r[side] = r[side] || defaultRadius[side];
+            }
+          }
+          this.beginPath();
+          this.moveTo(x + r.tl, y);
+          this.lineTo(x + w - r.tr, y);
+          this.quadraticCurveTo(x + w, y, x + w, y + r.tr);
+          this.lineTo(x + w, y + h - r.br);
+          this.quadraticCurveTo(x + w, y + h, x + w - r.br, y + h);
+          this.lineTo(x + r.bl, y + h);
+          this.quadraticCurveTo(x, y + h, x, y + h - r.bl);
+          this.lineTo(x, y + r.tl);
+          this.quadraticCurveTo(x, y, x + r.tl, y);
+          this.closePath();
+        };
+      }
+
+      // Start
+      initGame();
+      update();
+    })();
+  </script>
+</body>
+</html>
