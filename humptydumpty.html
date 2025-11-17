@@ -110,7 +110,7 @@
     }
 
     .game-card {
-      background: radial-gradient(circle at top left, rgba(182,222,54,0.07), rgba(1,7,12,0.95));
+      background: radial-gradient(circle at top left, rgba(182,222,54,0.10), rgba(1,7,12,0.95));
       border-radius: 20px;
       border: 1px solid rgba(255,255,255,0.06);
       padding: 18px 18px 20px;
@@ -184,7 +184,7 @@
       max-width: 100%;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.05);
-      background: linear-gradient(to top, #071521 0, #0b2535 40%, #11354a 100%);
+      background: #6fd6ff; /* fallback */
       display: block;
       margin: 0 auto;
       touch-action: manipulation;
@@ -299,7 +299,7 @@
     <header class="game-header">
       <div class="title-block">
         <h1>Humpty Dumpty Run</h1>
-        <p>Dein Mini-Game im TIMEPARTNER Konfigurator – springe über Mauern, bis du 100.000 Punkte erreichst.</p>
+        <p>Bunte 90s-Pokémon-Vibes für Kids – springe über Mauern, bis du 100.000 Punkte erreichst.</p>
       </div>
       <div class="control-hint">
         <span>
@@ -335,7 +335,7 @@
       <canvas id="gameCanvas" width="900" height="260" aria-label="Humpty Dumpty Jump"></canvas>
 
       <div class="game-footer">
-        <div>Springe über Mauern. Wenn du triffst, fällst du – wie Humpty Dumpty. Erreiche 100.000 Punkte, um das Spiel zu gewinnen.</div>
+        <div>Spring über Mauern, sammle Punkte – aber wenn du fällst, wirst du zum Spiegelei. 🍳</div>
         <div class="footer-links">
           <button id="backBtn" type="button" class="tp-btn-primary" onclick="window.location.href='konfigurator.html'">
             Zurück zum Konfigurator
@@ -344,8 +344,7 @@
       </div>
     </section>
   </main>
-
-  <script>
+    <script>
     (function () {
       const canvas = document.getElementById("gameCanvas");
       const ctx = canvas.getContext("2d");
@@ -354,8 +353,8 @@
       const highScoreEl = document.getElementById("highScore");
       const restartBtn = document.getElementById("restartBtn");
 
-      const GROUND_Y = canvas.height - 40;
-      const HUMPTY_X = 120;
+      const GROUND_Y = canvas.height - 46;
+      const HUMPTY_X = 130;
 
       const targetScore = 100000;
 
@@ -365,18 +364,18 @@
         win: false,
         score: 0,
         highScore: 0,
-        speed: 7,
-        gravity: 0.6,
+        speed: 9,          // schneller
+        gravity: 0.75,
         spawnTimer: 0,
-        spawnInterval: 90,
+        spawnInterval: 80, // engere Abstände
         frame: 0
       };
 
       const humpty = {
         x: HUMPTY_X,
-        y: GROUND_Y - 60,
-        width: 40,
-        height: 60,
+        y: GROUND_Y - 64,
+        width: 46,
+        height: 64,
         vy: 0,
         jumping: false
       };
@@ -388,9 +387,9 @@
         state.gameOver = false;
         state.win = false;
         state.score = 0;
-        state.speed = 7;
+        state.speed = 9;
         state.spawnTimer = 0;
-        state.spawnInterval = 90;
+        state.spawnInterval = 80;
         state.frame = 0;
         humpty.y = GROUND_Y - humpty.height;
         humpty.vy = 0;
@@ -405,8 +404,8 @@
       }
 
       function spawnObstacle() {
-        const height = 30 + Math.random() * 35;
-        const width = 18 + Math.random() * 14;
+        const height = 34 + Math.random() * 36;
+        const width = 22 + Math.random() * 16;
 
         obstacles.push({
           x: canvas.width + 40,
@@ -425,7 +424,7 @@
           initGame();
         }
         if (!humpty.jumping) {
-          humpty.vy = -13;
+          humpty.vy = -14.5;
           humpty.jumping = true;
         }
       }
@@ -439,27 +438,33 @@
 
         state.frame++;
 
-        // Increase difficulty
-        if (state.frame % 400 === 0 && state.speed < 16) {
-          state.speed += 0.4;
+        // Schwierigkeit hoch
+        if (state.frame % 320 === 0 && state.speed < 18) {
+          state.speed += 0.45;
         }
-        if (state.frame % 600 === 0 && state.spawnInterval > 55) {
-          state.spawnInterval -= 3;
+        if (state.frame % 480 === 0 && state.spawnInterval > 52) {
+          state.spawnInterval -= 4;
         }
 
         // Score
-        state.score += 1.4 + state.speed * 0.03;
+        state.score += 1.8 + state.speed * 0.05;
         if (state.score > state.highScore) {
           state.highScore = state.score;
         }
         updateScoreUI();
 
+        // WIN + Weiterleitung
         if (state.score >= targetScore && !state.win) {
           state.win = true;
           state.running = false;
+
+          // ⭐ Weiterleitung nach 2,5 Sekunden
+          setTimeout(() => {
+            window.location.href = "https://timepartner.com/platzhalter";
+          }, 2500);
         }
 
-        // Humpty physics
+        // Physik
         humpty.vy += state.gravity;
         humpty.y += humpty.vy;
 
@@ -469,14 +474,13 @@
           humpty.jumping = false;
         }
 
-        // Spawn obstacles
+        // Hindernisse
         state.spawnTimer++;
         if (state.spawnTimer >= state.spawnInterval && !state.win) {
           spawnObstacle();
           state.spawnTimer = 0;
         }
 
-        // Move obstacles
         for (let i = obstacles.length - 1; i >= 0; i--) {
           obstacles[i].x -= state.speed;
 
@@ -485,6 +489,7 @@
             continue;
           }
 
+          // Kollision
           if (!state.gameOver && !state.win && checkCollision(humpty, obstacles[i])) {
             state.gameOver = true;
             state.running = false;
@@ -496,107 +501,311 @@
       }
 
       function checkCollision(a, b) {
-        const ax = a.x;
-        const ay = a.y;
-        const aw = a.width;
-        const ah = a.height;
+        return (
+          a.x < b.x + b.width &&
+          a.x + a.width > b.x &&
+          a.y < b.y + b.height &&
+          a.y + a.height > b.y
+        );
+      }
 
-        const bx = b.x;
-        const by = b.y;
-        const bw = b.width;
-        const bh = b.height;
+      /* ---------------------------------------------
+         CUTE POKÉMON STYLE BACKGROUND (90s Vibes)
+      ----------------------------------------------*/
+      function drawBackground() {
+        // Himmel
+        const skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        skyGrad.addColorStop(0, "#84e0ff");
+        skyGrad.addColorStop(0.45, "#c9f0ff");
+        skyGrad.addColorStop(1, "#ffeef8");
+        ctx.fillStyle = skyGrad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        return ax < bx + bw &&
-               ax + aw > bx &&
-               ay < by + bh &&
-               ay + ah > by;
+        // Sonne
+        ctx.save();
+        ctx.globalAlpha = 0.8;
+        const sunX = canvas.width - 90;
+        const sunY = 60;
+        const sunGrad = ctx.createRadialGradient(sunX, sunY, 8, sunX, sunY, 40);
+        sunGrad.addColorStop(0, "#fffad1");
+        sunGrad.addColorStop(1, "rgba(255,234,138,0)");
+        ctx.fillStyle = sunGrad;
+        ctx.beginPath();
+        ctx.arc(sunX, sunY, 40, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Wolken
+        ctx.save();
+        ctx.fillStyle = "rgba(255,255,255,0.95)";
+        const cloudBaseY1 = 44;
+        const cloudBaseY2 = 78;
+        const cloudOffset = (state.frame * 0.6) % (canvas.width + 200);
+
+        drawCloud(cloudOffset - 260, cloudBaseY1, 42);
+        drawCloud(cloudOffset - 120, cloudBaseY2, 32);
+        drawCloud(cloudOffset + 60, cloudBaseY1 + 6, 38);
+        drawCloud(cloudOffset + 220, cloudBaseY2 + 4, 30);
+        ctx.restore();
+
+        // Hügel hinten
+        ctx.save();
+        const hillGradBack = ctx.createLinearGradient(0, GROUND_Y - 80, 0, canvas.height);
+        hillGradBack.addColorStop(0, "#b3f5d2");
+        hillGradBack.addColorStop(1, "#7ad37c");
+        ctx.fillStyle = hillGradBack;
+        ctx.beginPath();
+        ctx.moveTo(0, GROUND_Y - 10);
+        for (let x = 0; x <= canvas.width; x += 30) {
+          const y = GROUND_Y - 10 - Math.sin((x + state.frame * 0.03) / 40) * 8;
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(canvas.width, canvas.height);
+        ctx.lineTo(0, canvas.height);
+        ctx.fill();
+        ctx.restore();
+
+        // Hügel vorne + Deko
+        ctx.save();
+        const hillGradFront = ctx.createLinearGradient(0, GROUND_Y - 40, 0, canvas.height);
+        hillGradFront.addColorStop(0, "#78d86c");
+        hillGradFront.addColorStop(1, "#46b45d");
+        ctx.fillStyle = hillGradFront;
+        ctx.beginPath();
+        ctx.moveTo(0, GROUND_Y + 2);
+        for (let x = 0; x <= canvas.width; x += 26) {
+          const y = GROUND_Y + 2 - Math.sin((x + state.frame * 0.05) / 28) * 10;
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(canvas.width, canvas.height);
+        ctx.lineTo(0, canvas.height);
+        ctx.fill();
+
+        // Kleine Büsche, Blumen, Mini-Häuschen
+        const decoOffset = (state.frame * 0.9) % 60;
+        for (let i = 0; i < 18; i++) {
+          const baseX = (i * 60) - decoOffset;
+          const baseY = GROUND_Y - 10 + Math.sin((i * 11 + state.frame * 0.05) / 12) * 3;
+
+          ctx.fillStyle = i % 3 === 0 ? "#4ad68b" : "#52c277";
+          ctx.beginPath();
+          ctx.ellipse(baseX, baseY, 10, 8, 0, 0, Math.PI * 2);
+          ctx.fill();
+
+          if (i % 4 === 0) {
+            const flowerColors = ["#ff7ab8", "#ffd45c", "#9c8bff"];
+            ctx.fillStyle = flowerColors[i % flowerColors.length];
+            ctx.beginPath();
+            ctx.arc(baseX + 8, baseY + 4, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = "#fffce7";
+            ctx.beginPath();
+            ctx.arc(baseX + 8, baseY + 4, 1.3, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          if (i % 7 === 0) {
+            const houseX = baseX - 4;
+            const houseY = baseY - 18;
+            ctx.fillStyle = "#ffe6b8";
+            ctx.fillRect(houseX, houseY, 16, 14);
+            ctx.fillStyle = "#ff9ba5";
+            ctx.beginPath();
+            ctx.moveTo(houseX - 2, houseY);
+            ctx.lineTo(houseX + 8, houseY - 8);
+            ctx.lineTo(houseX + 18, houseY);
+            ctx.fill();
+            ctx.fillStyle = "#f1f5f9";
+            ctx.fillRect(houseX + 5, houseY + 4, 5, 6);
+          }
+        }
+        ctx.restore();
+      }
+
+      function drawCloud(x, y, r) {
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.arc(x + r * 0.9, y + 4, r * 0.7, 0, Math.PI * 2);
+        ctx.arc(x - r * 0.9, y + 6, r * 0.6, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       function drawGround() {
         ctx.save();
-        ctx.strokeStyle = "rgba(182,222,54,0.7)";
+        ctx.strokeStyle = "rgba(40,72,99,0.9)";
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(0, GROUND_Y + 0.5);
         ctx.lineTo(canvas.width, GROUND_Y + 0.5);
         ctx.stroke();
 
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = "rgba(111,138,155,0.65)";
-        ctx.setLineDash([10, 10]);
-        ctx.beginPath();
-        ctx.moveTo(0, GROUND_Y - 22.5);
-        ctx.lineTo(canvas.width, GROUND_Y - 22.5);
-        ctx.stroke();
+        const pathGrad = ctx.createLinearGradient(0, GROUND_Y + 4, 0, canvas.height);
+        pathGrad.addColorStop(0, "#f9f1e3");
+        pathGrad.addColorStop(1, "#f3dfba");
+        ctx.fillStyle = pathGrad;
+        ctx.fillRect(0, GROUND_Y + 4, canvas.width, canvas.height - (GROUND_Y + 4));
+
+        ctx.fillStyle = "rgba(209,186,149,0.9)";
+        for (let i = 0; i < 22; i++) {
+          const px = (i * 46 - (state.frame * 1.4) % 46);
+          const py = GROUND_Y + 14 + (i % 2) * 6;
+          ctx.beginPath();
+          ctx.ellipse(px, py, 6, 3, 0, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
         ctx.restore();
       }
-
       function drawHumpty() {
         const centerX = humpty.x + humpty.width / 2;
         const centerY = humpty.y + humpty.height / 2;
         const radiusX = humpty.width / 2;
         const radiusY = humpty.height / 2;
 
-        const bobOffset = state.running && !humpty.jumping ? Math.sin(state.frame / 10) * 1.5 : 0;
+        const bobOffset =
+          state.running && !humpty.jumping && !state.gameOver && !state.win
+            ? Math.sin(state.frame / 10) * 1.8
+            : 0;
 
         ctx.save();
         ctx.translate(0, bobOffset);
 
-        // Body (egg)
+        /* ---------- SPIEGELEI, wenn Game Over ---------- */
+        if (state.gameOver) {
+          const plateY = GROUND_Y + 4;
+
+          // Eiweiß
+          ctx.fillStyle = "#fffdf5";
+          ctx.strokeStyle = "rgba(235,220,190,0.9)";
+          ctx.lineWidth = 1.8;
+          ctx.beginPath();
+          ctx.ellipse(centerX, plateY + 6, radiusX * 2.2, 12, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+
+          // Eigelb
+          const yolkGrad = ctx.createRadialGradient(centerX, plateY + 2, 2, centerX, plateY + 2, 10);
+          yolkGrad.addColorStop(0, "#ffd86b");
+          yolkGrad.addColorStop(1, "#ffb844");
+          ctx.fillStyle = yolkGrad;
+          ctx.beginPath();
+          ctx.arc(centerX, plateY + 2, 9, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Glanz
+          ctx.fillStyle = "rgba(255,255,255,0.7)";
+          ctx.beginPath();
+          ctx.arc(centerX - 3, plateY - 1, 3, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.restore();
+          return;
+        }
+
+        /* ---------- NORMALER HUMPTY ---------- */
+
+        // Körper
         const gradient = ctx.createLinearGradient(humpty.x, humpty.y, humpty.x, humpty.y + humpty.height);
         gradient.addColorStop(0, "#ffffff");
-        gradient.addColorStop(1, "#e0ecf5");
+        gradient.addColorStop(1, "#e4f0ff");
         ctx.fillStyle = gradient;
-        ctx.strokeStyle = "rgba(11,45,66,0.8)";
+        ctx.strokeStyle = "rgba(11,45,66,0.9)";
         ctx.lineWidth = 2;
-
         ctx.beginPath();
         ctx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.stroke();
 
-        // Face
-        // Eyes
+        // Bunter Pokémon-Gürtel
+        ctx.save();
+        ctx.beginPath();
+        ctx.ellipse(centerX, centerY + radiusY / 5, radiusX * 0.95, radiusY * 0.35, 0, 0, Math.PI * 2);
+        ctx.clip();
+        const beltGrad = ctx.createLinearGradient(humpty.x, centerY, humpty.x + humpty.width, centerY);
+        beltGrad.addColorStop(0, "#ff8ba7");
+        beltGrad.addColorStop(0.5, "#ffc857");
+        beltGrad.addColorStop(1, "#7dd3fc");
+        ctx.fillStyle = beltGrad;
+        ctx.fillRect(humpty.x - 4, centerY - radiusY, humpty.width + 8, radiusY * 2);
+        ctx.restore();
+
+        // Knöpfe
+        ctx.fillStyle = "#0b2d42";
+        for (let i = -1; i <= 1; i++) {
+          ctx.beginPath();
+          ctx.arc(centerX, centerY + i * 7 + 4, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Augen + Pupillen
         ctx.fillStyle = "#2b3e4c";
-        const eyeOffsetX = radiusX / 2.2;
+        const eyeOffsetX = radiusX / 2.1;
         const eyeY = centerY - radiusY / 3;
         ctx.beginPath();
-        ctx.arc(centerX - eyeOffsetX, eyeY, 3, 0, Math.PI * 2);
-        ctx.arc(centerX + eyeOffsetX, eyeY, 3, 0, Math.PI * 2);
+        ctx.arc(centerX - eyeOffsetX, eyeY, 3.2, 0, Math.PI * 2);
+        ctx.arc(centerX + eyeOffsetX, eyeY, 3.2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#0f172a";
+        ctx.beginPath();
+        ctx.arc(centerX - eyeOffsetX + 0.8, eyeY + 0.6, 1.5, 0, Math.PI * 2);
+        ctx.arc(centerX + eyeOffsetX + 0.8, eyeY + 0.6, 1.5, 0, Math.PI * 2);
         ctx.fill();
 
-        // Smile
+        // Glanzpunkte
+        ctx.fillStyle = "#f9fafb";
+        ctx.beginPath();
+        ctx.arc(centerX - eyeOffsetX - 0.4, eyeY - 0.3, 0.9, 0, Math.PI * 2);
+        ctx.arc(centerX + eyeOffsetX - 0.4, eyeY - 0.2, 0.9, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Mund
         ctx.strokeStyle = "#ef9c50";
         ctx.lineWidth = 2;
         ctx.beginPath();
         const smileY = centerY - radiusY / 7;
-        ctx.arc(centerX, smileY, 9, 0.15 * Math.PI, 0.85 * Math.PI, false);
+        ctx.arc(centerX, smileY, 9, 0.15 * Math.PI, 0.85 * Math.PI);
         ctx.stroke();
 
-        // Cracks when game over
-        if (state.gameOver) {
-          ctx.strokeStyle = "#c5382f";
-          ctx.lineWidth = 1.5;
-
-          ctx.beginPath();
-          ctx.moveTo(centerX, humpty.y + 10);
-          ctx.lineTo(centerX - 6, humpty.y + 26);
-          ctx.lineTo(centerX + 2, humpty.y + 40);
-          ctx.lineTo(centerX - 8, humpty.y + 54);
-          ctx.stroke();
-
-          ctx.beginPath();
-          ctx.moveTo(centerX + 8, humpty.y + 20);
-          ctx.lineTo(centerX + 16, humpty.y + 34);
-          ctx.lineTo(centerX + 10, humpty.y + 46);
-          ctx.stroke();
-        }
-
-        // Tiny shadow underneath Humpty
-        ctx.fillStyle = "rgba(0,0,0,0.27)";
+        // Wangen
+        ctx.fillStyle = "rgba(248,113,113,0.6)";
         ctx.beginPath();
-        const shadowY = GROUND_Y + 4;
-        ctx.ellipse(centerX, shadowY, radiusX * 0.9, 6, 0, 0, Math.PI * 2);
+        ctx.ellipse(centerX - eyeOffsetX, smileY + 4, 5.5, 3.2, 0, 0, Math.PI * 2);
+        ctx.ellipse(centerX + eyeOffsetX, smileY + 4, 5.5, 3.2, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Arme
+        ctx.strokeStyle = "#0b2d42";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(humpty.x + 4, centerY + 4);
+        ctx.lineTo(humpty.x - 12, centerY + 10);
+        ctx.lineTo(humpty.x - 18, centerY + 4);
+        ctx.moveTo(humpty.x + humpty.width - 4, centerY + 4);
+        ctx.lineTo(humpty.x + humpty.width + 12, centerY + 10);
+        ctx.lineTo(humpty.x + humpty.width + 18, centerY + 4);
+        ctx.stroke();
+
+        // Beine / Schuhe
+        const legY = humpty.y + humpty.height - 4;
+        ctx.strokeStyle = "#0f172a";
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        ctx.moveTo(centerX - 8, legY);
+        ctx.lineTo(centerX - 8, legY + 10);
+        ctx.moveTo(centerX + 8, legY);
+        ctx.lineTo(centerX + 8, legY + 10);
+        ctx.stroke();
+
+        ctx.fillStyle = "#0f172a";
+        ctx.beginPath();
+        ctx.ellipse(centerX - 8, legY + 12, 7, 3.2, 0, 0, Math.PI * 2);
+        ctx.ellipse(centerX + 8, legY + 12, 7, 3.2, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Bodenschatten
+        ctx.fillStyle = "rgba(0,0,0,0.25)";
+        ctx.beginPath();
+        ctx.ellipse(centerX, GROUND_Y + 4, radiusX * 0.95, 6, 0, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.restore();
@@ -605,29 +814,29 @@
       function drawObstacles() {
         ctx.save();
         obstacles.forEach(ob => {
-          const gradient = ctx.createLinearGradient(ob.x, ob.y, ob.x, ob.y + ob.height);
-          gradient.addColorStop(0, "#f8fafc");
-          gradient.addColorStop(1, "#c7d2e0");
-          ctx.fillStyle = gradient;
+          const grad = ctx.createLinearGradient(ob.x, ob.y, ob.x, ob.y + ob.height);
+          grad.addColorStop(0, "#ff8ba7");
+          grad.addColorStop(0.5, "#ffc857");
+          grad.addColorStop(1, "#9b8cff");
+          ctx.fillStyle = grad;
 
-          ctx.strokeStyle = "rgba(11,45,66,0.9)";
+          ctx.strokeStyle = "rgba(88,28,135,0.8)";
           ctx.lineWidth = 2;
 
           ctx.beginPath();
-          ctx.roundRect(ob.x, ob.y, ob.width, ob.height, 4);
+          ctx.roundRect(ob.x, ob.y, ob.width, ob.height, 6);
           ctx.fill();
           ctx.stroke();
 
-          // brick lines
-          ctx.strokeStyle = "rgba(148,163,184,0.7)";
+          ctx.strokeStyle = "rgba(255,255,255,0.45)";
           ctx.lineWidth = 1;
-          ctx.beginPath();
           const stepY = 10;
           for (let y = ob.y + 6; y < ob.y + ob.height; y += stepY) {
+            ctx.beginPath();
             ctx.moveTo(ob.x + 3, y);
             ctx.lineTo(ob.x + ob.width - 3, y);
+            ctx.stroke();
           }
-          ctx.stroke();
         });
         ctx.restore();
       }
@@ -639,38 +848,35 @@
 
         ctx.textAlign = "center";
 
-        ctx.font = "bold 32px Poppins, system-ui, sans-serif";
+        ctx.font = "bold 30px Poppins, system-ui, sans-serif";
         ctx.fillStyle = accentColor;
-        ctx.fillText(text, canvas.width / 2, canvas.height / 2 - 12);
+        ctx.fillText(text, canvas.width / 2, canvas.height / 2 - 10);
 
         ctx.font = "16px 'Nunito Sans', system-ui, sans-serif";
         ctx.fillStyle = "#e5edf6";
-        ctx.fillText(subtext, canvas.width / 2, canvas.height / 2 + 20);
+        ctx.fillText(subtext, canvas.width / 2, canvas.height / 2 + 18);
 
         ctx.font = "13px 'Nunito Sans', system-ui, sans-serif";
         ctx.fillStyle = "#9fb2c5";
-        ctx.fillText("Leertaste oder Tippen für Neustart", canvas.width / 2, canvas.height / 2 + 46);
+        ctx.fillText("Leertaste oder Tippen für Neustart", canvas.width / 2, canvas.height / 2 + 42);
 
         ctx.restore();
       }
 
       function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Background gradient sky is already via canvas CSS
-
+        drawBackground();
         drawGround();
         drawObstacles();
         drawHumpty();
 
         if (state.gameOver) {
-          drawOverlay("Oops – Humpty ist gefallen", "Du bist gegen die Mauer gelaufen.", "#f97373");
+          drawOverlay("Oh nein – jetzt bist du Spiegelei!", "Humpty ist von der Mauer gefallen.", "#fb7185");
         } else if (state.win) {
-          drawOverlay("Geschafft – 100.000 Punkte!", "Humpty Dumpty hält sich sicher auf der Mauer. 🥳", "#b6de36");
+          drawOverlay("Geschafft – 100.000 Punkte!", "Humpty Dumpty bleibt sicher auf der Mauer. 🥳", "#b6de36");
         }
       }
 
-      // Event listeners
+      // Controls
       document.addEventListener("keydown", function (e) {
         if (e.code === "Space" || e.code === "ArrowUp") {
           e.preventDefault();
@@ -686,18 +892,13 @@
         initGame();
       });
 
-      // Polyfill for roundRect for older browsers
+      // roundRect Polyfill
       if (!CanvasRenderingContext2D.prototype.roundRect) {
         CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
           if (w < 0) { x += w; w = -w; }
           if (h < 0) { y += h; h = -h; }
           if (typeof r === "number") {
             r = { tl: r, tr: r, br: r, bl: r };
-          } else {
-            const defaultRadius = { tl: 0, tr: 0, br: 0, bl: 0 };
-            for (const side in defaultRadius) {
-              r[side] = r[side] || defaultRadius[side];
-            }
           }
           this.beginPath();
           this.moveTo(x + r.tl, y);
@@ -713,10 +914,10 @@
         };
       }
 
-      // Start
       initGame();
       update();
     })();
   </script>
 </body>
 </html>
+
