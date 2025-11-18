@@ -656,15 +656,14 @@
 
         ctx.restore();
       }
-      function drawHumpty() {
+            function drawHumpty() {
         const centerX = humpty.x + humpty.width / 2;
         const centerY = humpty.y + humpty.height / 2;
-        const radiusX = humpty.width / 2;
-        const radiusY = humpty.height / 2;
 
+        // kleines „Wackeln“, wenn er läuft
         const bobOffset =
           state.running && !humpty.jumping && !state.gameOver && !state.win
-            ? Math.sin(state.frame / 10) * 1.8
+            ? Math.sin(state.frame / 8) * 1.5
             : 0;
 
         ctx.save();
@@ -672,145 +671,132 @@
 
         /* ---------- SPIEGELEI, wenn Game Over ---------- */
         if (state.gameOver) {
-          const plateY = GROUND_Y + 4;
+          const block = 4; // Pixelgröße
+          const eggCenterX = Math.round(centerX / block) * block;
+          const eggBaseY = GROUND_Y + 4;
 
-          // Eiweiß
-          ctx.fillStyle = "#fffdf5";
-          ctx.strokeStyle = "rgba(235,220,190,0.9)";
-          ctx.lineWidth = 1.8;
-          ctx.beginPath();
-          ctx.ellipse(centerX, plateY + 6, radiusX * 2.2, 12, 0, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.stroke();
+          // Eiweiß – pixelig
+          ctx.fillStyle = "#fefce8";
+          const whitePattern = [
+            "....XXXXXXX....",
+            "..XXXXXXXXXXX..",
+            ".XXXXXXXXXXXXX.",
+            ".XXXXXXXXXXXXX.",
+            ".XXXXXXXXXXXXX.",
+            "..XXXXXXXXXXX..",
+            "....XXXXXXX...."
+          ];
+          for (let row = 0; row < whitePattern.length; row++) {
+            for (let col = 0; col < whitePattern[row].length; col++) {
+              if (whitePattern[row][col] === "X") {
+                const px = eggCenterX + (col - whitePattern[row].length / 2) * block;
+                const py = eggBaseY + (row - whitePattern.length / 2) * block;
+                ctx.fillRect(px, py, block, block);
+              }
+            }
+          }
 
-          // Eigelb
-          const yolkGrad = ctx.createRadialGradient(centerX, plateY + 2, 2, centerX, plateY + 2, 10);
-          yolkGrad.addColorStop(0, "#ffd86b");
-          yolkGrad.addColorStop(1, "#ffb844");
-          ctx.fillStyle = yolkGrad;
-          ctx.beginPath();
-          ctx.arc(centerX, plateY + 2, 9, 0, Math.PI * 2);
-          ctx.fill();
-
-          // Glanz
-          ctx.fillStyle = "rgba(255,255,255,0.7)";
-          ctx.beginPath();
-          ctx.arc(centerX - 3, plateY - 1, 3, 0, Math.PI * 2);
-          ctx.fill();
+          // Eigelb – pixelig
+          ctx.fillStyle = "#fbbf24";
+          const yolkPattern = [
+            ".XXX.",
+            "XXXXX",
+            "XXXXX",
+            "XXXXX",
+            ".XXX."
+          ];
+          for (let row = 0; row < yolkPattern.length; row++) {
+            for (let col = 0; col < yolkPattern[row].length; col++) {
+              if (yolkPattern[row][col] === "X") {
+                const px = eggCenterX + (col - yolkPattern[row].length / 2) * block;
+                const py = eggBaseY - 2 * block + row * block;
+                ctx.fillRect(px, py, block, block);
+              }
+            }
+          }
 
           ctx.restore();
           return;
         }
 
-        /* ---------- NORMALER HUMPTY ---------- */
+        /* ---------- PIXEL-SPRITE HUMPTY ---------- */
 
-        // Körper
-        const gradient = ctx.createLinearGradient(humpty.x, humpty.y, humpty.x, humpty.y + humpty.height);
-        gradient.addColorStop(0, "#ffffff");
-        gradient.addColorStop(1, "#e4f0ff");
-        ctx.fillStyle = gradient;
-        ctx.strokeStyle = "rgba(11,45,66,0.9)";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
+        const block = 4; // „Pixel“-Größe
+        const spriteWidth = 12;
+        const spriteHeight = 18;
 
-        // Bunter Pokémon-Gürtel
-        ctx.save();
-        ctx.beginPath();
-        ctx.ellipse(centerX, centerY + radiusY / 5, radiusX * 0.95, radiusY * 0.35, 0, 0, Math.PI * 2);
-        ctx.clip();
-        const beltGrad = ctx.createLinearGradient(humpty.x, centerY, humpty.x + humpty.width, centerY);
-        beltGrad.addColorStop(0, "#ff8ba7");
-        beltGrad.addColorStop(0.5, "#ffc857");
-        beltGrad.addColorStop(1, "#7dd3fc");
-        ctx.fillStyle = beltGrad;
-        ctx.fillRect(humpty.x - 4, centerY - radiusY, humpty.width + 8, radiusY * 2);
-        ctx.restore();
+        const baseX = Math.round(centerX - (spriteWidth * block) / 2);
+        const baseY = Math.round(centerY - (spriteHeight * block) / 2);
 
-        // Knöpfe
-        ctx.fillStyle = "#0b2d42";
-        for (let i = -1; i <= 1; i++) {
-          ctx.beginPath();
-          ctx.arc(centerX, centerY + i * 7 + 4, 2, 0, Math.PI * 2);
-          ctx.fill();
+        // Einfaches 12x18-Pattern
+        // Zeichen:
+        //  . = transparent
+        //  O = Umrandung
+        //  B = Körper (Eiweiß)
+        //  Y = bunter „Gürtel“
+        //  E = Auge
+        //  C = Wange
+        //  L = Bein/Schuh
+        const sprite = [
+          "............",
+          "....OOOO....",
+          "...O BBB O..",
+          "..O BBBBB O.",
+          ".O BBBBBBB O",
+          ".O BBBBBBB O",
+          ".O BBBBBBB O",
+          ".O BBBBBBB O",
+          ".O BBBBBBB O",
+          ".O BBBBBBB O",
+          ".O BBBBBBB O",
+          ".O BYYYYB O.",
+          ".O BYYYYB O.",
+          "..O BBBB O..",
+          "...O    O...",
+          "...L    L...",
+          "...L    L...",
+          "............"
+        ];
+
+        for (let row = 0; row < sprite.length; row++) {
+          for (let col = 0; col < sprite[row].length; col++) {
+            const ch = sprite[row][col];
+            if (ch === ".") continue;
+
+            let color = "#000000";
+            if (ch === "O") color = "#111827";         // Outline
+            if (ch === "B") color = "#fefce8";         // Körper
+            if (ch === "Y") color = "#fbbf24";         // Gürtel
+            if (ch === "E") color = "#111827";         // (falls wir später Augen als eigenes Zeichen nehmen)
+            if (ch === "C") color = "#fb7185";         // Wange
+            if (ch === "L") color = "#111827";         // Beine/Schuhe
+
+            const px = baseX + col * block;
+            const py = baseY + row * block;
+            ctx.fillStyle = color;
+            ctx.fillRect(px, py, block, block);
+          }
         }
 
-        // Augen + Pupillen
-        ctx.fillStyle = "#2b3e4c";
-        const eyeOffsetX = radiusX / 2.1;
-        const eyeY = centerY - radiusY / 3;
-        ctx.beginPath();
-        ctx.arc(centerX - eyeOffsetX, eyeY, 3.2, 0, Math.PI * 2);
-        ctx.arc(centerX + eyeOffsetX, eyeY, 3.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = "#0f172a";
-        ctx.beginPath();
-        ctx.arc(centerX - eyeOffsetX + 0.8, eyeY + 0.6, 1.5, 0, Math.PI * 2);
-        ctx.arc(centerX + eyeOffsetX + 0.8, eyeY + 0.6, 1.5, 0, Math.PI * 2);
-        ctx.fill();
+        // Extra: Augen & Wangen gezielt draufsetzen (damit sie sauber sitzen)
+        ctx.fillStyle = "#111827"; // Augen
+        ctx.fillRect(baseX + 4 * block, baseY + 4 * block, block, block);
+        ctx.fillRect(baseX + 7 * block, baseY + 4 * block, block, block);
 
-        // Glanzpunkte
-        ctx.fillStyle = "#f9fafb";
-        ctx.beginPath();
-        ctx.arc(centerX - eyeOffsetX - 0.4, eyeY - 0.3, 0.9, 0, Math.PI * 2);
-        ctx.arc(centerX + eyeOffsetX - 0.4, eyeY - 0.2, 0.9, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.fillStyle = "#fb7185"; // Wangen
+        ctx.fillRect(baseX + 3 * block, baseY + 6 * block, block, block);
+        ctx.fillRect(baseX + 8 * block, baseY + 6 * block, block, block);
 
-        // Mund
-        ctx.strokeStyle = "#ef9c50";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        const smileY = centerY - radiusY / 7;
-        ctx.arc(centerX, smileY, 9, 0.15 * Math.PI, 0.85 * Math.PI);
-        ctx.stroke();
-
-        // Wangen
-        ctx.fillStyle = "rgba(248,113,113,0.6)";
-        ctx.beginPath();
-        ctx.ellipse(centerX - eyeOffsetX, smileY + 4, 5.5, 3.2, 0, 0, Math.PI * 2);
-        ctx.ellipse(centerX + eyeOffsetX, smileY + 4, 5.5, 3.2, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Arme
-        ctx.strokeStyle = "#0b2d42";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(humpty.x + 4, centerY + 4);
-        ctx.lineTo(humpty.x - 12, centerY + 10);
-        ctx.lineTo(humpty.x - 18, centerY + 4);
-        ctx.moveTo(humpty.x + humpty.width - 4, centerY + 4);
-        ctx.lineTo(humpty.x + humpty.width + 12, centerY + 10);
-        ctx.lineTo(humpty.x + humpty.width + 18, centerY + 4);
-        ctx.stroke();
-
-        // Beine / Schuhe
-        const legY = humpty.y + humpty.height - 4;
-        ctx.strokeStyle = "#0f172a";
-        ctx.lineWidth = 2.2;
-        ctx.beginPath();
-        ctx.moveTo(centerX - 8, legY);
-        ctx.lineTo(centerX - 8, legY + 10);
-        ctx.moveTo(centerX + 8, legY);
-        ctx.lineTo(centerX + 8, legY + 10);
-        ctx.stroke();
-
-        ctx.fillStyle = "#0f172a";
-        ctx.beginPath();
-        ctx.ellipse(centerX - 8, legY + 12, 7, 3.2, 0, 0, Math.PI * 2);
-        ctx.ellipse(centerX + 8, legY + 12, 7, 3.2, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Bodenschatten
-        ctx.fillStyle = "rgba(0,0,0,0.25)";
-        ctx.beginPath();
-        ctx.ellipse(centerX, GROUND_Y + 4, radiusX * 0.95, 6, 0, 0, Math.PI * 2);
-        ctx.fill();
+        // kleiner Schatten unter Humpty
+        ctx.fillStyle = "rgba(0,0,0,0.3)";
+        const shadowWidth = 8 * block;
+        const shadowHeight = 2 * block;
+        const shadowX = centerX - shadowWidth / 2;
+        const shadowY = GROUND_Y + 6;
+        ctx.fillRect(Math.round(shadowX), Math.round(shadowY), shadowWidth, shadowHeight);
 
         ctx.restore();
       }
-
       function drawObstacles() {
         ctx.save();
         obstacles.forEach(ob => {
