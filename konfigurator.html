@@ -53,28 +53,6 @@
             gap: 1.6rem;
         }
 
-        /* Header oben nur noch Text */
-
-        .header {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .header-title {
-            font-family: "Poppins", sans-serif;
-            font-size: 0.82rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: var(--tp-text-main);
-        }
-
-        .header-sub {
-            font-size: 0.82rem;
-            color: var(--tp-text-muted);
-        }
-
         /* Intro Frage */
 
         .intro {
@@ -110,7 +88,7 @@
 
         .grid {
             display: grid;
-            margin-top: 1rem;
+            margin-top: 1.4rem;
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
         }
@@ -129,14 +107,13 @@
 
         .tile {
             border-radius: 1.6rem;
-            padding: 1.6rem 1.4rem;
+            padding: 1.8rem 1.6rem;
             border: 1px solid var(--tp-gray-border);
             background: #ffffff;
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
-            min-height: 210px;
-
+            gap: 0.6rem;
+            min-height: 220px;
             transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
         }
 
@@ -154,29 +131,46 @@
             font-size: 0.78rem;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.75);
+            opacity: 0.9;
         }
 
         .tile-title {
             font-family: "Poppins", sans-serif;
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-top: 0.1rem;
+            margin-bottom: 0.55rem;
+            display: inline-block;
+            padding-bottom: 0.15rem;
+            border-bottom: 3px solid currentColor;
         }
 
         .tile-text {
             font-size: 0.9rem;
-            line-height: 1.55;
+            line-height: 1.6;
         }
 
         .tile-link {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.55rem 1.05rem;
+            border-radius: 999px;
+            border: 1px solid currentColor;
             font-size: 0.86rem;
-            margin-top: 0.5rem;
-            font-weight: 600;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.14s ease, color 0.14s ease, border-color 0.14s ease, transform 0.14s ease;
         }
 
-        .tile-link span {
-            margin-left: 0.12rem;
+        .tile-link-icon {
+            font-size: 0.95em;
+            transform: translateY(0.5px);
+        }
+
+        .tile:hover .tile-link {
+            transform: translateY(-1px);
         }
 
         /* Variante: dunkelblaue Kachel */
@@ -187,6 +181,10 @@
             border-color: var(--tp-dark);
         }
 
+        .tile-dark .tile-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         .tile-dark .tile-title,
         .tile-dark .tile-text,
         .tile-dark .tile-link {
@@ -194,11 +192,14 @@
         }
 
         .tile-dark .tile-link {
-            opacity: 0.9;
+            background: rgba(15, 23, 42, 0.35);
+            border-color: rgba(255, 255, 255, 0.7);
         }
 
-        .tile-dark:hover {
-            border-color: var(--tp-lime);
+        .tile-dark:hover .tile-link {
+            background: #ffffff;
+            color: var(--tp-dark);
+            border-color: #ffffff;
         }
 
         /* Variante: Lime Kachel */
@@ -223,6 +224,14 @@
 
         .tile-lime .tile-link {
             color: #0b2d43;
+            background: rgba(255, 255, 255, 0.35);
+            border-color: rgba(11, 45, 67, 0.8);
+        }
+
+        .tile-lime:hover .tile-link {
+            background: #0b2d43;
+            color: #ffffff;
+            border-color: #0b2d43;
         }
 
         /* Variante: helle Kachel */
@@ -246,6 +255,13 @@
 
         .tile-light .tile-link {
             color: var(--tp-text-main);
+            background: #f3f4f6;
+            border-color: #0b2d43;
+        }
+
+        .tile-light:hover .tile-link {
+            background: #0b2d43;
+            color: #ffffff;
         }
 
     </style>
@@ -255,22 +271,16 @@
 
 <div class="page">
 
-    <!-- Header minimal -->
-    <header class="header">
-        <div class="header-title">TimePartner Konfigurator</div>
-        <div class="header-sub">Personallösungen auswählen</div>
-    </header>
-
     <!-- Frage / Intro -->
     <section class="intro">
         <div class="intro-eyebrow">Auswahl</div>
 
         <h1 class="intro-title">
-            Welche Lösung möchten Sie mit TimePartner erkunden?
+            Welche Lösung möchtest du mit TimePartner erkunden?
         </h1>
 
         <p class="intro-subline">
-            Wählen Sie einen Bereich aus. Jede Kachel führt zu klaren Informationen über Leistungen, Nutzen und nächste Schritte.
+            Wähle einen Bereich aus. Jede Kachel führt dich zu klaren Infos über Leistungen, Nutzen und nächste Schritte.
         </p>
     </section>
 
@@ -282,11 +292,12 @@
             <div class="tile-label">Über uns</div>
             <div class="tile-title">TimePartner kennenlernen</div>
             <div class="tile-text">
-                Wer wir sind, wie wir arbeiten und wofür wir stehen.  
+                Wer wir sind, wie wir arbeiten und wofür wir stehen.
                 Ein kompakter Überblick über TimePartner als Personaldienstleister.
             </div>
             <div class="tile-link">
-                Mehr über TimePartner<span>→</span>
+                <span>Mehr über TimePartner entdecken</span>
+                <span class="tile-link-icon">↗</span>
             </div>
         </a>
 
@@ -295,24 +306,26 @@
             <div class="tile-label">Leistungen</div>
             <div class="tile-title">Personallösung konfigurieren</div>
             <div class="tile-text">
-                Zeitarbeit, Vermittlung, On Site und Master Vendor.  
-                Stellen Sie die Bausteine zusammen, die zu Ihrem Bedarf passen.
+                Zeitarbeit, Vermittlung, On Site und Master Vendor.
+                Stell dir die Bausteine zusammen, die zu deinem Bedarf passen.
             </div>
             <div class="tile-link">
-                Leistungen ansehen<span>→</span>
+                <span>Zu den Leistungen</span>
+                <span class="tile-link-icon">↗</span>
             </div>
         </a>
 
         <!-- Kampagnen & Schulungen -->
         <a href="kampagnen-schulungen.html" class="tile tile-light">
-            <div class="tile-label">Kampagnen & Schulungen</div>
-            <div class="tile-title">Sichtbarkeit & Enablement</div>
+            <div class="tile-label">Kampagnen &amp; Schulungen</div>
+            <div class="tile-title">Sichtbarkeit &amp; Enablement</div>
             <div class="tile-text">
-                Recruiting Kampagnen, Employer Branding und Trainings.  
-                Für mehr passende Bewerbungen und ein starkes Auftreten Ihrer Teams.
+                Recruiting Kampagnen, Employer Branding und Trainings.
+                Für mehr passende Bewerbungen und einen starken Auftritt deines Teams.
             </div>
             <div class="tile-link">
-                Kampagnen entdecken<span>→</span>
+                <span>Kampagnen und Trainings ansehen</span>
+                <span class="tile-link-icon">↗</span>
             </div>
         </a>
 
