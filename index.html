@@ -113,4 +113,365 @@
             border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, 0.9);
             font-weight: 600;
-            font-size: 0.
+            font-size: 0.84rem;
+        }
+
+        /* Page shell */
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2.2rem 1.25rem 2.7rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+
+        /* Hero section mit einem großen Tile */
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--tp-muted);
+        }
+
+        .hero-title {
+            font-family: "Poppins", system-ui, sans-serif;
+            font-size: clamp(2rem, 3.2vw, 2.4rem);
+            font-weight: 700;
+            color: var(--tp-dark);
+        }
+
+        .hero-subline {
+            font-size: 0.95rem;
+            color: var(--tp-muted);
+            max-width: 40rem;
+            line-height: 1.55;
+        }
+
+        .hero-band {
+            margin-top: 0.7rem;
+            background: var(--tp-blue);
+            border-radius: 1.8rem;
+            padding: 0.35rem 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.83rem;
+            color: #e0f2fe;
+        }
+
+        .hero-band-pill {
+            padding: 0.18rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        /* Big tile */
+
+        .start-tile-link {
+            margin-top: 0.9rem;
+            display: block;
+        }
+
+        .start-tile {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 1.9rem 1.8rem;
+            border: 1px solid var(--tp-border);
+            box-shadow: var(--shadow-soft);
+            display: grid;
+            grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.4fr);
+            gap: 1.6rem;
+            align-items: center;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-tile:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 26px 60px rgba(15, 23, 42, 0.28);
+            border-color: rgba(0, 143, 211, 0.65);
+        }
+
+        @media (max-width: 880px) {
+            .start-tile {
+                grid-template-columns: minmax(0, 1fr);
+                padding: 1.6rem 1.4rem 1.7rem;
+            }
+        }
+
+        .start-kicker {
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--tp-muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .start-heading {
+            font-family: "Poppins", system-ui, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .start-text {
+            font-size: 0.93rem;
+            color: var(--tp-dark);
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .start-bullets {
+            font-size: 0.88rem;
+            color: var(--tp-muted);
+        }
+
+        .start-bullets span {
+            display: inline-block;
+            margin-right: 0.7rem;
+        }
+
+        .start-right {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            align-items: flex-start;
+        }
+
+        .start-tag {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--tp-blue-dark);
+        }
+
+        .start-cta {
+            font-size: 0.9rem;
+            padding: 0.7rem 1.3rem;
+            border-radius: 999px;
+            background: var(--tp-blue-dark);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
+        }
+
+        .start-cta span.icon {
+            font-size: 1rem;
+        }
+
+        .start-note {
+            font-size: 0.8rem;
+            color: var(--tp-muted);
+            max-width: 18rem;
+            line-height: 1.5;
+        }
+
+        .start-image {
+            width: 100%;
+            max-width: 260px;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            border: 1px solid var(--tp-border);
+        }
+
+        .start-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Info section */
+
+        .info-section {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.6fr);
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 880px) {
+            .info-section {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .info-block {
+            background: #ffffff;
+            border-radius: 1.3rem;
+            padding: 1.2rem 1.3rem 1.3rem;
+            border: 1px solid var(--tp-border);
+        }
+
+        .info-label {
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--tp-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .info-title {
+            font-family: "Poppins", system-ui, sans-serif;
+            font-size: 1rem;
+            margin-bottom: 0.35rem;
+            color: var(--tp-blue-dark);
+        }
+
+        .info-text {
+            font-size: 0.88rem;
+            color: var(--tp-dark);
+            line-height: 1.55;
+        }
+
+        .info-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 0.5rem;
+            font-size: 0.86rem;
+            color: var(--tp-blue);
+        }
+
+        .info-link span.icon {
+            font-size: 0.95rem;
+        }
+
+        .footer-note {
+            margin-top: 0.4rem;
+            font-size: 0.78rem;
+            color: var(--tp-muted);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="top-bar-wrap">
+    <header class="top-bar">
+        <div class="brand">
+            <div class="brand-logo">
+                <!-- dein weißes TP Logo -->
+                <img src="assets/img/TP-Logo-weiss-ohne-claim.png" alt="TimePartner Logo">
+            </div>
+            <div class="brand-text">
+                <div class="brand-text-main">TimePartner</div>
+                <div class="brand-text-sub">Vertriebs Konfigurator</div>
+            </div>
+        </div>
+
+        <nav class="top-nav" aria-label="Hauptnavigation">
+            <a href="konfigurator.html">Konfigurator</a>
+            <a href="ueber-timepartner.html">Über TimePartner</a>
+            <span class="top-nav-cta">Internes Tool</span>
+        </nav>
+    </header>
+</div>
+
+<div class="page">
+
+    <!-- Hero intro -->
+    <section class="hero">
+        <div class="hero-eyebrow">Start</div>
+        <h1 class="hero-title">
+            RIGHT PEOPLE, RIGHT SETUP, RIGHT NOW.
+        </h1>
+        <p class="hero-subline">
+            Dieser Konfigurator ist dein Leitfaden für Kundengespräche rund um Personallösungen mit TimePartner. 
+            Klar strukturiert, modular und auf unsere Services zugeschnitten, ähnlich wie bei Accent, aber in unserer CI.
+        </p>
+
+        <div class="hero-band">
+            <span>Für Vertrieb, Key Account und Branch Management</span>
+            <span class="hero-band-pill">Live im Kundentermin nutzbar</span>
+        </div>
+
+        <!-- eine große Kachel als Einstieg -->
+        <a href="konfigurator.html" class="start-tile-link">
+            <article class="start-tile" aria-label="Vertriebs Konfigurator starten">
+                <div>
+                    <div class="start-kicker">Konfigurator</div>
+                    <h2 class="start-heading">TimePartner Vertriebs Konfigurator starten</h2>
+                    <p class="start-text">
+                        Führe deine Kunden durch Über TimePartner, Leistungen, Kampagnen und Schulungen. 
+                        Du wählst die passenden Bausteine, wir machen die Personallösung dahinter sichtbar und besprechbar.
+                    </p>
+                    <div class="start-bullets">
+                        <span>• Einstieg wie auf einer Produktseite</span>
+                        <span>• Klarer Pfad statt PowerPoint Klickorgie</span>
+                        <span>• Für Neu und Bestandskunden geeignet</span>
+                    </div>
+                </div>
+
+                <div class="start-right">
+                    <div class="start-tag">Loslegen</div>
+                    <div class="start-cta">
+                        <span>Zum Konfigurator</span>
+                        <span class="icon">→</span>
+                    </div>
+                    <p class="start-note">
+                        Empfehlung im Gespräch: zuerst den Konfigurator öffnen, dann je nach Bedarf in 
+                        Über TimePartner oder direkt in die Leistungsdetails springen.
+                    </p>
+
+                    <div class="start-image">
+                        <!-- Beispielbild, kann durch kachel1/2/3 ersetzt werden -->
+                        <img src="assets/img/kachel1.JPG" alt="TimePartner Visual">
+                    </div>
+                </div>
+            </article>
+        </a>
+    </section>
+
+    <!-- Kurze Einordnung darunter -->
+    <section class="info-section" aria-label="Einordnung des Konfigurators">
+        <div class="info-block">
+            <div class="info-label">Für wen</div>
+            <div class="info-title">Einsatz im Vertrieb</div>
+            <p class="info-text">
+                Der Konfigurator ist für alle gedacht, die Kundengespräche strukturieren wollen. 
+                Anstatt Folien zu blättern, kannst du live durch die Kacheln navigieren, 
+                Services auswählen und direkt auf passende Inhalte springen.
+            </p>
+            <a href="konfigurator.html" class="info-link">
+                <span>Direkt zum Konfigurator</span>
+                <span class="icon">→</span>
+            </a>
+        </div>
+
+        <div class="info-block">
+            <div class="info-label">Was steckt dahinter</div>
+            <div class="info-title">TimePartner Story und Portfolio</div>
+            <p class="info-text">
+                Im Hintergrund stehen unsere Inhalte zu Über TimePartner, Berufsfeldern, 
+                Services, Kampagnen und Schulungen. Du kannst jederzeit in die Über uns Seite 
+                wechseln, falls zuerst Vertrauen und Kontext wichtig sind.
+            </p>
+            <a href="ueber-timepartner.html" class="info-link">
+                <span>Über TimePartner ansehen</span>
+                <span class="icon">→</span>
+            </a>
+        </div>
+    </section>
+
+    <p class="footer-note">
+        Interner Hinweis: Zusätzliche Startkacheln für andere Zielgruppen wie Kandidaten oder Fachbereiche 
+        können später ergänzt werden. Aktuell fokussiert diese Seite bewusst auf einen klaren Einstieg in den Konfigurator.
+    </p>
+
+</div>
+</body>
+</html>
