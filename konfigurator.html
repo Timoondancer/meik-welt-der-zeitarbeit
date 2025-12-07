@@ -28,13 +28,11 @@
 
         body {
             min-height: 100vh;
-            font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-
+            font-family: "Nunito", system-ui, sans-serif;
             background: url("assets/img/hintergrund.png") center center / cover no-repeat fixed;
-
             display: flex;
-            align-items: stretch;
             justify-content: center;
+            align-items: flex-start;
         }
 
         a {
@@ -45,53 +43,45 @@
         .page {
             max-width: 1120px;
             width: 100%;
-            margin: 1.8rem 1.6rem;
-            padding: 1.6rem 1.5rem 1.9rem;
-            border-radius: 1.6rem;
+            margin: 2rem 1.6rem;
+            padding: 2rem;
+            border-radius: 1.8rem;
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
-            gap: 1.6rem;
+            gap: 1.8rem;
         }
 
-        /* Header */
+        /* HEADER */
 
         .top-bar {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 1rem;
+            align-items: center;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 0.85rem;
+            gap: 0.9rem;
         }
 
         .brand-logo {
             width: 40px;
-            height: 40px;
         }
 
         .brand-logo img {
             width: 100%;
             height: auto;
-            display: block;
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
         }
 
         .brand-title {
             font-family: "Poppins", sans-serif;
-            font-size: 0.9rem;
+            font-weight: 600;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            font-weight: 600;
+            font-size: 0.9rem;
             color: var(--tp-text-main);
         }
 
@@ -101,14 +91,14 @@
         }
 
         .back-link {
-            font-size: 0.82rem;
-            padding: 0.4rem 0.9rem;
+            padding: 0.45rem 1rem;
             border-radius: 999px;
             border: 1px solid var(--tp-gray-border);
             background: #ffffff;
+            font-size: 0.85rem;
         }
 
-        /* Intro */
+        /* INTRO */
 
         .intro {
             display: flex;
@@ -125,32 +115,32 @@
 
         .intro-title {
             font-family: "Poppins", sans-serif;
-            font-size: clamp(1.6rem, 3vw, 2rem);
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
             font-weight: 700;
             color: var(--tp-text-main);
+            line-height: 1.3;
         }
 
         .intro-subline {
             font-size: 0.95rem;
             color: var(--tp-text-muted);
-            max-width: 40rem;
-            line-height: 1.5;
+            max-width: 45rem;
+            line-height: 1.55;
         }
 
         .intro-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.45rem;
-            margin-top: 0.3rem;
+            gap: 0.5rem;
+            margin-top: 0.4rem;
         }
 
         .intro-tag {
-            font-size: 0.78rem;
-            padding: 0.3rem 0.7rem;
-            border-radius: 999px;
             background: var(--tp-gray);
+            padding: 0.32rem 0.7rem;
+            border-radius: 999px;
             border: 1px solid var(--tp-gray-border);
-            color: #111827;
+            font-size: 0.78rem;
         }
 
         .intro-tag.lime {
@@ -160,36 +150,49 @@
             font-weight: 600;
         }
 
-        /* Tile grid */
+        /* GRID */
 
         .grid {
-            margin-top: 0.6rem;
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 0.9rem;
+            margin-top: 0.6rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
         }
 
         @media (max-width: 960px) {
             .grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 600px) {
             .grid {
-                grid-template-columns: minmax(0, 1fr);
+                grid-template-columns: 1fr;
             }
         }
 
         .tile {
             background: #ffffff;
-            border-radius: var(--radius-lg);
-            padding: 1.1rem 1.1rem 1.2rem;
+            border-radius: 1.2rem;
+            padding: 1.4rem 1.3rem;
             border: 1px solid var(--tp-gray-border);
             display: flex;
             flex-direction: column;
             gap: 0.35rem;
+            min-height: 160px;
         }
+
+        /* HAUPTKACHELN LÄNGER + INHALT MITTIG */
+
+        .tile-main,
+        .tile-lime {
+            min-height: 230px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* DARK BLUE TILE */
 
         .tile-main {
             background: var(--tp-dark);
@@ -202,7 +205,15 @@
 
         .tile-main .tile-title {
             color: #ffffff;
+            font-weight: 700;
         }
+
+        .tile-main .tile-text,
+        .tile-main .tile-meta {
+            color: #f9fafb;
+        }
+
+        /* LIME TILE */
 
         .tile-lime {
             background: var(--tp-lime);
@@ -214,13 +225,17 @@
         }
 
         .tile-lime .tile-title {
+            font-weight: 700;
+            font-size: 1.05rem;
             color: #0b2d43;
         }
+
+        /* TILE INNER TEXT */
 
         .tile-label {
             font-size: 0.78rem;
             text-transform: uppercase;
-            letter-spacing: 0.16em;
+            letter-spacing: 0.14em;
             color: var(--tp-text-muted);
         }
 
@@ -229,68 +244,28 @@
             font-size: 1rem;
             font-weight: 600;
             color: var(--tp-text-main);
+            margin-bottom: 0.3rem;
         }
 
         .tile-text {
-            font-size: 0.86rem;
+            font-size: 0.88rem;
             color: #111827;
-            line-height: 1.5;
+            line-height: 1.45;
         }
 
         .tile-meta {
-            margin-top: 0.25rem;
             font-size: 0.75rem;
             color: var(--tp-text-muted);
+            margin-top: 0.35rem;
         }
 
         .tile-link {
-            margin-top: 0.45rem;
-            font-size: 0.82rem;
+            margin-top: 0.4rem;
+            font-size: 0.85rem;
             color: var(--tp-text-main);
+            font-weight: 600;
         }
 
-        .tile-link span {
-            margin-left: 0.15rem;
-        }
-
-        .tile-small-note {
-            margin-top: 0.2rem;
-            font-size: 0.76rem;
-            color: var(--tp-text-muted);
-        }
-
-        /* Tile sizes */
-
-        .tile-wide {
-            grid-column: span 2;
-        }
-
-        .tile-tall {
-            grid-row: span 2;
-        }
-
-        @media (max-width: 960px) {
-            .tile-wide {
-                grid-column: span 2;
-            }
-            .tile-tall {
-                grid-row: span 1;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .tile-wide {
-                grid-column: span 1;
-            }
-        }
-
-        /* Footer hint */
-
-        .hint {
-            margin-top: 0.8rem;
-            font-size: 0.78rem;
-            color: var(--tp-text-muted);
-        }
     </style>
 </head>
 
@@ -298,137 +273,120 @@
 
 <div class="page">
 
-    <!-- Header -->
+    <!-- HEADER -->
     <header class="top-bar">
         <div class="brand">
             <div class="brand-logo">
                 <img src="assets/img/tp-weiss.svg" alt="TimePartner Logo">
             </div>
-            <div class="brand-text">
+            <div>
                 <div class="brand-title">TimePartner Konfigurator</div>
-                <div class="brand-sub">Personallösungen Schritt für Schritt auswählen</div>
+                <div class="brand-sub">Personallösungen auswählen</div>
             </div>
         </div>
 
-        <a href="index.html" class="back-link">Zurück zum Startscreen</a>
+        <a href="index.html" class="back-link">Zurück zum Start</a>
     </header>
 
-    <!-- Intro -->
+    <!-- INTRO -->
     <section class="intro">
         <div class="intro-eyebrow">Auswahl</div>
-        <h1 class="intro-title">Welche Lösung möchten Sie mit TimePartner erkunden</h1>
+
+        <h1 class="intro-title">
+            Welche Lösung möchten Sie mit TimePartner erkunden?
+        </h1>
+
         <p class="intro-subline">
-            Wählen Sie einen Bereich aus. Jede Kachel führt zu einer Seite mit klaren Informationen 
-            zu Leistungen, Vorteilen und möglichen nächsten Schritten.
+            Wählen Sie einen Bereich. Jede Kachel führt zu klaren Informationen über Leistungen, Vorteile und mögliche nächste Schritte.
         </p>
 
         <div class="intro-tags">
             <span class="intro-tag lime">Klarer Überblick</span>
-            <span class="intro-tag">Geeignet für Kundentermine</span>
+            <span class="intro-tag">Für Termine geeignet</span>
             <span class="intro-tag">Für HR, Fachbereiche und Einkauf</span>
         </div>
     </section>
 
-    <!-- Windows Kachel Grid, minimalistisch -->
-    <main class="grid" aria-label="TimePartner Konfigurator Kacheln">
+    <!-- GRID -->
+    <main class="grid">
 
         <!-- Über TimePartner -->
         <a href="ueber-timepartner.html" class="tile tile-main tile-wide">
             <div class="tile-label">Über uns</div>
             <div class="tile-title">TimePartner kennenlernen</div>
-            <p class="tile-text">
-                Geschichte, Standorte, Branchenfokus und Werte.
-                Ideal als Einstieg, um TimePartner als Partner einzuordnen.
-            </p>
-            <div class="tile-link">
-                Zu Über TimePartner<span>→</span>
+            <div class="tile-text">
+                Unser Netzwerk, unsere Arbeitsweise und unsere Stärken.  
+                Ein schneller Überblick über TimePartner als Partner.
             </div>
+            <div class="tile-link">→ Mehr erfahren</div>
         </a>
 
-        <!-- Leistungen konfigurieren -->
+        <!-- Leistungen -->
         <a href="service-konfigurator.html" class="tile tile-lime tile-wide">
             <div class="tile-label">Leistungen</div>
             <div class="tile-title">Personallösung konfigurieren</div>
-            <p class="tile-text">
-                Arbeitnehmerüberlassung, Vermittlung, On Site, Master Vendor und ergänzende Services.
+            <div class="tile-text">
+                Zeitarbeit, Vermittlung, On Site, Master Vendor.  
                 Stellen Sie die Bausteine zusammen, die zu Ihrem Bedarf passen.
-            </p>
-            <div class="tile-link">
-                Leistungen ansehen<span>→</span>
             </div>
+            <div class="tile-link">→ Leistungen ansehen</div>
         </a>
 
-        <!-- Kampagnen und Schulungen -->
-        <a href="kampagnen-schulungen.html" class="tile tile-wide">
-            <div class="tile-label">Kampagnen und Schulungen</div>
-            <div class="tile-title">Sichtbarkeit und Enablement</div>
-            <p class="tile-text">
-                Recruiting Kampagnen, Employer Branding und Trainings für Teams.
-                Für mehr passende Bewerbungen und einen professionellen Auftritt am Markt.
-            </p>
-            <div class="tile-link">
-                Kampagnen entdecken<span>→</span>
+        <!-- Kampagnen -->
+        <a href="kampagnen-schulungen.html" class="tile">
+            <div class="tile-label">Kampagnen</div>
+            <div class="tile-title">Sichtbarkeit & Enablement</div>
+            <div class="tile-text">
+                Recruiting Kampagnen, Employer Branding und Trainings.  
+                Für mehr Bewerbungen und professionelle Außendarstellung.
             </div>
+            <div class="tile-link">→ Kampagnen entdecken</div>
         </a>
 
         <!-- Master Vendor -->
-        <a href="#" class="tile tile-tall">
+        <div class="tile">
             <div class="tile-label">Programme</div>
             <div class="tile-title">Master Vendor</div>
-            <p class="tile-text">
-                Zentrales Steuerungsmodell für alle Personaldienstleister in Ihrem Unternehmen.
-                Ein Ansprechpartner, klare Prozesse, einheitliche Qualität.
-            </p>
-            <p class="tile-small-note">
-                Detailseite in Vorbereitung. Sprechen Sie uns bei Interesse direkt an.
-            </p>
-        </a>
+            <div class="tile-text">
+                Ein Ansprechpartner, klare Prozesse, einheitliche Qualität.  
+                Zentrale Steuerung aller Personaldienstleister.
+            </div>
+            <div class="tile-meta">Detailseite in Vorbereitung</div>
+        </div>
 
-        <!-- Inhouse Lösungen -->
-        <a href="#" class="tile">
+        <!-- Inhouse -->
+        <div class="tile">
             <div class="tile-label">Inhouse</div>
             <div class="tile-title">On Site Lösungen</div>
-            <p class="tile-text">
-                TimePartner Teams direkt bei Ihnen vor Ort.
-                Steuerung von Einsätzen, Schichten und Tagesgeschäft im Betrieb.
-            </p>
-            <p class="tile-small-note">
-                Geeignet für Standorte mit hohem Volumen oder komplexer Schichtlogistik.
-            </p>
-        </a>
+            <div class="tile-text">
+                TimePartner Teams direkt bei Ihnen im Werk.  
+                Für Schichten, Einsatzplanung und tägliche Steuerung.
+            </div>
+            <div class="tile-meta">Geeignet für hohe Volumina</div>
+        </div>
 
         <!-- International Recruiting -->
-        <a href="#" class="tile">
+        <div class="tile">
             <div class="tile-label">Recruiting</div>
             <div class="tile-title">International Recruiting</div>
-            <p class="tile-text">
-                Besetzung von Stellen mit Kandidatinnen und Kandidaten aus dem europäischen Ausland,
-                inklusive Betreuung und Integration.
-            </p>
-            <p class="tile-small-note">
-                Sprachen, Qualifikationen und Betreuungsmodelle abgestimmt auf Ihren Bedarf.
-            </p>
-        </a>
+            <div class="tile-text">
+                Besetzung durch europäische Fachkräfte inklusive Integration  
+                und Betreuung – abgestimmt auf Ihren Standort.
+            </div>
+        </div>
 
-        <!-- Tools und Rechner -->
-        <a href="#" class="tile">
+        <!-- Tools -->
+        <div class="tile">
             <div class="tile-label">Tools</div>
-            <div class="tile-title">Rechner und Übersichten</div>
-            <p class="tile-text">
-                Brutto Netto Beispielrechnungen, Kostenübersichten und Auswertungen 
-                rund um den Einsatz von Zeitarbeit und Vermittlung.
-            </p>
-            <p class="tile-small-note">
-                Dieser Bereich wird schrittweise erweitert.
-            </p>
-        </a>
+            <div class="tile-title">Rechner & Übersichten</div>
+            <div class="tile-text">
+                Brutto-Netto, Kostenübersichten und Factsheets  
+                rund um Zeitarbeit und Vermittlung.
+            </div>
+            <div class="tile-meta">Wird schrittweise erweitert</div>
+        </div>
 
     </main>
-
-    <p class="hint">
-        Hinweis: Sie können jederzeit zum Startscreen zurückkehren und einen anderen Bereich wählen.
-        Der Konfigurator ist so gedacht, dass er im Gespräch geöffnet bleibt.
-    </p>
 
 </div>
 
