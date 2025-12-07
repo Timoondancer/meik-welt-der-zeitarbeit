@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>TimePartner Konfigurator App Start</title>
+    <title>TimePartner App – Startscreen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Fonts -->
@@ -13,13 +13,12 @@
             --tp-dark: #0b2d43;
             --tp-lime: #b5dd35;
             --tp-yellow: #ffd447;
-            --tp-gray: #e5e7eb;
-            --tp-gray-strong: #cbd5e1;
-            --bg-page: #0b2d43;
+            --tp-gray: #eceff1;
+            --tp-gray-light: #f7f9fa;
             --card-bg: #ffffff;
             --radius-xl: 1.8rem;
             --radius-lg: 1.3rem;
-            --shadow-strong: 0 28px 70px rgba(3, 7, 18, 0.65);
+            --shadow-strong: 0 34px 80px rgba(3, 7, 18, 0.55);
         }
 
         * {
@@ -30,9 +29,11 @@
 
         body {
             font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: var(--bg-page);
-            color: #0f172a;
+            background: var(--tp-dark);
+            color: var(--tp-dark);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         a {
@@ -40,346 +41,302 @@
             text-decoration: none;
         }
 
-        /* App Frame */
-
-        .app-shell {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Top Bar wie App Statusleiste */
-
+        /* Top bar */
         .top-bar {
-            padding: 0.75rem 1.3rem;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.4rem 1.6rem 0.6rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 1120px;
-            margin: 0 auto;
-            width: 100%;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 0.7rem;
+            gap: 0.9rem;
         }
 
         .brand-logo {
-            width: 120px;
-            height: auto;
+            width: 42px;
+            height: 42px;
+            display: flex;
         }
 
         .brand-logo img {
             width: 100%;
             height: auto;
-            display: block;
         }
 
         .brand-text {
             display: flex;
             flex-direction: column;
-            gap: 0.05rem;
-            color: #f9fafb;
+            color: #ffffff;
         }
 
-        .brand-text-main {
-            font-family: "Poppins", system-ui, sans-serif;
-            font-size: 0.82rem;
-            letter-spacing: 0.16em;
+        .brand-title {
+            font-family: "Poppins", sans-serif;
+            font-size: 0.92rem;
             text-transform: uppercase;
+            letter-spacing: 0.14em;
             font-weight: 600;
         }
 
-        .brand-text-sub {
-            font-size: 0.76rem;
+        .brand-sub {
+            font-size: 0.78rem;
             opacity: 0.85;
         }
 
         .top-pill {
-            font-size: 0.74rem;
-            padding: 0.25rem 0.7rem;
+            padding: 0.3rem 0.9rem;
             border-radius: 999px;
-            background: rgba(248, 250, 252, 0.08);
-            border: 1px solid rgba(226, 232, 240, 0.55);
-            color: #e5e7eb;
+            font-size: 0.78rem;
+            border: 1px solid rgba(255,255,255,0.4);
+            color: #ffffff;
         }
 
-        /* Centered Start Screen */
-
-        .app-main {
+        /* Main */
+        .main-center {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem 1.25rem 2.1rem;
-        }
-
-        .start-wrapper {
-            max-width: 960px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .start-card-link {
-            display: block;
-            width: 100%;
+            padding: 2rem 1.6rem 3rem;
         }
 
         .start-card {
+            width: 100%;
+            max-width: 900px;
             background: var(--card-bg);
             border-radius: var(--radius-xl);
-            padding: 1.9rem 1.8rem;
+            padding: 2.1rem 2rem;
             box-shadow: var(--shadow-strong);
-            border: 3px solid var(--tp-lime);
+            border: 2px solid var(--tp-lime);
             display: grid;
-            grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
-            gap: 1.6rem;
-            align-items: center;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+            gap: 2rem;
             position: relative;
-            overflow: hidden;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
         }
 
-        .start-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at top left, rgba(181, 221, 53, 0.16) 0, transparent 55%),
-                radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.12) 0, transparent 55%);
-            pointer-events: none;
-        }
-
-        .start-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 34px 80px rgba(15, 23, 42, 0.8);
-            border-color: var(--tp-yellow);
-        }
-
-        @media (max-width: 880px) {
+        @media(max-width: 880px) {
             .start-card {
-                grid-template-columns: minmax(0, 1fr);
-                padding: 1.7rem 1.4rem 1.8rem;
+                grid-template-columns: 1fr;
+                padding: 1.8rem 1.4rem;
             }
         }
 
-        .start-left {
-            position: relative;
-            z-index: 1;
+        .left-side {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
         }
 
-        .start-eyebrow {
-            font-size: 0.8rem;
-            letter-spacing: 0.18em;
+        .eyebrow {
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: #64748b;
-            margin-bottom: 0.4rem;
+            color: #6b7280;
         }
 
-        .start-title {
-            font-family: "Poppins", system-ui, sans-serif;
+        .title {
+            font-family: "Poppins", sans-serif;
             font-size: clamp(1.8rem, 3vw, 2.2rem);
             font-weight: 800;
             color: var(--tp-dark);
-            margin-bottom: 0.4rem;
         }
 
-        .start-highlight {
-            font-family: "Poppins", system-ui, sans-serif;
+        .subline {
             font-size: 1.05rem;
             font-weight: 600;
             color: var(--tp-dark);
-            margin-bottom: 0.55rem;
         }
 
-        .start-highlight span {
+        .subline span {
             background: var(--tp-lime);
-            padding: 0.08rem 0.4rem;
-            border-radius: 0.35rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 0.3rem;
         }
 
-        .start-text {
-            font-size: 0.94rem;
-            color: #0f172a;
-            line-height: 1.6;
-            margin-bottom: 0.9rem;
+        .text {
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: #1e293b;
+            max-width: 32rem;
         }
 
-        .start-tags {
+        .tag-row {
             display: flex;
             flex-wrap: wrap;
             gap: 0.45rem;
+            margin-top: 0.6rem;
         }
 
-        .start-tag {
+        .tag {
             font-size: 0.78rem;
-            padding: 0.28rem 0.6rem;
+            padding: 0.32rem 0.7rem;
+            background: var(--tp-gray-light);
             border-radius: 999px;
-            background: var(--tp-gray);
-            border: 1px solid var(--tp-gray-strong);
+            border: 1px solid var(--tp-gray);
             color: #111827;
-            font-weight: 500;
         }
 
-        .start-tag.green {
+        .tag.green {
             background: var(--tp-lime);
             border-color: var(--tp-lime);
         }
 
-        .start-right {
-            position: relative;
-            z-index: 1;
+        /* Right column */
+        .right-side {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
+            gap: 1.1rem;
         }
 
-        .start-chip {
-            font-size: 0.78rem;
-            padding: 0.25rem 0.7rem;
-            border-radius: 999px;
-            background: #0b2d43;
-            color: #f9fafb;
+        .status-chip {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.45rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            background: var(--tp-dark);
+            color: #ffffff;
+            font-size: 0.78rem;
         }
 
-        .start-chip-dot {
-            width: 7px;
-            height: 7px;
+        .chip-dot {
+            width: 8px;
+            height: 8px;
             border-radius: 999px;
             background: var(--tp-lime);
         }
 
-        .start-button {
-            font-size: 0.9rem;
-            padding: 0.7rem 1.35rem;
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.4rem;
             border-radius: 999px;
-            border: none;
-            background: var(--tp-lime);
-            color: var(--tp-dark);
-            font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            box-shadow: 0 18px 40px rgba(148, 163, 184, 0.8);
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.18);
         }
 
-        .start-button span.icon {
-            font-size: 1.05rem;
+        .btn-config {
+            background: var(--tp-lime);
+            color: var(--tp-dark);
         }
 
-        .start-note {
-            font-size: 0.8rem;
+        .btn-game {
+            background: var(--tp-yellow);
+            color: var(--tp-dark);
+        }
+
+        .note {
+            font-size: 0.82rem;
             color: #475569;
-            max-width: 19rem;
-            line-height: 1.5;
+            max-width: 18rem;
+            line-height: 1.45;
         }
 
-        .start-thumb {
-            margin-top: 0.3rem;
+        .thumb {
             width: 100%;
             max-width: 260px;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            border: 2px solid var(--tp-gray-strong);
             background: #f8fafc;
+            border: 2px solid var(--tp-gray);
         }
 
-        .start-thumb img {
+        .thumb img {
             width: 100%;
             height: auto;
-            display: block;
-        }
-
-        /* App footer hint */
-
-        .app-footer {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0 1.25rem 1.3rem;
-            font-size: 0.78rem;
-            color: #cbd5e1;
         }
     </style>
 </head>
+
+
 <body>
-<div class="app-shell">
 
-    <!-- App Top Bar -->
-    <header class="top-bar">
-        <div class="brand">
-            <div class="brand-logo">
-                <!-- Weißes Logo auf dunklem Hintergrund -->
-                <img src="assets/img/tp-weiss.svg" alt="TimePartner Logo">
+<header class="top-bar">
+    <div class="brand">
+        <div class="brand-logo">
+            <img src="assets/img/tp-weiss.svg" alt="TP Logo">
+        </div>
+        <div class="brand-text">
+            <div class="brand-title">TimePartner App</div>
+            <div class="brand-sub">Vertriebs Konfigurator</div>
+        </div>
+    </div>
+
+    <div class="top-pill">Internal Beta</div>
+</header>
+
+
+<main class="main-center">
+
+    <section class="start-card">
+
+        <!-- Left side -->
+        <div class="left-side">
+            <div class="eyebrow">Start</div>
+
+            <h1 class="title">Right Setup. Right Now.</h1>
+
+            <p class="subline">
+                Dein Einstieg in den <span>TimePartner Vertriebs Konfigurator</span>.
+            </p>
+
+            <p class="text">
+                Präsentieren ohne Folien. Navigieren ohne Chaos.  
+                Eine App Oberfläche für Kundentermine, interne Trainings  
+                und klare Leistungsdarstellung – schnell, modern, sauber.
+            </p>
+
+            <div class="tag-row">
+                <span class="tag green">Für Vertrieb & Key Account</span>
+                <span class="tag">Live im Termin</span>
+                <span class="tag">App Look</span>
             </div>
-            <div class="brand-text">
-                <div class="brand-text-main">TimePartner App</div>
-                <div class="brand-text-sub">Vertriebs Konfigurator Startscreen</div>
+        </div>
+
+        <!-- Right side -->
+        <div class="right-side">
+
+            <div class="status-chip">
+                <span class="chip-dot"></span> Bereit
             </div>
+
+            <div class="button-row">
+                <a href="konfigurator.html">
+                    <button class="btn btn-config">Konfigurator öffnen →</button>
+                </a>
+
+                <a href="game.html">
+                    <button class="btn btn-game">Game starten 🎮</button>
+                </a>
+            </div>
+
+            <p class="note">
+                Tipp: Diesen Startscreen offen lassen und direkt aus dem Gespräch in die Kacheln springen.
+            </p>
+
+            <div class="thumb">
+                <img src="assets/img/kachel2.JPG" alt="Visual">
+            </div>
+
         </div>
-        <div class="top-pill">
-            Internal Beta
-        </div>
-    </header>
 
-    <!-- Centered Start Tile -->
-    <main class="app-main" aria-label="TimePartner Konfigurator Start">
-        <div class="start-wrapper">
-            <a href="konfigurator.html" class="start-card-link">
-                <section class="start-card">
-                    <div class="start-left">
-                        <div class="start-eyebrow">Start</div>
-                        <h1 class="start-title">RIGHT SETUP RIGHT NOW.</h1>
-                        <p class="start-highlight">
-                            Dein Einstieg in den <span>TimePartner Vertriebs Konfigurator</span>.
-                        </p>
-                        <p class="start-text">
-                            Führe Kundengespräche wie eine App, nicht wie eine Folien Schlacht. 
-                            Mit einem Tap kommst du zu Über TimePartner, Leistungen, Kampagnen und Schulungen. 
-                            Klar, bunt, auf unsere HR Welt zugeschnitten.
-                        </p>
-                        <div class="start-tags">
-                            <span class="start-tag green">Für Vertrieb und Key Account</span>
-                            <span class="start-tag">Live im Termin nutzbar</span>
-                            <span class="start-tag">TimePartner Look, Accent Energie</span>
-                        </div>
-                    </div>
+    </section>
 
-                    <div class="start-right">
-                        <div class="start-chip">
-                            <span class="start-chip-dot"></span>
-                            <span>Konfigurator bereit</span>
-                        </div>
-                        <div class="start-button">
-                            <span>Konfigurator öffnen</span>
-                            <span class="icon">→</span>
-                        </div>
-                        <p class="start-note">
-                            Empfehlung: App Startscreen im Termin geöffnet lassen und 
-                            von hier aus in die Kacheln springen, je nachdem, wohin das Gespräch geht.
-                        </p>
-                        <div class="start-thumb">
-                            <!-- App Kachel Visual, kannst du gegen kachel1/2/3 tauschen -->
-                            <img src="assets/img/kachel2.JPG" alt="TimePartner Visual">
-                        </div>
-                    </div>
-                </section>
-            </a>
-        </div>
-    </main>
+</main>
 
-    <footer class="app-footer">
-        Interner Hinweis: Dieser Screen ist der feste Einstieg der App. 
-        Weitere Startkacheln für andere Zielgruppen können später ergänzt werden, 
-        die Logik bleibt eine zentrale Hauptkachel im TimePartner Design.
-    </footer>
-
-</div>
 </body>
 </html>
