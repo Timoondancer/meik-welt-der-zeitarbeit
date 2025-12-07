@@ -2,231 +2,54 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>TimePartner App – Startscreen</title>
+    <title>TimePartner App – Start</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --tp-dark: #0b2d43;
             --tp-lime: #b5dd35;
-            --tp-yellow: #ffd447;
-            --tp-gray: #eceff1;
-            --tp-gray-light: #f7f9fa;
-            --card-bg: #ffffff;
-            --radius-xl: 1.8rem;
-            --radius-lg: 1.3rem;
-            --shadow-strong: 0 34px 80px rgba(3, 7, 18, 0.55);
+            --tp-white: #ffffff;
+            --tp-gray: #e5e7eb;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: var(--tp-dark);
-            color: var(--tp-dark);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* Top bar */
-        .top-bar {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 1.4rem 1.6rem 0.6rem;
+            font-family: "Nunito", sans-serif;
+            background: url("assets/img/hintergrund.png") center center / cover no-repeat fixed;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
+            padding: 3rem;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.9rem;
-        }
-
-        .brand-logo {
-            width: 42px;
-            height: 42px;
-            display: flex;
-        }
-
-        .brand-logo img {
-            width: 100%;
-            height: auto;
-        }
-
-        .brand-text {
+        .button-panel {
             display: flex;
             flex-direction: column;
-            color: #ffffff;
-        }
-
-        .brand-title {
-            font-family: "Poppins", sans-serif;
-            font-size: 0.92rem;
-            text-transform: uppercase;
-            letter-spacing: 0.14em;
-            font-weight: 600;
-        }
-
-        .brand-sub {
-            font-size: 0.78rem;
-            opacity: 0.85;
-        }
-
-        .top-pill {
-            padding: 0.3rem 0.9rem;
-            border-radius: 999px;
-            font-size: 0.78rem;
-            border: 1px solid rgba(255,255,255,0.4);
-            color: #ffffff;
-        }
-
-        /* Main */
-        .main-center {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem 1.6rem 3rem;
-        }
-
-        .start-card {
-            width: 100%;
-            max-width: 900px;
-            background: var(--card-bg);
-            border-radius: var(--radius-xl);
-            padding: 2.1rem 2rem;
-            box-shadow: var(--shadow-strong);
-            border: 2px solid var(--tp-lime);
-            display: grid;
-            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
-            gap: 2rem;
-            position: relative;
-        }
-
-        @media(max-width: 880px) {
-            .start-card {
-                grid-template-columns: 1fr;
-                padding: 1.8rem 1.4rem;
-            }
-        }
-
-        .left-side {
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-        }
-
-        .eyebrow {
-            font-size: 0.78rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: #6b7280;
-        }
-
-        .title {
-            font-family: "Poppins", sans-serif;
-            font-size: clamp(1.8rem, 3vw, 2.2rem);
-            font-weight: 800;
-            color: var(--tp-dark);
-        }
-
-        .subline {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--tp-dark);
-        }
-
-        .subline span {
-            background: var(--tp-lime);
-            padding: 0.15rem 0.4rem;
-            border-radius: 0.3rem;
-        }
-
-        .text {
-            font-size: 0.95rem;
-            line-height: 1.55;
-            color: #1e293b;
-            max-width: 32rem;
-        }
-
-        .tag-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-            margin-top: 0.6rem;
-        }
-
-        .tag {
-            font-size: 0.78rem;
-            padding: 0.32rem 0.7rem;
-            background: var(--tp-gray-light);
-            border-radius: 999px;
-            border: 1px solid var(--tp-gray);
-            color: #111827;
-        }
-
-        .tag.green {
-            background: var(--tp-lime);
-            border-color: var(--tp-lime);
-        }
-
-        /* Right column */
-        .right-side {
-            display: flex;
-            flex-direction: column;
-            gap: 1.1rem;
-        }
-
-        .status-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            padding: 0.35rem 0.8rem;
-            border-radius: 999px;
-            background: var(--tp-dark);
-            color: #ffffff;
-            font-size: 0.78rem;
-        }
-
-        .chip-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            background: var(--tp-lime);
-        }
-
-        .button-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.7rem;
+            gap: 1.2rem;
         }
 
         .btn {
-            padding: 0.75rem 1.4rem;
+            padding: 0.9rem 2rem;
             border-radius: 999px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 700;
             border: none;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+            width: fit-content;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
         }
 
         .btn-config {
@@ -235,108 +58,23 @@
         }
 
         .btn-game {
-            background: var(--tp-yellow);
+            background: var(--tp-white);
             color: var(--tp-dark);
-        }
-
-        .note {
-            font-size: 0.82rem;
-            color: #475569;
-            max-width: 18rem;
-            line-height: 1.45;
-        }
-
-        .thumb {
-            width: 100%;
-            max-width: 260px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            background: #f8fafc;
-            border: 2px solid var(--tp-gray);
-        }
-
-        .thumb img {
-            width: 100%;
-            height: auto;
         }
     </style>
 </head>
 
-
 <body>
 
-<header class="top-bar">
-    <div class="brand">
-        <div class="brand-logo">
-            <img src="assets/img/tp-weiss.svg" alt="TP Logo">
-        </div>
-        <div class="brand-text">
-            <div class="brand-title">TimePartner App</div>
-            <div class="brand-sub">Vertriebs Konfigurator</div>
-        </div>
+    <div class="button-panel">
+        <a href="konfigurator.html">
+            <button class="btn btn-config">Konfigurator starten →</button>
+        </a>
+
+        <a href="humpty-dumpty/index.html">
+            <button class="btn btn-game">TimePartner Game spielen 🎮</button>
+        </a>
     </div>
-
-    <div class="top-pill">Internal Beta</div>
-</header>
-
-
-<main class="main-center">
-
-    <section class="start-card">
-
-        <!-- Left side -->
-        <div class="left-side">
-            <div class="eyebrow">Start</div>
-
-            <h1 class="title">Right Setup. Right Now.</h1>
-
-            <p class="subline">
-                Dein Einstieg in den <span>TimePartner Vertriebs Konfigurator</span>.
-            </p>
-
-            <p class="text">
-                Präsentieren ohne Folien. Navigieren ohne Chaos.  
-                Eine App Oberfläche für Kundentermine, interne Trainings  
-                und klare Leistungsdarstellung – schnell, modern, sauber.
-            </p>
-
-            <div class="tag-row">
-                <span class="tag green">Für Vertrieb & Key Account</span>
-                <span class="tag">Live im Termin</span>
-                <span class="tag">App Look</span>
-            </div>
-        </div>
-
-        <!-- Right side -->
-        <div class="right-side">
-
-            <div class="status-chip">
-                <span class="chip-dot"></span> Bereit
-            </div>
-
-            <div class="button-row">
-                <a href="konfigurator.html">
-                    <button class="btn btn-config">Konfigurator öffnen →</button>
-                </a>
-
-                <a href="game.html">
-                    <button class="btn btn-game">Game starten 🎮</button>
-                </a>
-            </div>
-
-            <p class="note">
-                Tipp: Diesen Startscreen offen lassen und direkt aus dem Gespräch in die Kacheln springen.
-            </p>
-
-            <div class="thumb">
-                <img src="assets/img/kachel2.JPG" alt="Visual">
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
 
 </body>
 </html>
