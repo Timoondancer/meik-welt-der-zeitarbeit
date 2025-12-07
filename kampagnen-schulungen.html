@@ -1,178 +1,353 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kampagnen & Schulungen · TIMEPARTNER</title>
+    <meta charset="UTF-8">
+    <title>TimePartner Kampagnen und Schulungen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --tp-blue:#0b2d42;
-      --tp-blue-2:#123a57;
-      --tp-green:#b6de36;
-      --tp-muted:#6f8a9b;
-      --tp-border:#dfe6ea;
-      --radius:14px;
-      --shadow:0 10px 26px rgba(11,45,66,.14);
-      --focus:rgba(182,222,54,.25);
-    }
+    <style>
+        :root {
+            --tp-dark: #0b2d43;
+            --tp-lime: #b5dd35;
+            --tp-white: #ffffff;
+            --tp-gray: #f3f4f6;
+            --tp-gray-border: #e5e7eb;
+            --tp-text-main: #0b2d43;
+            --tp-text-muted: #6b7280;
+        }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body{
-      font-family:"Nunito Sans",system-ui;
-      background:var(--tp-blue);
-      color:#fff;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
+        body {
+            min-height: 100vh;
+            font-family: "Nunito", system-ui, sans-serif;
+            background: url("assets/img/hintergrund.png") center center / cover no-repeat fixed;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
 
-    header{
-      display:flex;
-      align-items:center;
-      gap:20px;
-      max-width:1100px;
-      width:100%;
-      margin:32px auto 16px;
-      padding:0 20px;
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    header img.logo-top{
-      width:200px;
-    }
+        .page {
+            max-width: 1120px;
+            width: 100%;
+            margin: 2rem 1.6rem;
+            padding: 2rem;
+            border-radius: 1.8rem;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
 
-    .btn-back{
-      background:#fff;
-      color:var(--tp-blue);
-      border-radius:999px;
-      padding:8px 18px;
-      font-weight:700;
-      text-decoration:none;
-      border:1px solid var(--tp-border);
-      box-shadow:var(--shadow);
-    }
-    .btn-back:hover{
-      box-shadow:0 10px 26px rgba(11,45,66,.24);
-    }
+        /* Header */
 
-    main{
-      flex:1;
-      max-width:1100px;
-      width:100%;
-      margin:0 auto;
-      padding:0 20px 60px;
-    }
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
 
-    nav.breadcrumb{
-      font-size:14px;
-      color:rgba(255,255,255,.8);
-      margin-bottom:20px;
-    }
-    nav.breadcrumb a{
-      color:rgba(255,255,255,.9);
-      text-decoration:none;
-    }
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
 
-    .card{
-      background:#fff;
-      color:var(--tp-blue);
-      border-radius:var(--radius);
-      padding:24px;
-      border:1px solid var(--tp-border);
-      box-shadow:var(--shadow);
-      margin-bottom:20px;
-    }
+        .header-title {
+            font-family: "Poppins", sans-serif;
+            font-size: 0.82rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--tp-text-main);
+        }
 
-    h1,h2{
-      font-family:Poppins,sans-serif;
-      font-weight:900;
-      margin-bottom:8px;
-    }
+        .header-sub {
+            font-size: 0.82rem;
+            color: var(--tp-text-muted);
+        }
 
-    .muted{
-      color:var(--tp-muted);
-      font-size:15px;
-      line-height:1.5;
-    }
+        .back-link {
+            padding: 0.45rem 1rem;
+            border-radius: 999px;
+            border: 1px solid var(--tp-gray-border);
+            background: #ffffff;
+            font-size: 0.85rem;
+        }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:18px;
-    }
+        /* Intro */
 
-    footer.bottom-logo{
-      position:fixed;
-      bottom:20px;
-      right:20px;
-    }
+        .intro {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
 
-    footer.bottom-logo img{
-      width:56px;
-      opacity:.95;
-    }
-  </style>
+        .intro-eyebrow {
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--tp-text-muted);
+        }
+
+        .intro-title {
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: var(--tp-text-main);
+            line-height: 1.3;
+        }
+
+        .intro-subline {
+            font-size: 0.95rem;
+            color: var(--tp-text-muted);
+            max-width: 44rem;
+            line-height: 1.6;
+        }
+
+        .intro-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .intro-pill {
+            font-size: 0.78rem;
+            padding: 0.32rem 0.7rem;
+            border-radius: 999px;
+            background: var(--tp-gray);
+            border: 1px solid var(--tp-gray-border);
+            color: #111827;
+        }
+
+        .intro-pill.lime {
+            background: var(--tp-lime);
+            border-color: var(--tp-lime);
+            color: var(--tp-dark);
+            font-weight: 600;
+        }
+
+        /* Grid mit drei Kacheln */
+
+        .grid {
+            display: grid;
+            margin-top: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 960px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tile {
+            border-radius: 1.6rem;
+            padding: 1.6rem 1.4rem;
+            border: 1px solid var(--tp-gray-border);
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            min-height: 210px;
+            transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+        }
+
+        .tile:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.22);
+            border-color: rgba(11, 45, 67, 0.35);
+        }
+
+        .tile-label {
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--tp-text-muted);
+        }
+
+        .tile-title {
+            font-family: "Poppins", sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--tp-text-main);
+            margin-bottom: 0.1rem;
+        }
+
+        .tile-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #111827;
+        }
+
+        .tile-meta {
+            font-size: 0.82rem;
+            color: var(--tp-text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .tile-dark {
+            background: var(--tp-dark);
+            color: #ffffff;
+            border-color: var(--tp-dark);
+        }
+
+        .tile-dark .tile-label {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .tile-dark .tile-title,
+        .tile-dark .tile-text,
+        .tile-dark .tile-meta {
+            color: #ffffff;
+        }
+
+        .tile-dark:hover {
+            border-color: var(--tp-lime);
+        }
+
+        .tile-lime {
+            background: var(--tp-lime);
+            color: var(--tp-dark);
+            border-color: var(--tp-lime);
+        }
+
+        .tile-lime .tile-label {
+            color: #1f2937;
+        }
+
+        .tile-lime .tile-title {
+            color: #0b2d43;
+        }
+
+        .tile-lime .tile-text {
+            color: #111827;
+        }
+
+        .foot-note {
+            font-size: 0.78rem;
+            color: var(--tp-text-muted);
+        }
+    </style>
 </head>
 
 <body>
 
-  <header>
-    <a href="konfigurator.html" class="btn-back">← Zurück</a>
-    <img src="assets/img/TP-Logo-weiss-ohne-claim.png" class="logo-top" alt="TIMEPARTNER Logo" />
-  </header>
+<div class="page">
 
-  <main>
-    <nav class="breadcrumb">
-      Ebene 1: Start · Ebene 2: <a href="konfigurator.html">Kacheln</a> · Ebene 3: Kampagnen & Schulungen
-    </nav>
+    <!-- Header -->
+    <div class="top-row">
+        <header class="header">
+            <div class="header-title">TimePartner Kampagnen</div>
+            <div class="header-sub">Sichtbarkeit und Schulungen</div>
+        </header>
 
-    <section class="card">
-      <h1>Kampagnen & Schulungen</h1>
-      <p class="muted">
-        Wähle hier Recruiting-Kampagnen, Schulungen, Workshops und digitale Bausteine für eure Mitarbeiterkommunikation.
-        Diese Seite dient als Grundlage für Gespräche vor Ort – kompakt, visuell, und direkt konfigurierbar.
-      </p>
+        <a href="konfigurator.html" class="back-link">Zurück zum Konfigurator</a>
+    </div>
+
+    <!-- Intro -->
+    <section class="intro">
+        <div class="intro-eyebrow">Kampagnen und Schulungen</div>
+        <h1 class="intro-title">
+            Wie TimePartner Bewerbungen und Teams in Bewegung bringt.
+        </h1>
+        <p class="intro-subline">
+            Kampagnen, Employer Branding und Trainings greifen ineinander.
+            So erreichen Sie mehr passende Kandidatinnen und Kandidaten
+            und geben Ihren Teams die Werkzeuge für einen professionellen Auftritt.
+        </p>
+
+        <div class="intro-pills">
+            <span class="intro-pill lime">Mehr passende Bewerbungen</span>
+            <span class="intro-pill">Stärkerer Auftritt als Arbeitgeber</span>
+            <span class="intro-pill">Schulungen für Vertrieb und Disposition</span>
+        </div>
     </section>
 
-    <section class="grid">
+    <!-- Drei Kacheln -->
+    <main class="grid" aria-label="TimePartner Kampagnen und Schulungen">
 
-      <div class="card">
-        <h2>Recruiting-Kampagnen</h2>
-        <p class="muted">
-          · Indeed · Social Ads · Google SEA<br>
-          · Budgetsteuerung<br>
-          · Laufzeiten & Performance-Optimierung
-        </p>
-      </div>
+        <!-- Recruiting Kampagnen -->
+        <section class="tile tile-dark">
+            <div class="tile-label">Recruiting Kampagnen</div>
+            <div class="tile-title">Mehr Sichtbarkeit bei Kandidaten</div>
+            <div class="tile-text">
+                Kampagnen für Social Media, Jobbörsen und lokale Kanäle.
+                Ziel ist, Ihre offenen Jobs dort sichtbar zu machen,
+                wo sich Ihre Zielgruppe bewegt.
+            </div>
+            <div class="tile-text">
+                Von der Anzeigen Gestaltung bis zur Aussteuerung übernimmt TimePartner
+                die Umsetzung und wertet die Ergebnisse gemeinsam mit Ihnen aus.
+            </div>
+            <div class="tile-meta">
+                Geeignet für einzelne Standorte und größere Roll outs.
+            </div>
+        </section>
 
-      <div class="card">
-        <h2>Workshops & OnSite Trainings</h2>
-        <p class="muted">
-          · Staplerakademie<br>
-          · Sicherheitsunterweisungen<br>
-          · OnSite-Coachings für neue Mitarbeitende
-        </p>
-      </div>
+        <!-- Employer Branding -->
+        <section class="tile tile-lime">
+            <div class="tile-label">Employer Branding</div>
+            <div class="tile-title">Arbeitgeber Bild schärfen</div>
+            <div class="tile-text">
+                Wie nehmen Bewerbende Ihr Unternehmen wahr.
+                Wir unterstützen bei Botschaften, Bildsprache und Kanalwahl,
+                damit Ihre Vorteile als Arbeitgeber klar erkennbar sind.
+            </div>
+            <div class="tile-text">
+                Dazu gehören Landingpages, Texte für Stellenanzeigen,
+                kurze Videoformate und Bausteine für Social Media.
+            </div>
+        </section>
 
-      <div class="card">
-        <h2>Newsletter & Talentpools</h2>
-        <p class="muted">
-          · Mitarbeiter-Newsletter<br>
-          · Talentpools & automatische Selektionen<br>
-          · CRM-Sync & Candidate Nurturing
-        </p>
-      </div>
+        <!-- Trainings & Schulungen -->
+        <section class="tile">
+            <div class="tile-label">Schulungen</div>
+            <div class="tile-title">Teams fit für den Arbeitsmarkt machen</div>
+            <div class="tile-text">
+                Schulungen für Vertrieb, Disposition und Führungskräfte,
+                zum Beispiel zu Bewerbungsgesprächen, Umgang mit Kandidaten
+                oder moderner Ansprache im digitalen Umfeld.
+            </div>
+            <div class="tile-text">
+                Formate reichen von kurzen Impulsen bis zu Workshops,
+                die direkt auf Ihre Prozesse und Zielgruppen zugeschnitten sind.
+            </div>
+            <div class="tile-meta">
+                Inhalte können mit Ihren internen Programmen kombiniert werden.
+            </div>
+        </section>
 
-    </section>
-  </main>
+    </main>
 
-  <footer class="bottom-logo">
-    <img src="assets/img/tp-weiss.svg" alt="TIMEPARTNER Icon" />
-  </footer>
+    <p class="foot-note">
+        Im Gespräch können Sie von dieser Seite aus gezielt zeigen,
+        wie TimePartner über klassische Personaldienstleistung hinaus unterstützt.
+    </p>
+
+</div>
 
 </body>
 </html>
