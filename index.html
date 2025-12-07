@@ -12,7 +12,8 @@
             --tp-dark: #0b2d43;
             --tp-lime: #b5dd35;
             --tp-white: #ffffff;
-            --tp-gray: #e5e7eb;
+            --radius-xl: 1.8rem;
+            --shadow-soft: 0 20px 40px rgba(0,0,0,0.45);
         }
 
         * {
@@ -38,18 +39,19 @@
         }
 
         .btn {
-            padding: 0.9rem 2rem;
+            padding: 0.9rem 2.2rem;
             border-radius: 999px;
             border: none;
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
             width: fit-content;
+            box-shadow: var(--shadow-soft);
             transition: opacity 0.2s ease;
         }
 
         .btn:hover {
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         .btn-config {
@@ -71,8 +73,8 @@
             <button class="btn btn-config">Konfigurator starten →</button>
         </a>
 
-        <a href="humpty-dumpty/index.html">
-            <button class="btn btn-game">TimePartner Game spielen 🎮</button>
+        <a href="humptydumpty.html">
+            <button class="btn btn-game">TimePartner Spiel spielen 🎮</button>
         </a>
     </div>
 
