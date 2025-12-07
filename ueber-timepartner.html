@@ -1,132 +1,171 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Über TIMEPARTNER</title>
+    <meta charset="UTF 8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title>Über TimePartner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f5f5f7;
+            font-family: Poppins, sans-serif;
+            color: #1a1a1a;
+        }
 
-  <style>
-    :root{
-      --tp-blue:#0b2d42;
-      --tp-blue-2:#123a57;
-      --tp-green:#b6de36;
-      --tp-muted:#6f8a9b;
-      --tp-border:#dfe6ea;
-      --radius:14px;
-      --shadow:0 10px 26px rgba(11,45,66,.14);
-    }
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:"Nunito Sans",system-ui;
-      background:var(--tp-blue);
-      color:#fff;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            padding: 20px 40px;
+        }
 
-    header{
-      display:flex;
-      align-items:center;
-      gap:20px;
-      max-width:1100px;
-      width:100%;
-      margin:32px auto;
-      padding:0 20px;
-    }
-    header img.logo-top{width:200px}
+        .tile {
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
 
-    .btn-back{
-      background:#fff;
-      color:var(--tp-blue);
-      padding:8px 18px;
-      border-radius:999px;
-      text-decoration:none;
-      border:1px solid var(--tp-border);
-      font-weight:700;
-    }
+        .tile:hover {
+            transform: translateY(-4px);
+        }
 
-    main{
-      flex:1; max-width:1100px; margin:0 auto; width:100%; padding:0 20px 60px;
-    }
+        .tile h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
 
-    nav.breadcrumb{color:rgba(255,255,255,.8); font-size:14px; margin-bottom:20px}
-    nav a{color:#fff;}
+        .tile p, .tile ul, .tile li {
+            font-family: Nunito, sans-serif;
+            font-size: 15px;
+            line-height: 1.55;
+        }
 
-    .card{
-      background:#fff;
-      color:var(--tp-blue);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      border:1px solid var(--tp-border);
-      padding:24px;
-      margin-bottom:20px;
-    }
+        .tile ul {
+            padding-left: 18px;
+        }
 
-    h1,h2{font-family:Poppins;font-weight:900;margin-bottom:10px}
-    .muted{color:var(--tp-muted)}
+        /* Große Kacheln wie Windows Phone */
+        .wide {
+            grid-column: span 2;
+        }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:16px;
-    }
+        .tall {
+            grid-row: span 2;
+        }
 
-    footer.bottom-logo{
-      position:fixed; right:20px; bottom:20px;
-    }
-    footer img{width:56px;}
-  </style>
+        /* Farben für visuelle Orientierung */
+        .tpBlue { border-left: 8px solid #0097d9; }
+        .tpGreen { border-left: 8px solid #00a88f; }
+        .tpYellow { border-left: 8px solid #f4c542; }
+        .tpRed { border-left: 8px solid #e65454; }
+        .tpGrey { border-left: 8px solid #6b7280; }
+    </style>
 </head>
 
 <body>
 
-<header>
-  <a href="konfigurator.html" class="btn-back">← Zurück</a>
-  <img src="assets/img/TP-Logo-weiss-ohne-claim.png" class="logo-top" />
-</header>
+<h1>Über TimePartner</h1>
 
-<main>
+<div class="grid">
 
-  <nav class="breadcrumb">
-    Ebene 1: Start · Ebene 2: <a href="konfigurator.html">Kacheln</a> · Ebene 3: Über TIMEPARTNER
-  </nav>
-
-  <section class="card">
-    <h1>Über TIMEPARTNER</h1>
-    <p class="muted">
-      Unternehmensgröße, Standorte, Referenzen & rechtliche Grundlagen – kompakt aufbereitet für das Vertriebsgespräch.
-    </p>
-  </section>
-
-  <section class="grid">
-
-    <div class="card">
-      <h2>Unternehmensgröße & Standorte</h2>
-      <p class="muted">Platzhalter – später mit echten Zahlen, Karte, Touchpoints.</p>
+    <!-- Mission -->
+    <div class="tile wide tpBlue">
+        <h2>TimePartner Menschen verbinden. Zukunft gestalten.</h2>
+        <p>Seit den 80ern gehört TimePartner zu den erfahrensten und stärksten HR Dienstleistern in Deutschland. Mit rund 140 Standorten stehen wir für Nähe, Verlässlichkeit und partnerschaftliche Zusammenarbeit.</p>
+        <p><strong>Unsere Mission</strong><br>Menschen und Unternehmen so zusammenzubringen, dass beide nachhaltig gewinnen.</p>
     </div>
 
-    <div class="card">
-      <h2>Referenzen</h2>
-      <p class="muted">Kundenstimmen, Case Studies, Branchen-Insights.</p>
+    <!-- Mensch im Fokus -->
+    <div class="tile tall tpGreen">
+        <h2>Der Mensch steht immer an erster Stelle</h2>
+        <p>Wir arbeiten kandidatenzentriert und geben jedem Bewerber innerhalb von 24 Stunden Feedback. Unsere Arbeit basiert auf Wertschätzung und Verbindlichkeit.</p>
+        <ul>
+            <li>faire tarifgebundene Bedingungen</li>
+            <li>sichere Beschäftigung</li>
+            <li>hohe Übernahmechancen</li>
+            <li>Weiterbildungen und Qualifikationen</li>
+            <li>persönliche Betreuung</li>
+        </ul>
     </div>
 
-    <div class="card">
-      <h2>Recht & Rahmenverträge</h2>
-      <p class="muted">Subsidiarhaftung, AÜG, Compliance & Argumente für Entscheider.</p>
+    <!-- Recruiting Technologie -->
+    <div class="tile wide tpYellow">
+        <h2>Moderne Recruiting Technologie, die wirkt</h2>
+        <ul>
+            <li>Programmatic Job Advertising für maximale Reichweite</li>
+            <li>AI Agents für Bewerberkommunikation</li>
+            <li>datenbasiertes Matching</li>
+            <li>digitale Vertragsunterzeichnung</li>
+            <li>digitale Arbeitszeiterfassung</li>
+            <li>automatisierte Prozesse</li>
+        </ul>
+        <p>Das Ergebnis sind schnellere Besetzungen und hochwertige Candidate Journeys.</p>
     </div>
 
-  </section>
+    <!-- Leistungen -->
+    <div class="tile tpRed">
+        <h2>Leistungen</h2>
+        <ul>
+            <li>Arbeitnehmerüberlassung</li>
+            <li>Personalvermittlung</li>
+            <li>On Site und Nearsite Management</li>
+            <li>Master Vendor</li>
+            <li>International Recruitment</li>
+            <li>Fahrdienst</li>
+            <li>digitale Prozesse und Kanäle</li>
+        </ul>
+    </div>
 
-</main>
+    <!-- Berufsfelder -->
+    <div class="tile wide tpGrey">
+        <h2>Unsere Berufsfelder</h2>
+        <ul>
+            <li>Lager und Logistik</li>
+            <li>Produktion und Fertigung</li>
+            <li>Metall und Maschinenbau</li>
+            <li>Industrie und Handwerk</li>
+            <li>Technik</li>
+            <li>Büro und Sekretariat</li>
+            <li>Einzelhandel und Verkauf</li>
+            <li>Lebensmittel und Ernährung</li>
+            <li>Gastronomie und Gastgewerbe</li>
+        </ul>
+        <p>Breite Expertise, klare Orientierung und starke Talentpools.</p>
+    </div>
 
-<footer class="bottom-logo">
-  <img src="assets/img/tp-weiss.svg" />
-</footer>
+    <!-- Netzwerk -->
+    <div class="tile wide tpBlue">
+        <h2>Unser Netzwerk – ein Zugang, vier Spezialisten</h2>
+        <ul>
+            <li><strong>CTRL F</strong> kaufmännische und Engineering Experten</li>
+            <li><strong>Pluswerk</strong> Industry Spezialist</li>
+            <li><strong>AERO HP</strong> Aviation Experten</li>
+        </ul>
+        <p>Mehr Spezialisierung und größere Talentpools mit nur einem Ansprechpartner.</p>
+    </div>
+
+    <!-- Geschichte -->
+    <div class="tile tall tpGreen">
+        <h2>Unsere Geschichte</h2>
+        <p>Seit den 80ern entwickeln wir uns stetig weiter. Aus regionalen Wurzeln wurde ein bundesweites Netzwerk und aus klassischen Abläufen wurden moderne digitale Prozesse.</p>
+        <p><strong>Unsere Vision</strong><br>Arbeit so zu gestalten, dass sie Menschen stärkt und Unternehmen voranbringt.</p>
+    </div>
+
+</div>
 
 </body>
 </html>
