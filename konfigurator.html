@@ -1,396 +1,102 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>TIMEPARTNER Konfigurator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Meiks Welt der Zeitarbeit · TIMEPARTNER</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Google Font (Poppins) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Icon Set (Remix Icon) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+  />
 
   <style>
-    :root{
-      --tp-blue:#0b2d42;
-      --tp-blue-2:rgba(18,58,87,0.94);
-      --tp-green:#b6de36;
-      --tp-muted:#6f8a9b;
-      --tp-border:#dfe6ea;
-      --radius:14px;
-      --shadow:0 10px 26px rgba(11,45,66,.14);
+    * {
+      box-sizing: border-box;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-
-    body{
-      font-family:"Nunito Sans",system-ui;
-      color:#fff;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      background:var(--tp-blue)
-                 url("assets/img/hintergrund.png")
-                 center center / cover no-repeat fixed;
+    body {
+      margin: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background-color: #101010;
+      color: #f9fafb;
     }
 
-    /* LAYOUT SHELL */
-    .shell{
-      flex:1;
-      max-width:1100px;
-      width:100%;
-      margin:32px auto 40px;
-      padding:0 20px 40px;
-      display:flex;
-      flex-direction:column;
+    a {
+      color: inherit;
     }
 
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:16px;
-    }
-    header img.logo-top{width:190px;}
-
-    header a.back-link{
-      color:#fff;
-      text-decoration:none;
-      font-weight:700;
-      font-size:14px;
-      opacity:.9;
-    }
-    header a.back-link:hover{opacity:1;}
-
-    main{flex:1;}
-
-    /* HERO BOX MIT KACHELN */
-    .hero{
-      background:var(--tp-blue-2);
-      padding:36px 28px 40px;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    h1{
-      font-family:Poppins,sans-serif;
-      font-weight:900;
-      font-size:clamp(30px,4.3vw,46px);
-      margin-bottom:16px;
+    /* Kopfbereich oben */
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem 0;
+      max-width: 1120px;
+      margin: 0 auto;
+      font-size: 0.85rem;
+      color: #d1d5db;
     }
 
-    .hero-eyebrow{
-      font-size:14px;
-      letter-spacing:.15em;
-      text-transform:uppercase;
-      opacity:.9;
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
 
-    .sub{
-      color:rgba(255,255,255,.9);
-      max-width:70ch;
-      font-size:18px;
-      line-height:1.5;
-    }
-
-    /* TILE LAYOUT: FLEX STATT GRID */
-    .tiles{
-      display:flex;
-      flex-wrap:wrap;
-      gap:22px;
-      margin-top:32px;
-      justify-content:space-between;
-    }
-
-    .tile{
-      flex:1 1 30%;
-      min-width:280px;
-      max-width:33.333%;
-      position:relative;
-      border-radius:var(--radius);
-      perspective:1000px;
-    }
-
-    /* FLIP-CARD */
-    .tile-inner{
-      position:relative;
-      width:100%;
-      height:100%;
-      border-radius:var(--radius);
-      border:1px solid var(--tp-border);
-      box-shadow:var(--shadow);
-      background:#fff;
-      transform-style:preserve-3d;
-      transition:transform 0.6s ease, box-shadow 0.2s ease;
-      min-height:340px;
-      overflow:hidden;
-    }
-
-    .tile-face{
-      position:absolute;
-      inset:0;
-      border-radius:var(--radius);
-      padding:22px 22px 24px;
-      display:flex;
-      flex-direction:column;
-      -webkit-backface-visibility:hidden;
-      backface-visibility:hidden;
-    }
-
-    .tile-front{
-      background:#fff;
-      transform:rotateY(0deg);
-    }
-
-    .tile-back{
-      background:#ffffff;
-      color:var(--tp-blue);
-      transform:rotateY(180deg);
-      justify-content:flex-start;
-    }
-
-    .tile:hover .tile-inner{
-      transform:rotateY(180deg);
-      box-shadow:0 14px 34px rgba(11,45,66,.28);
-    }
-
-    .badge{
-      background:var(--tp-green);
-      color:var(--tp-blue);
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:800;
-      font-size:12px;
-      display:inline-block;
-      margin-bottom:10px;
-    }
-
-    .tile h2{
-      font-family:Poppins,sans-serif;
-      font-weight:900;
-      margin-bottom:8px;
-      font-size:20px;
-    }
-
-    .tile p{
-      color:var(--tp-muted);
-      font-size:15px;
-      line-height:1.5;
-      flex:1;
-    }
-
-    .tile-cta{
-      display:block;
-      margin-top:10px;
-      font-weight:800;
-      color:var(--tp-blue);
-    }
-
-    .tile-cta-btn{
-      display:inline-block;
-      margin-top:16px;
-      padding:10px 18px;
-      border-radius:999px;
-      background:var(--tp-green);
-      color:var(--tp-blue);
-      font-weight:800;
-      font-size:14px;
-      text-decoration:none;
-    }
-
-    /* Bild – nur Vorderseite */
-    .tile-image-wrapper{
-      margin:-22px -22px 16px -22px;
-    }
-
-    .tile-image{
-      width:100%;
-      height:200px;
-      object-fit:cover;
-      display:block;
-    }
-
-    /* GAME-BUTTON AUSSERHALB DES LAYOUTS */
-    .game-wrapper{
-      text-align:center;
-      margin-top:28px;
-    }
-
-    .tp-btn {
-      display: inline-block;
-      padding: 14px 28px;
-      background: var(--tp-green);
-      color: var(--tp-blue);
-      font-weight: 700;
-      letter-spacing: .5px;
+    .tp-logo-text {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: 0.8rem;
       text-transform: uppercase;
-      border-radius: 14px;
-      text-decoration: none;
-      transition: 0.2s ease;
-      box-shadow: 0 4px 14px rgba(182,222,54,.4);
-      font-size: 15px;
     }
 
-    .tp-btn:hover {
-      background: #d4ff57;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(182,222,54,.5);
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
 
-    footer.bottom-logo{
-      margin-top:24px;
-      display:flex;
-      justify-content:flex-end;
-    }
-    footer.bottom-logo img{
-      width:56px;
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background-color: #22c55e;
     }
 
-    @media(max-width:900px){
-      .tile{
-        max-width:100%;
-        flex:1 1 100%;
-      }
+    /* Metro Grid */
+
+    .metro-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 1.25rem 1rem 2rem;
     }
 
-    @media(max-width:600px){
-      .hero{padding:26px 20px 30px;}
-      header{margin-bottom:8px;}
-      .tile-image{height:180px;}
+    .metro-grid {
+      width: 100%;
+      max-width: 1120px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: 110px;
+      gap: 0.75rem;
     }
-  </style>
-</head>
 
-<body>
-
-<div class="shell">
-
-  <header>
-    <a href="index.html" class="back-link">← Zur Startseite</a>
-    <img src="assets/img/TP-Logo-weiss-ohne-claim.png" class="logo-top" alt="TIMEPARTNER Logo" />
-  </header>
-
-  <main>
-
-    <!-- HERO MIT KACHELN -->
-    <section class="hero">
-      <p class="hero-eyebrow">Interaktives Vertriebstool</p>
-      <h1>Finde die passende Personallösung – einfach, klar und schnell.</h1>
-
-      <p class="sub">
-        Lerne uns kennen, stelle deine Dienstleistung zusammen oder buche Kampagnen &amp; Schulungen – alles an einem Ort.
-      </p>
-
-      <div class="tiles">
-
-        <!-- Kachel 1: Über TIMEPARTNER -->
-        <div class="tile">
-          <div class="tile-inner">
-
-            <!-- Vorderseite -->
-            <div class="tile-face tile-front">
-              <div class="tile-image-wrapper">
-                <img src="assets/img/kachel1.JPG" class="tile-image" alt="TIMEPARTNER Team" />
-              </div>
-              <span class="badge">Über TIMEPARTNER</span>
-              <h2>Lerne uns kennen – so arbeiten wir für deinen Erfolg</h2>
-              <p>
-                Standorte, Arbeitsweise, Referenzen &amp; rechtliche Rahmen – alles, was du brauchst, um uns einschätzen zu können.
-              </p>
-              <span class="tile-cta">Mehr erfahren →</span>
-            </div>
-
-            <!-- Rückseite -->
-            <div class="tile-face tile-back">
-              <span class="badge">Über TIMEPARTNER</span>
-              <h2>Ein klarer Blick auf TIMEPARTNER</h2>
-              <p>
-                Erfahre, wie wir organisiert sind, wo wir aktiv sind und wie wir arbeiten – inklusive Einblicke in Standorte,
-                Branchen, Referenzen und rechtliche Grundlagen wie AÜG &amp; Rahmenverträge.
-              </p>
-              <a class="tile-cta-btn" href="ueber-timepartner.html">Mehr über TIMEPARTNER</a>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Kachel 2: Leistungen konfigurieren -->
-        <div class="tile">
-          <div class="tile-inner">
-
-            <!-- Vorderseite -->
-            <div class="tile-face tile-front">
-              <div class="tile-image-wrapper">
-                <img src="assets/img/kachel2.JPG" class="tile-image" alt="Beratung zu Personallösungen" />
-              </div>
-              <span class="badge">Leistungen konfigurieren</span>
-              <h2>Stelle deine Personallösung selbst zusammen</h2>
-              <p>
-                Wähle Vertragsform, Optionen und Services – wir zeigen dir, was am besten zu deinem Bedarf passt.
-              </p>
-              <span class="tile-cta">Leistung konfigurieren →</span>
-            </div>
-
-            <!-- Rückseite -->
-            <div class="tile-face tile-back">
-              <span class="badge">Leistungen konfigurieren</span>
-              <h2>Die passende Lösung für deinen Bedarf</h2>
-              <p>
-                Kombiniere Zeitarbeit, Personalvermittlung und optionale Services Schritt für Schritt. Du siehst,
-                welche Modelle zu deinem Auftrag passen – transparent und direkt nutzbar für Gespräche mit Entscheider:innen.
-              </p>
-              <a class="tile-cta-btn" href="service-konfigurator.html">Leistung konfigurieren</a>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Kachel 3: Kampagnen & Schulungen -->
-        <div class="tile">
-          <div class="tile-inner">
-
-            <!-- Vorderseite -->
-            <div class="tile-face tile-front">
-              <div class="tile-image-wrapper">
-                <img src="assets/img/kachel3.JPG" class="tile-image" alt="Recruiting-Kampagnen und Schulungen" />
-              </div>
-              <span class="badge">Kampagnen &amp; Schulungen</span>
-              <h2>Kampagnen planen &amp; direkt buchen</h2>
-              <p>
-                Employer-Branding-Kampagnen, Workshops, Kommunikation &amp; Programmatic Advertising / Active Sourcing übersichtlich an einem Ort.
-              </p>
-              <span class="tile-cta">Kampagnen &amp; Schulungen entdecken →</span>
-            </div>
-
-            <!-- Rückseite -->
-            <div class="tile-face tile-back">
-              <span class="badge">Kampagnen &amp; Schulungen</span>
-              <h2>Mehr Sichtbarkeit &amp; Wirkung im Recruiting</h2>
-              <p>
-                Plane Employer-Branding-Kampagnen, Social Ads, Trainings und Kommunikationsbausteine so,
-                dass sie zu deiner Zielgruppe passen – inklusive Programmatic Advertising und Active Sourcing.
-              </p>
-              <a class="tile-cta-btn" href="kampagnen-schulungen.html">Kampagnen &amp; Schulungen entdecken</a>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- GAME-BUTTON AUSSERHALB DER BOX -->
-    <div class="game-wrapper">
-      <a href="humptydumpty.html" class="tp-btn">
-        🎮 Humpty Dumpty Game spielen
-      </a>
-    </div>
-
-  </main>
-
-  <footer class="bottom-logo">
-    <img src="assets/img/tp-weiss.svg" alt="TIMEPARTNER Icon" />
-  </footer>
-
-</div>
-
-</body>
-</html>
+    .tile {
