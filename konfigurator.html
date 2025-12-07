@@ -53,19 +53,18 @@
             gap: 1.6rem;
         }
 
-        /* Intro Frage */
+        /* Intro */
 
         .intro {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 0.4rem;
+            gap: 0.6rem;
         }
 
         .intro-eyebrow {
             font-size: 0.78rem;
-            letter-spacing: 0.18em;
             text-transform: uppercase;
+            letter-spacing: 0.18em;
             color: var(--tp-text-muted);
         }
 
@@ -74,23 +73,22 @@
             font-size: clamp(1.8rem, 3vw, 2.2rem);
             font-weight: 700;
             color: var(--tp-text-main);
-            line-height: 1.3;
         }
 
         .intro-subline {
             font-size: 0.95rem;
             color: var(--tp-text-muted);
-            max-width: 44rem;
+            max-width: 42rem;
             line-height: 1.55;
         }
 
-        /* Drei Kacheln */
+        /* Grid */
 
         .grid {
             display: grid;
-            margin-top: 1.4rem;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+            gap: 1.2rem;
+            margin-top: 1rem;
         }
 
         @media (max-width: 960px) {
@@ -108,72 +106,58 @@
         .tile {
             border-radius: 1.6rem;
             padding: 1.8rem 1.6rem;
-            border: 1px solid var(--tp-gray-border);
             background: #ffffff;
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
-            min-height: 220px;
-            transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+            gap: 0.9rem;
+            border: 1px solid var(--tp-gray-border);
+            transition: transform 0.14s ease, box-shadow 0.14s ease;
+            min-height: 290px;
         }
-
-        /* Minimaler Hover Effekt */
 
         .tile:hover {
             transform: translateY(-4px);
-            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.22);
-            border-color: rgba(11, 45, 67, 0.35);
-        }
-
-        /* Überschriftenoptik in den Kacheln */
-
-        .tile-label {
-            font-size: 0.78rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            opacity: 0.9;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.12);
         }
 
         .tile-title {
             font-family: "Poppins", sans-serif;
             font-size: 1.25rem;
             font-weight: 800;
-            margin-top: 0.1rem;
-            margin-bottom: 0.55rem;
-            display: inline-block;
-            padding-bottom: 0.15rem;
             border-bottom: 3px solid currentColor;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+            width: fit-content;
         }
 
         .tile-text {
             font-size: 0.9rem;
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
-        .tile-link {
-            margin-top: auto;
+        /* Badge Bullet Buttons */
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: 0.4rem;
+        }
+
+        .badge {
+            padding: 0.38rem 0.75rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            border-radius: 999px;
+            border: 1px solid currentColor;
+            background: rgba(255,255,255,0.2);
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.55rem 1.05rem;
-            border-radius: 999px;
-            border: 1px solid currentColor;
-            font-size: 0.86rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.14s ease, color 0.14s ease, border-color 0.14s ease, transform 0.14s ease;
+            backdrop-filter: blur(3px);
         }
 
-        .tile-link-icon {
-            font-size: 0.95em;
-            transform: translateY(0.5px);
-        }
-
-        .tile:hover .tile-link {
-            transform: translateY(-1px);
-        }
-
-        /* Variante: dunkelblaue Kachel */
+        /* Tile variants */
 
         .tile-dark {
             background: var(--tp-dark);
@@ -181,85 +165,48 @@
             border-color: var(--tp-dark);
         }
 
-        .tile-dark .tile-label {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .tile-dark .tile-title,
-        .tile-dark .tile-text,
-        .tile-dark .tile-link {
-            color: #ffffff;
-        }
-
-        .tile-dark .tile-link {
-            background: rgba(15, 23, 42, 0.35);
-            border-color: rgba(255, 255, 255, 0.7);
-        }
-
-        .tile-dark:hover .tile-link {
-            background: #ffffff;
-            color: var(--tp-dark);
-            border-color: #ffffff;
-        }
-
-        /* Variante: Lime Kachel */
-
         .tile-lime {
             background: var(--tp-lime);
             color: var(--tp-dark);
             border-color: var(--tp-lime);
         }
 
-        .tile-lime .tile-label {
-            color: #1f2937;
-        }
-
-        .tile-lime .tile-title {
-            color: #0b2d43;
-        }
-
-        .tile-lime .tile-text {
-            color: #111827;
-        }
-
-        .tile-lime .tile-link {
-            color: #0b2d43;
-            background: rgba(255, 255, 255, 0.35);
-            border-color: rgba(11, 45, 67, 0.8);
-        }
-
-        .tile-lime:hover .tile-link {
-            background: #0b2d43;
-            color: #ffffff;
-            border-color: #0b2d43;
-        }
-
-        /* Variante: helle Kachel */
-
         .tile-light {
             background: #ffffff;
             color: var(--tp-text-main);
         }
 
-        .tile-light .tile-label {
-            color: var(--tp-text-muted);
+        /* Link Button */
+
+        .tile-link {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.1rem;
+            font-size: 0.86rem;
+            font-weight: 700;
+            border-radius: 999px;
+            border: 1px solid currentColor;
+            transition: 0.14s ease;
         }
 
-        .tile-light .tile-title {
-            color: var(--tp-text-main);
+        .tile:hover .tile-link {
+            transform: translateY(-1px);
         }
 
-        .tile-light .tile-text {
-            color: #111827;
+        .tile-dark .tile-link:hover {
+            background: #ffffff;
+            color: var(--tp-dark);
         }
 
-        .tile-light .tile-link {
-            color: var(--tp-text-main);
-            background: #f3f4f6;
+        .tile-lime .tile-link:hover {
+            background: #0b2d43;
+            color: #ffffff;
             border-color: #0b2d43;
         }
 
-        .tile-light:hover .tile-link {
+        .tile-light .tile-link:hover {
             background: #0b2d43;
             color: #ffffff;
         }
@@ -271,7 +218,7 @@
 
 <div class="page">
 
-    <!-- Frage / Intro -->
+    <!-- Intro -->
     <section class="intro">
         <div class="intro-eyebrow">Auswahl</div>
 
@@ -280,53 +227,72 @@
         </h1>
 
         <p class="intro-subline">
-            Wähle einen Bereich aus. Jede Kachel führt dich zu klaren Infos über Leistungen, Nutzen und nächste Schritte.
+            Wähle einen Bereich aus. Jede Kachel zeigt dir die Highlights und führt dich später tief in die Inhalte.
         </p>
     </section>
 
-    <!-- Drei Kacheln -->
-    <main class="grid" aria-label="TimePartner Konfigurator Bereiche">
+    <main class="grid">
 
         <!-- Über uns -->
         <a href="ueber-timepartner.html" class="tile tile-dark">
-            <div class="tile-label">Über uns</div>
-            <div class="tile-title">TimePartner kennenlernen</div>
+            <div class="tile-title">Über uns</div>
+
             <div class="tile-text">
-                Wer wir sind, wie wir arbeiten und wofür wir stehen.
-                Ein kompakter Überblick über TimePartner als Personaldienstleister.
+                Ein Blick hinter die Kulissen. Wo wir herkommen, wer wir sind und was uns im Alltag antreibt.
             </div>
-            <div class="tile-link">
-                <span>Mehr über TimePartner entdecken</span>
-                <span class="tile-link-icon">↗</span>
+
+            <div class="badge-list">
+                <div class="badge">Seit den 80ern aktiv</div>
+                <div class="badge">140 Standorte</div>
+                <div class="badge">House of HR Germany</div>
+                <div class="badge">Kandidatenzentriert</div>
+                <div class="badge">24h Bewerberfeedback</div>
+                <div class="badge">Hohe Übernahmequoten</div>
             </div>
+
+            <div class="tile-link">Mehr über TimePartner</div>
         </a>
 
         <!-- Leistungen -->
         <a href="service-konfigurator.html" class="tile tile-lime">
-            <div class="tile-label">Leistungen</div>
-            <div class="tile-title">Personallösung konfigurieren</div>
+            <div class="tile-title">Leistungen</div>
+
             <div class="tile-text">
-                Zeitarbeit, Vermittlung, On Site und Master Vendor.
-                Stell dir die Bausteine zusammen, die zu deinem Bedarf passen.
+                Bausteine für dein Setup. Später kannst du hier deine komplette Personallösung individuell konfigurieren.
             </div>
-            <div class="tile-link">
-                <span>Zu den Leistungen</span>
-                <span class="tile-link-icon">↗</span>
+
+            <div class="badge-list">
+                <div class="badge">Zeitarbeit</div>
+                <div class="badge">Personalvermittlung</div>
+                <div class="badge">On Site Management</div>
+                <div class="badge">Master Vendor</div>
+                <div class="badge">International Recruiting</div>
+                <div class="badge">Skalierbare Modelle</div>
             </div>
+
+            <div class="tile-link">Leistungen ansehen</div>
         </a>
 
         <!-- Kampagnen & Schulungen -->
         <a href="kampagnen-schulungen.html" class="tile tile-light">
-            <div class="tile-label">Kampagnen &amp; Schulungen</div>
-            <div class="tile-title">Sichtbarkeit &amp; Enablement</div>
+            <div class="tile-title">Kampagnen & Schulungen</div>
+
             <div class="tile-text">
-                Recruiting Kampagnen, Employer Branding und Trainings.
-                Für mehr passende Bewerbungen und einen starken Auftritt deines Teams.
+                Tools, Know-how und Reichweite. Alles, was du brauchst, um Recruiting und Marke sichtbar zu machen.
             </div>
-            <div class="tile-link">
-                <span>Kampagnen und Trainings ansehen</span>
-                <span class="tile-link-icon">↗</span>
+
+            <div class="badge-list">
+                <div class="badge">LinkedIn Advocacy</div>
+                <div class="badge">Active Sourcing Schulungen</div>
+                <div class="badge">Zielgruppen Insights</div>
+                <div class="badge">Recruiting Trend Updates</div>
+                <div class="badge">Programmatic Advertising</div>
+                <div class="badge">Cross Platform Kampagnen</div>
+                <div class="badge">Co Branding regional</div>
+                <div class="badge">Whitepaper Co Produktionen</div>
             </div>
+
+            <div class="tile-link">Kampagnen entdecken</div>
         </a>
 
     </main>
